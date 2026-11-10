@@ -1,0 +1,10 @@
+{
+  "name": "aether-ui",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Framework-neutral design system starter",
+  "scripts": {
+    "build:tokens": "python3 scripts/build_css.py",
+    "test": "python3 -m unittest discover -s tests"
+  }
+}

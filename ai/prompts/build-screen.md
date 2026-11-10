@@ -1,0 +1,1 @@
+Build a screen using Aether UI. First read `AGENTS.md`, `ai/design-system.md`, relevant tokens, and component contracts. State missing components before implementation. Deliver accessible, responsive code with light/dark support.

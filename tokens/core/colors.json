@@ -1,0 +1,28 @@
+{
+  "color": {
+    "blue": {
+      "$type": "color",
+      "$value": "#007AFF"
+    },
+    "green": {
+      "$type": "color",
+      "$value": "#248A3D"
+    },
+    "orange": {
+      "$type": "color",
+      "$value": "#B86E00"
+    },
+    "red": {
+      "$type": "color",
+      "$value": "#D70015"
+    },
+    "white": {
+      "$type": "color",
+      "$value": "#FFFFFF"
+    },
+    "black": {
+      "$type": "color",
+      "$value": "#000000"
+    }
+  }
+}

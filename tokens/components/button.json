@@ -1,0 +1,31 @@
+{
+  "button": {
+    "height": {
+      "small": {
+        "$type": "dimension",
+        "$value": {
+          "value": 32,
+          "unit": "px"
+        }
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": {
+          "value": 40,
+          "unit": "px"
+        }
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": {
+          "value": 48,
+          "unit": "px"
+        }
+      }
+    },
+    "radius": {
+      "$type": "dimension",
+      "$value": "{radius.10}"
+    }
+  }
+}

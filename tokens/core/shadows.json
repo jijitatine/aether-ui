@@ -1,0 +1,26 @@
+{
+  "shadow": {
+    "card": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#00000014",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 16,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      }
+    }
+  }
+}

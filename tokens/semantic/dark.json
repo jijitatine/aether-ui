@@ -1,0 +1,44 @@
+{
+  "semantic": {
+    "background": {
+      "$type": "color",
+      "$value": "#111113"
+    },
+    "surface": {
+      "$type": "color",
+      "$value": "#1C1C1E"
+    },
+    "surface-muted": {
+      "$type": "color",
+      "$value": "#2C2C2E"
+    },
+    "text-primary": {
+      "$type": "color",
+      "$value": "#F5F5F7"
+    },
+    "text-secondary": {
+      "$type": "color",
+      "$value": "#AEAEB2"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "#48484A"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "#0A84FF"
+    },
+    "success": {
+      "$type": "color",
+      "$value": "#30D158"
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "#FF9F0A"
+    },
+    "danger": {
+      "$type": "color",
+      "$value": "#FF453A"
+    }
+  }
+}
