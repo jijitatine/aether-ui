@@ -15,7 +15,7 @@
   --aether-radius-16: 16px;
   --aether-radius-24: 24px;
   --aether-radius-999: 999px;
-  --aether-shadow-card: {'color': '#00000014', 'offsetX': {'value': 0, 'unit': 'px'}, 'offsetY': {'value': 4, 'unit': 'px'}, 'blur': {'value': 16, 'unit': 'px'}, 'spread': {'value': 0, 'unit': 'px'}};
+  --aether-shadow-card: 0px 4px 16px 0px #00000014;
   --aether-spacing-0: 0px;
   --aether-spacing-4: 4px;
   --aether-spacing-8: 8px;

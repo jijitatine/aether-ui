@@ -1,34 +1,87 @@
 # Aether UI
 
-Framework-independent, Apple-inspired design system with shared tokens, component contracts and AI guidance. Original design, not an Apple component clone.
+A framework-independent, Apple-inspired design system with shared tokens, explicit
+component contracts, interactive documentation, and instructions for Claude, Codex, and
+other coding agents. Aether UI is an original system, not an Apple component clone.
+
+## Documentation
+
+- **Visual documentation:** `docs/index.html`
+- **Live site:** <https://jijitatine.github.io/aether-ui/>
+- **AI integration:** [`ai/integration-guide.md`](ai/integration-guide.md)
+- **Agent entry points:** [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md)
+
+The visual documentation includes foundations, all eight component contracts,
+interactive states, patterns, accessibility guidance, theme switching, and the Claude /
+Codex context protocol.
 
 ## Quick start
 
 ```bash
 python3 scripts/build_css.py
+python3 scripts/prepare_pages.py
 python3 -m unittest discover -s tests
 ```
 
-Open `apps/playground/index.html` in a browser. The playground loads generated CSS from `packages/tokens-css/tokens.css`; rebuild after token edits.
+Open `docs/index.html` to browse the complete documentation. Open
+`apps/playground/index.html` for the smaller product-screen playground.
+
+## Use with Claude or Codex
+
+Keep the repository entry-point files in place. Codex reads `AGENTS.md`; Claude starts
+with `CLAUDE.md`, which delegates to the same system contract.
+
+Example task:
+
+```text
+Build a responsive project-creation flow using Aether UI. Read the agent instructions,
+tokens, and relevant component contracts first. Include validation, loading, success,
+and API error states. Report missing design-system behavior before extending it.
+```
+
+Agents are required to name the contracts used, avoid invented variants or arbitrary
+values, and finish with `ai/review-checklist.md`.
 
 ## Structure
 
-- `tokens/`: core, semantic light/dark and component tokens (DTCG-style)
-- `specifications/`: framework-neutral component and UX contracts
-- `packages/tokens-css/`: generated CSS custom properties
-- `packages/angular`, `packages/react`, `packages/swift`: adapter integration notes; implementations are planned, not falsely presented as complete
-- `ai/`, `AGENTS.md`, `CLAUDE.md`: shared AI rules
-- `apps/playground`: standalone HTML/CSS/JS demo
+```text
+tokens/                 Core, semantic, and component tokens
+specifications/         Framework-neutral component and pattern contracts
+packages/tokens-css/    Generated CSS custom properties
+packages/angular/       Angular adapter guidance (implementation planned)
+packages/react/         React adapter guidance (implementation planned)
+packages/swift/         SwiftUI adapter guidance (implementation planned)
+ai/                     Agent context, rules, prompts, and review checklist
+docs/                   Complete GitHub Pages documentation
+apps/playground/        Standalone product-screen demonstration
+scripts/                Token and documentation preparation
+tests/                  Source and generated-output validation
+```
+
+## Current component contracts
+
+Button, TextField, Select, Checkbox, Card, Tabs, Table, and Dialog.
+
+The contracts define API, states, behavior, keyboard interaction, accessibility, themes,
+and adapter expectations. Framework packages are not presented as complete until their
+implementations and tests exist.
 
 ## Design decisions
 
-Semantic colors are theme-specific. Component contracts govern behavior and accessibility. No hardcoded visual values in application components. Colors are initial design proposals and must be contrast-audited for each usage context.
+- Semantic, theme-aware roles are used in product UI.
+- Accessibility overrides visual convenience when requirements conflict.
+- Native semantics and platform idioms are preferred.
+- Comfortable density is the default; compact density retains accessible targets.
+- New variants and tokens require a repeatable need, a specification, documentation,
+  and tests.
 
-## GitHub Pages (free hosting)
+## GitHub Pages
 
-1. Create a **public** GitHub repository named `aether-ui` and upload the contents of this folder to the `main` branch.
-2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/docs`, then save.
-4. Visit `https://YOUR-USERNAME.github.io/aether-ui/` after deployment.
+The publishable static site lives in `docs/`. Configure GitHub Pages to deploy from the
+`main` branch and `/docs` folder. Token generation writes both the package output and the
+documentation copy, so they cannot drift.
 
-The publishable static site lives in `docs/`. The playground source lives in `apps/playground/`. When editing the playground or regenerating tokens, synchronize `docs/index.html` and `docs/tokens.css` using `python3 scripts/prepare_pages.py`.
+## Status
+
+Version **0.2** is ready for token consumption, UI prototyping, visual reference, and
+agent-assisted implementation. Angular, React, and SwiftUI adapters remain planned work.
