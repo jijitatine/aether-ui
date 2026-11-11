@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=date-time-picker-v1">
+  <link rel="stylesheet" href="./styles.css?v=date-time-picker-v2">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -205,12 +205,18 @@
             <div class="date-time-fields">
               <div class="date-time-field">
                 <label for="booking-date">Date</label>
-                <input id="booking-date" type="date" name="date" required aria-describedby="booking-date-error">
+                <div class="date-time-control">
+                  <input id="booking-date" type="date" name="date" required aria-describedby="booking-date-error">
+                  <span class="date-time-icon date-time-icon-calendar" aria-hidden="true"></span>
+                </div>
                 <small id="booking-date-error" hidden></small>
               </div>
               <div class="date-time-field">
                 <label for="booking-time">Heure</label>
-                <input id="booking-time" type="time" name="time" required aria-describedby="booking-time-error">
+                <div class="date-time-control">
+                  <input id="booking-time" type="time" name="time" required aria-describedby="booking-time-error">
+                  <span class="date-time-icon date-time-icon-clock" aria-hidden="true"></span>
+                </div>
                 <small id="booking-time-error" hidden></small>
               </div>
             </div>

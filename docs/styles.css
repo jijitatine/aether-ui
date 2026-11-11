@@ -599,7 +599,9 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 .date-time-demo {
   display: grid;
   gap: var(--aether-spacing-16);
+  box-sizing: border-box;
   inline-size: min(100%, 32rem);
+  min-inline-size: 0;
   padding: var(--aether-spacing-16);
   border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
   border-radius: var(--aether-radius-16);
@@ -629,18 +631,88 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   font-weight: 600;
 }
 
+.date-time-control {
+  position: relative;
+  min-inline-size: 0;
+}
+
 .date-time-field input {
+  display: block;
+  box-sizing: border-box;
   inline-size: 100%;
   min-inline-size: 0;
+  max-inline-size: 100%;
   min-block-size: var(--aether-spacing-48);
-  padding-inline: var(--aether-spacing-12);
+  margin: 0;
+  padding-inline: var(--aether-spacing-12) var(--aether-spacing-40);
   border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
   border-radius: var(--aether-radius-10);
-  background: var(--aether-semantic-surface);
+  background: var(--aether-semantic-surface-muted);
   color: var(--aether-semantic-text-primary);
   font: inherit;
   font-size: var(--aether-fontSize-body);
+  text-align: start;
   color-scheme: light;
+}
+
+.date-time-field input::-webkit-date-and-time-value {
+  margin: 0;
+  text-align: start;
+}
+
+.date-time-field input::-webkit-datetime-edit {
+  padding: 0;
+}
+
+.date-time-field input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: var(--aether-spacing-40);
+  block-size: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+}
+
+.date-time-icon {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  inset-block-start: 50%;
+  inset-inline-end: var(--aether-spacing-12);
+  inline-size: var(--aether-spacing-16);
+  block-size: var(--aether-spacing-16);
+  box-sizing: border-box;
+  border: var(--aether-glass-border-width) solid currentColor;
+  color: var(--aether-semantic-accent);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.date-time-icon-calendar {
+  border-radius: calc(var(--aether-radius-6) / 2);
+}
+
+.date-time-icon-calendar::before {
+  content: "";
+  align-self: start;
+  inline-size: 100%;
+  margin-block-start: var(--aether-spacing-4);
+  border-block-start: var(--aether-glass-border-width) solid currentColor;
+}
+
+.date-time-icon-clock {
+  border-radius: 50%;
+}
+
+.date-time-icon-clock::before {
+  content: "";
+  inline-size: var(--aether-spacing-4);
+  block-size: var(--aether-spacing-4);
+  border-inline-start: var(--aether-glass-border-width) solid currentColor;
+  border-block-end: var(--aether-glass-border-width) solid currentColor;
+  transform: translate(25%, -25%);
 }
 
 [data-theme="dark"] .date-time-field input {
@@ -648,6 +720,7 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 }
 
 .date-time-field input:focus-visible {
+  background: var(--aether-semantic-surface);
   outline-color: var(--aether-semantic-accent);
 }
 
