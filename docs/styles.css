@@ -884,18 +884,20 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   inline-size: min(100%, 34rem);
 }
 
-.calendar-picker-examples > div {
-  display: grid;
-  gap: var(--aether-spacing-8);
-  min-inline-size: 0;
+.calendar-trigger {
+  inline-size: 100%;
+  padding-block: var(--aether-spacing-8);
   color: var(--aether-semantic-text-primary);
-  font-weight: 600;
+  font: inherit;
+  font-size: var(--aether-fontSize-body);
+  line-height: 1.25;
+  text-align: start;
+  overflow-wrap: anywhere;
+  cursor: pointer;
 }
 
-.calendar-picker-examples .button {
-  text-align: start;
-  justify-content: start;
-  overflow-wrap: anywhere;
+.calendar-trigger [data-empty] {
+  color: var(--aether-semantic-text-secondary);
 }
 
 .calendar-dialog {

@@ -479,6 +479,7 @@
     const apply = calendar.querySelector('#calendar-apply');
     const monthFormat = new Intl.DateTimeFormat(root.lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
     const dateFormat = new Intl.DateTimeFormat(root.lang, { dateStyle: 'long', timeZone: 'UTC' });
+    const fieldDateFormat = new Intl.DateTimeFormat(root.lang, { dateStyle: 'medium', timeZone: 'UTC' });
     const fullDateFormat = new Intl.DateTimeFormat(root.lang, { dateStyle: 'full', timeZone: 'UTC' });
     const committed = new Map();
     let trigger;
@@ -602,9 +603,11 @@
 
     apply.addEventListener('click', () => {
       committed.set(trigger, [start, end]);
-      trigger.textContent = end
-        ? `${dateFormat.format(start)} – ${dateFormat.format(end)}`
-        : dateFormat.format(start);
+      const value = trigger.querySelector('[data-calendar-value]');
+      value.textContent = end
+        ? `${fieldDateFormat.format(start)} – ${fieldDateFormat.format(end)}`
+        : fieldDateFormat.format(start);
+      value.removeAttribute('data-empty');
       calendar.close();
     });
     calendar.querySelector('#calendar-cancel').addEventListener('click', () => calendar.close());

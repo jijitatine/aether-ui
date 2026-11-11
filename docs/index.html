@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=calendar-picker-v1">
+  <link rel="stylesheet" href="./styles.css?v=calendar-picker-v2">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -268,13 +268,19 @@
       <div class="demo-card">
         <div class="demo-stage calendar-picker-stage">
           <div class="calendar-picker-examples">
-            <div>
-              <span id="calendar-date-label">Date</span>
-              <button id="calendar-date" aria-labelledby="calendar-date-label calendar-date" class="button ghost large" type="button" data-calendar="single" aria-haspopup="dialog" aria-controls="calendar-dialog">Choisir une date</button>
+            <div class="date-time-field">
+              <label id="calendar-date-label" for="calendar-date">Date</label>
+              <button id="calendar-date" class="date-time-control calendar-trigger" type="button" data-calendar="single" aria-haspopup="dialog" aria-controls="calendar-dialog" aria-labelledby="calendar-date-label calendar-date-value">
+                <span id="calendar-date-value" data-calendar-value data-empty>Choisir une date</span>
+                <span class="date-time-icon date-time-icon-calendar" aria-hidden="true"></span>
+              </button>
             </div>
-            <div>
-              <span id="calendar-range-label">Période</span>
-              <button id="calendar-range" aria-labelledby="calendar-range-label calendar-range" class="button ghost large" type="button" data-calendar="range" aria-haspopup="dialog" aria-controls="calendar-dialog">Choisir une période</button>
+            <div class="date-time-field">
+              <label id="calendar-range-label" for="calendar-range">Période</label>
+              <button id="calendar-range" class="date-time-control calendar-trigger" type="button" data-calendar="range" aria-haspopup="dialog" aria-controls="calendar-dialog" aria-labelledby="calendar-range-label calendar-range-value">
+                <span id="calendar-range-value" data-calendar-value data-empty>Choisir une période</span>
+                <span class="date-time-icon date-time-icon-calendar" aria-hidden="true"></span>
+              </button>
             </div>
           </div>
         </div>
@@ -357,6 +363,6 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </dialog>
-  <script src="./app.js?v=calendar-picker-v1"></script>
+  <script src="./app.js?v=calendar-picker-v2"></script>
 </body>
 </html>
