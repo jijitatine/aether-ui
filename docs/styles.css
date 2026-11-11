@@ -1776,3 +1776,33 @@ button.chip:hover,
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.map-stage {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--aether-spacing-16);
+}
+
+#street-map {
+  scroll-margin-block-start: var(--aether-spacing-64);
+}
+
+.street-map-location {
+  margin: var(--aether-spacing-4) 0 0;
+  color: var(--aether-semantic-text-secondary);
+  font-size: var(--aether-fontSize-small);
+}
+
+.street-map-frame {
+  display: block;
+  inline-size: 100%;
+  block-size: clamp(18rem, 45vw, 28rem);
+  border: 1px solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-16);
+  background: var(--aether-semantic-surface-muted);
+}
+
+.street-map-frame:focus-visible {
+  outline: 2px solid var(--aether-semantic-accent);
+  outline-offset: 2px;
+}
