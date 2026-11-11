@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./tokens.css">
   <link rel="stylesheet" href="./styles.css?v=chart-v2">
-  <link rel="stylesheet" href="./products.css">
+  <link rel="stylesheet" href="./products.css?v=date-filters-v2">
   <script src="./products.js" defer></script>
 </head>
 <body class="catalog">
@@ -30,12 +30,24 @@
         <fieldset>
           <legend>Période d’ajout</legend>
           <div class="catalog-dates">
-            <div class="catalog-field"><label for="date-from">Du</label><input type="date" id="date-from" aria-describedby="date-error"></div>
-            <div class="catalog-field"><label for="date-to">Au</label><input type="date" id="date-to" aria-describedby="date-error"></div>
+            <div class="date-time-field">
+              <label for="date-from">Du</label>
+              <div class="date-time-control">
+                <input type="date" id="date-from" aria-describedby="date-error">
+                <span class="date-time-icon date-time-icon-calendar" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="date-time-field">
+              <label for="date-to">Au</label>
+              <div class="date-time-control">
+                <input type="date" id="date-to" aria-describedby="date-error">
+                <span class="date-time-icon date-time-icon-calendar" aria-hidden="true"></span>
+              </div>
+            </div>
           </div>
-          <p id="date-error" class="catalog-error" role="status" hidden></p>
         </fieldset>
         <button type="reset" class="button ghost">Réinitialiser</button>
+        <p id="date-error" class="catalog-error" role="status" hidden></p>
       </form>
       <p id="catalog-count" role="status" class="catalog-count"></p>
       <div class="table-wrap" role="region" aria-label="Tableau des produits" tabindex="0">
