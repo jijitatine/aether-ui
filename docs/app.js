@@ -469,6 +469,148 @@
     });
   });
 
+  const calendar = document.querySelector('#calendar-dialog');
+  if (calendar) {
+    const title = calendar.querySelector('#calendar-title');
+    const hint = calendar.querySelector('#calendar-hint');
+    const month = calendar.querySelector('#calendar-month');
+    const grid = calendar.querySelector('.calendar-grid');
+    const weeks = grid.tBodies[0];
+    const apply = calendar.querySelector('#calendar-apply');
+    const monthFormat = new Intl.DateTimeFormat(root.lang, { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    const dateFormat = new Intl.DateTimeFormat(root.lang, { dateStyle: 'long', timeZone: 'UTC' });
+    const fullDateFormat = new Intl.DateTimeFormat(root.lang, { dateStyle: 'full', timeZone: 'UTC' });
+    const committed = new Map();
+    let trigger;
+    let range;
+    let current;
+    let today;
+    let start;
+    let end;
+
+    function calendarDate(year, monthIndex, day) {
+      const value = new Date(0);
+      value.setUTCFullYear(year, monthIndex, day);
+      return value;
+    }
+
+    function moveDay(date, offset) {
+      return calendarDate(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + offset);
+    }
+
+    function moveMonth(date, offset) {
+      const year = date.getUTCFullYear();
+      const target = date.getUTCMonth() + offset;
+      const lastDay = calendarDate(year, target + 1, 0).getUTCDate();
+      return calendarDate(year, target, Math.min(date.getUTCDate(), lastDay));
+    }
+
+    function renderCalendar(focusDay = false) {
+      const year = current.getUTCFullYear();
+      const monthIndex = current.getUTCMonth();
+      const first = calendarDate(year, monthIndex, 1);
+      const offset = (first.getUTCDay() + 6) % 7;
+      const count = calendarDate(year, monthIndex + 1, 0).getUTCDate();
+      const monthLabel = monthFormat.format(first);
+      if (month.textContent !== monthLabel) month.textContent = monthLabel;
+      weeks.replaceChildren();
+
+      for (let index = 0; index < Math.ceil((offset + count) / 7) * 7; index++) {
+        const row = index % 7 === 0 ? weeks.insertRow() : weeks.lastElementChild;
+        const cell = row.insertCell();
+        const day = index - offset + 1;
+        if (day < 1 || day > count) continue;
+        const date = calendarDate(year, monthIndex, day);
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = String(day);
+        button.tabIndex = +date === +current ? 0 : -1;
+        button.setAttribute('aria-label', fullDateFormat.format(date));
+        if (+date === +today) button.setAttribute('aria-current', 'date');
+        const endpoint = (start && +date === +start) || (end && +date === +end);
+        const inRange = range && start && end && date > start && date < end;
+        cell.setAttribute('aria-selected', String(Boolean(endpoint || inRange)));
+        if (endpoint) cell.dataset.endpoint = '';
+        if (inRange) cell.dataset.inRange = '';
+        button.addEventListener('click', () => {
+          current = date;
+          if (!range || !start || end) {
+            start = date;
+            end = null;
+          } else if (date < start) {
+            end = start;
+            start = date;
+          } else {
+            end = date;
+          }
+          renderCalendar(true);
+        });
+        cell.append(button);
+      }
+
+      apply.disabled = !start || (range && !end);
+      const message = start
+        ? end
+          ? `Du ${dateFormat.format(start)} au ${dateFormat.format(end)}.`
+          : range
+            ? `Début : ${dateFormat.format(start)}. Choisissez la date de fin.`
+            : dateFormat.format(start)
+        : range ? 'Choisissez la date de début.' : 'Choisissez un jour.';
+      if (hint.textContent !== message) hint.textContent = message;
+      if (focusDay) weeks.querySelector('[tabindex="0"]').focus();
+    }
+
+    document.querySelectorAll('[data-calendar]').forEach((button) => {
+      button.addEventListener('click', () => {
+        trigger = button;
+        range = button.dataset.calendar === 'range';
+        const now = new Date();
+        today = calendarDate(now.getFullYear(), now.getMonth(), now.getDate());
+        [start, end] = committed.get(button) ?? [null, null];
+        current = start ?? today;
+        title.textContent = range ? 'Choisir une période' : 'Choisir une date';
+        grid.setAttribute('aria-multiselectable', String(range));
+        renderCalendar();
+        calendar.showModal();
+        weeks.querySelector('[tabindex="0"]').focus();
+      });
+    });
+
+    for (const [id, offset] of [['#calendar-prev', -1], ['#calendar-next', 1]]) {
+      calendar.querySelector(id).addEventListener('click', () => {
+        current = moveMonth(current, offset);
+        renderCalendar();
+      });
+    }
+
+    grid.addEventListener('keydown', (event) => {
+      const weekday = (current.getUTCDay() + 6) % 7;
+      switch (event.key) {
+        case 'ArrowLeft': current = moveDay(current, -1); break;
+        case 'ArrowRight': current = moveDay(current, 1); break;
+        case 'ArrowUp': current = moveDay(current, -7); break;
+        case 'ArrowDown': current = moveDay(current, 7); break;
+        case 'Home': current = moveDay(current, -weekday); break;
+        case 'End': current = moveDay(current, 6 - weekday); break;
+        case 'PageUp': current = moveMonth(current, event.shiftKey ? -12 : -1); break;
+        case 'PageDown': current = moveMonth(current, event.shiftKey ? 12 : 1); break;
+        default: return;
+      }
+      event.preventDefault();
+      renderCalendar(true);
+    });
+
+    apply.addEventListener('click', () => {
+      committed.set(trigger, [start, end]);
+      trigger.textContent = end
+        ? `${dateFormat.format(start)} – ${dateFormat.format(end)}`
+        : dateFormat.format(start);
+      calendar.close();
+    });
+    calendar.querySelector('#calendar-cancel').addEventListener('click', () => calendar.close());
+    calendar.addEventListener('close', () => trigger.focus());
+  }
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 

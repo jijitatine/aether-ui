@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=menu-button-v2">
+  <link rel="stylesheet" href="./styles.css?v=calendar-picker-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -27,7 +27,7 @@
     <nav class="side-nav" aria-label="Sections de la documentation">
       <div class="nav-group" data-search-group><p>Commencer</p><a href="#overview" class="active">Vue d’ensemble</a><a href="#quick-start">Installation</a><a href="#principles">Principes</a></div>
       <div class="nav-group" data-search-group><p>Fondations</p><a href="#colors">Couleurs</a><a href="#typography">Typographie</a><a href="#spacing">Espacement & rayons</a><a href="#motion">Mouvement</a></div>
-      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#menu-button">MenuButton</a></div>
+      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a></div>
       <div class="nav-group" data-search-group><p>Construire</p><a href="#patterns">Patterns</a><a href="#accessibility">Accessibilité</a><a href="#ai-guide">Claude & Codex</a><a href="#governance">Contribution</a></div>
     </nav>
     <div class="sidebar-note"><span class="status-dot"></span><div><strong>Stable pour prototypage</strong><small>Adaptateurs en préparation</small></div></div>
@@ -261,6 +261,26 @@
       </div>
     </section>
 
+    <section class="doc-section component-section" id="calendar-picker" data-title="Calendrier Aether">
+      <div class="component-heading">
+        <div><div><h2>Calendrier Aether</h2><p>Variante de DatePicker et DateRangePicker avec un calendrier intégré à Aether UI.</p></div></div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-stage calendar-picker-stage">
+          <div class="calendar-picker-examples">
+            <div>
+              <span id="calendar-date-label">Date</span>
+              <button id="calendar-date" aria-labelledby="calendar-date-label calendar-date" class="button ghost large" type="button" data-calendar="single" aria-haspopup="dialog" aria-controls="calendar-dialog">Choisir une date</button>
+            </div>
+            <div>
+              <span id="calendar-range-label">Période</span>
+              <button id="calendar-range" aria-labelledby="calendar-range-label calendar-range" class="button ghost large" type="button" data-calendar="range" aria-haspopup="dialog" aria-controls="calendar-dialog">Choisir une période</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="doc-section component-section" id="menu-button" data-title="MenuButton">
       <div class="component-heading">
         <div><div><h2>MenuButton</h2><p>Ouvre les actions disponibles dans le contexte.</p></div></div>
@@ -320,6 +340,23 @@
 
   <dialog id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><form method="dialog"><div class="dialog-icon" aria-hidden="true">◇</div><h2 id="dialog-title">Publier les modifications ?</h2><p id="dialog-description">Les tokens mis à jour seront disponibles pour tous les projets liés.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Annuler</button><button class="button primary" value="confirm">Publier</button></div></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite">Copié dans le presse-papiers</div>
-  <script src="./app.js?v=menu-button-v1"></script>
+  <dialog class="calendar-dialog" id="calendar-dialog" aria-labelledby="calendar-title" aria-describedby="calendar-hint">
+    <h2 id="calendar-title"></h2>
+    <p id="calendar-hint" aria-live="polite"></p>
+    <div class="calendar-toolbar">
+      <button class="button ghost" type="button" id="calendar-prev" aria-label="Mois précédent"><span class="calendar-chevron" aria-hidden="true"></span></button>
+      <h3 id="calendar-month" aria-live="polite"></h3>
+      <button class="button ghost" type="button" id="calendar-next" aria-label="Mois suivant"><span class="calendar-chevron" aria-hidden="true"></span></button>
+    </div>
+    <table class="calendar-grid" role="grid" aria-labelledby="calendar-month">
+      <thead><tr><th scope="col" abbr="Lundi">Lu</th><th scope="col" abbr="Mardi">Ma</th><th scope="col" abbr="Mercredi">Me</th><th scope="col" abbr="Jeudi">Je</th><th scope="col" abbr="Vendredi">Ve</th><th scope="col" abbr="Samedi">Sa</th><th scope="col" abbr="Dimanche">Di</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="calendar-actions">
+      <button class="button ghost" id="calendar-cancel" type="button">Annuler</button>
+      <button class="button primary" id="calendar-apply" type="button">Valider</button>
+    </div>
+  </dialog>
+  <script src="./app.js?v=calendar-picker-v1"></script>
 </body>
 </html>
