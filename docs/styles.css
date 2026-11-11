@@ -291,10 +291,10 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 .toggle-row:active:not(:disabled){transform:scale(.995)}
 .toggle-row:disabled{cursor:not-allowed;color:var(--aether-semantic-text-secondary);opacity:.55}
 .toggle-copy{min-width:0}.toggle-copy strong,.toggle-copy small{display:block}.toggle-copy strong{font-size:13px}.toggle-copy small{margin-top:2px;color:var(--aether-semantic-text-secondary);font-size:11px}
-.toggle-track{position:relative;width:var(--aether-toggle-track-width);height:var(--aether-toggle-track-height);flex:0 0 var(--aether-toggle-track-width);border:1px solid var(--aether-semantic-border);border-radius:var(--aether-radius-999);background:var(--aether-semantic-surface-muted);transition:background var(--aether-duration-fast),border-color var(--aether-duration-fast)}
-.toggle-track span{position:absolute;top:var(--aether-toggle-thumb-inset);left:var(--aether-toggle-thumb-inset);width:var(--aether-toggle-thumb-size);height:var(--aether-toggle-thumb-size);border-radius:50%;background:var(--aether-semantic-surface);box-shadow:var(--aether-shadow-card);transition:transform var(--aether-duration-fast)}
+.toggle-track{position:relative;width:var(--aether-toggle-track-width);height:var(--aether-toggle-track-height);flex:0 0 var(--aether-toggle-track-width);align-self:center;border:1px solid var(--aether-semantic-border);border-radius:var(--aether-radius-999);background:var(--aether-semantic-surface-muted);transition:background var(--aether-duration-fast),border-color var(--aether-duration-fast)}
+.toggle-track span{position:absolute;top:50%;left:var(--aether-toggle-thumb-inset);width:var(--aether-toggle-thumb-size);height:var(--aether-toggle-thumb-size);border-radius:50%;background:var(--aether-semantic-surface);box-shadow:var(--aether-shadow-card);transform:translateY(-50%);transition:transform var(--aether-duration-fast)}
 .toggle-row[aria-checked=true] .toggle-track{border-color:var(--aether-semantic-accent);background:var(--aether-semantic-accent)}
-.toggle-row[aria-checked=true] .toggle-track span{transform:translateX(calc(var(--aether-toggle-track-width) - var(--aether-toggle-thumb-size) - (var(--aether-toggle-thumb-inset) * 2)))}
+.toggle-row[aria-checked=true] .toggle-track span{transform:translateX(calc(var(--aether-toggle-track-width) - var(--aether-toggle-thumb-size) - (var(--aether-toggle-thumb-inset) * 2))) translateY(-50%)}
 
 @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
   .select-trigger,.select-popover,.toggle-row{background:var(--aether-semantic-surface)}
