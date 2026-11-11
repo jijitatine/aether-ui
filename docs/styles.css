@@ -2055,6 +2055,7 @@ button.chip:hover,
 
 .feedback-toast {
   position: fixed;
+  align-items: center;
   z-index: 200;
   inset-inline-end: max(var(--aether-spacing-16), env(safe-area-inset-right));
   inset-block-end: max(var(--aether-spacing-16), env(safe-area-inset-bottom));
