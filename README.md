@@ -60,7 +60,7 @@ tests/                  Source and generated-output validation
 
 ## Current component contracts
 
-Button, TextField, Select, Checkbox, Toggle, Card, Tabs, Table, Dialog, NavigationBar, DatePicker, TimePicker, DateRangePicker, MenuButton, Chip, Slider, ProgressBar, ProgressSpinner, Badge, FileUploader, Chart, and Map.
+Button, TextField, Select, Checkbox, Toggle, Card, Tabs, Table, Dialog, NavigationBar, DatePicker, TimePicker, DateRangePicker, MenuButton, Chip, Slider, ProgressBar, ProgressSpinner, Badge, Toast, Alert, FileUploader, Chart, and Map.
 
 The contracts define API, states, behavior, keyboard interaction, accessibility, themes,
 and adapter expectations. Framework packages are not presented as complete until their
