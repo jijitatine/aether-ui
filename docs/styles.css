@@ -1087,3 +1087,91 @@ button.chip:hover,
 .chip-row [data-chip-reset] {
   min-block-size: var(--aether-spacing-40);
 }
+
+/* Slider and progress indicators */
+.progress-example {
+  display: grid;
+  gap: var(--aether-spacing-8);
+  inline-size: min(100%, 32rem);
+  min-inline-size: 0;
+  padding: var(--aether-spacing-16);
+  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-16);
+  background: var(--aether-semantic-surface);
+  color: var(--aether-semantic-text-primary);
+}
+
+.progress-example-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--aether-spacing-8);
+  font-weight: 600;
+}
+
+.progress-example-heading span {
+  color: var(--aether-semantic-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-example p {
+  margin: 0;
+  color: var(--aether-semantic-text-secondary);
+  font-size: var(--aether-fontSize-small);
+}
+
+.aether-slider,
+.aether-progress {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  accent-color: var(--aether-semantic-accent);
+  color-scheme: light;
+}
+
+[data-theme="dark"] :is(.aether-slider, .aether-progress) {
+  color-scheme: dark;
+}
+
+.aether-slider {
+  block-size: var(--aether-spacing-40);
+}
+
+.aether-slider:focus-visible {
+  outline-color: var(--aether-semantic-accent);
+}
+
+.aether-progress {
+  block-size: var(--aether-spacing-16);
+}
+
+.progress-spinner-example,
+.progress-spinner-status {
+  display: flex;
+  align-items: center;
+  gap: var(--aether-spacing-12);
+}
+
+.progress-spinner-example {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.aether-spinner {
+  flex: none;
+  inline-size: var(--aether-spacing-24);
+  block-size: var(--aether-spacing-24);
+  border: 2px solid var(--aether-semantic-border);
+  border-block-start-color: var(--aether-semantic-accent);
+  border-radius: 50%;
+  animation: aether-spin calc(3 * var(--aether-duration-slow)) linear infinite;
+}
+
+@keyframes aether-spin {
+  to { transform: rotate(1turn); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aether-spinner { animation: none; }
+}

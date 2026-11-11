@@ -645,6 +645,37 @@
     });
   });
 
+  const progressSlider = document.querySelector('#demo-progress-slider');
+  if (progressSlider) {
+    const sliderValue = document.querySelector('#demo-slider-value');
+    const progressBar = document.querySelector('#demo-progress-bar');
+    const progressValue = document.querySelector('#demo-progress-value');
+
+    function updateProgress() {
+      const label = `${progressSlider.value} %`;
+      progressSlider.setAttribute('aria-valuetext', label);
+      sliderValue.textContent = label;
+      progressBar.value = progressSlider.valueAsNumber;
+      progressBar.textContent = label;
+      progressValue.textContent = label;
+    }
+
+    progressSlider.addEventListener('input', updateProgress);
+    updateProgress();
+  }
+
+  const spinnerToggle = document.querySelector('#demo-spinner-toggle');
+  if (spinnerToggle) {
+    const spinner = document.querySelector('#demo-spinner');
+    const status = document.querySelector('#demo-spinner-status');
+    spinnerToggle.addEventListener('click', () => {
+      const loading = spinner.hidden;
+      spinner.hidden = !loading;
+      status.textContent = loading ? 'Chargement en cours…' : 'Chargement arrêté.';
+      spinnerToggle.textContent = loading ? 'Arrêter' : 'Démarrer';
+    });
+  }
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 
