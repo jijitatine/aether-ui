@@ -58,6 +58,9 @@ When sources conflict, use this order and report the conflict:
 - Background color and restrained gradients may show through glass to make depth legible.
   They must never reduce content contrast or become the sole carrier of meaning.
 - Comfortable density by default. Compact density must preserve accessible targets.
+- Use Toggle for an immediate binary setting and Checkbox for a value submitted with a
+  form. Custom Select implementations must follow the documented listbox keyboard model;
+  never rely on a browser's unstyled option menu for the Aether visual treatment.
 - Motion durations from the token scale and no essential information conveyed by motion.
 - Light and dark themes are equal deliverables.
 

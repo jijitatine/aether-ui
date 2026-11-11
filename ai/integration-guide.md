@@ -47,7 +47,7 @@ flowchart LR
 
 ```text
 Implement the project-creation form in Angular using Aether UI.
-Use the existing TextField, Select, Checkbox, Button, Card, and Dialog contracts.
+Use the existing TextField, Select, Checkbox, Toggle, Button, Card, and Dialog contracts.
 Include validation, submitting, success, and API error states. Add component tests and
 report any missing Aether UI behavior before extending the system.
 ```
@@ -65,7 +65,7 @@ then review the result with ai/review-checklist.md.
 An agent should finish with a compact report such as:
 
 ```text
-Contracts: TextField, Select, Checkbox, Button, Card
+Contracts: TextField, Select, Checkbox, Toggle, Button, Card
 Tokens: semantic colors, glass surface/strong/border/highlight, glass blur medium,
 spacing 8/16/24, radius 10/16, normal motion
 States: default, focus, validation error, disabled, loading, API error, success

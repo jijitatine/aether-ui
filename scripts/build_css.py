@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 ROOT = Path(__file__).resolve().parents[1]
 core = ROOT / 'tokens/core'
+components = ROOT / 'tokens/components'
 
 def load(path):
     return json.loads(path.read_text(encoding='utf-8'))
@@ -31,7 +32,8 @@ def css_value(v):
 base = []
 for file in sorted(core.glob('*.json')):
     base.extend(f'  --aether-{key}: {css_value(value)};' for key, value in flatten(load(file)))
-base.extend(f'  --aether-{key}: {css_value(value)};' for key, value in flatten(load(ROOT/'tokens/components/button.json')))
+for file in sorted(components.glob('*.json')):
+    base.extend(f'  --aether-{key}: {css_value(value)};' for key, value in flatten(load(file)))
 lines = [':root {', *base, '}']
 for mode in ('light', 'dark'):
     vals = [f'  --aether-{key}: {css_value(value)};' for key, value in flatten(load(ROOT/f'tokens/semantic/{mode}.json'))]

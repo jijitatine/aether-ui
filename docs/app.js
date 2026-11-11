@@ -102,6 +102,101 @@
     });
   }
 
+  const customSelects = [...document.querySelectorAll('[data-select]')];
+  const closeSelect = (select, restoreFocus = false) => {
+    const trigger = select.querySelector('.select-trigger');
+    const popover = select.querySelector('.select-popover');
+    if (!trigger || !popover || popover.hidden) return;
+    popover.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) trigger.focus();
+  };
+  const closeOtherSelects = (current) => {
+    customSelects.forEach((select) => {
+      if (select !== current) closeSelect(select);
+    });
+  };
+  customSelects.forEach((select) => {
+    const trigger = select.querySelector('.select-trigger');
+    const popover = select.querySelector('.select-popover');
+    if (!trigger || !popover) return;
+    const options = [...popover.querySelectorAll('[role="option"]')];
+    const enabledOptions = () => options.filter((option) => !option.disabled);
+    const openSelect = (edge = 'selected') => {
+      closeOtherSelects(select);
+      popover.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      const available = enabledOptions();
+      const selected = available.find((option) => option.getAttribute('aria-selected') === 'true');
+      const target = edge === 'last' ? available.at(-1) : edge === 'first' ? available[0] : selected || available[0];
+      target?.focus();
+    };
+    const chooseOption = (option) => {
+      options.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+      const valueNode = select.querySelector('[data-select-value]');
+      const input = select.querySelector('input[type="hidden"]');
+      valueNode.textContent = option.childNodes[0].textContent.trim();
+      valueNode.removeAttribute('data-placeholder');
+      if (input) input.value = option.dataset.value || '';
+      if (select.classList.contains('error')) {
+        select.classList.remove('error');
+        trigger.removeAttribute('aria-invalid');
+        trigger.removeAttribute('aria-describedby');
+        const errorMessage = select.querySelector('small[id]');
+        if (errorMessage) errorMessage.hidden = true;
+      }
+      closeSelect(select, true);
+    };
+    trigger.addEventListener('click', () => {
+      if (trigger.getAttribute('aria-expanded') === 'true') closeSelect(select);
+      else openSelect();
+    });
+    trigger.addEventListener('keydown', (event) => {
+      if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      openSelect(event.key === 'ArrowUp' || event.key === 'End' ? 'last' : 'first');
+    });
+    options.forEach((option) => {
+      option.addEventListener('click', () => chooseOption(option));
+      option.addEventListener('keydown', (event) => {
+        const available = enabledOptions();
+        const index = available.indexOf(option);
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeSelect(select, true);
+          return;
+        }
+        if (event.key === 'Tab') {
+          closeSelect(select);
+          return;
+        }
+        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = index;
+        if (event.key === 'ArrowDown') nextIndex = (index + 1) % available.length;
+        if (event.key === 'ArrowUp') nextIndex = (index - 1 + available.length) % available.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = available.length - 1;
+        available[nextIndex]?.focus();
+      });
+    });
+  });
+  document.addEventListener('pointerdown', (event) => {
+    customSelects.forEach((select) => {
+      if (!select.contains(event.target)) closeSelect(select);
+    });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    customSelects.forEach((select) => closeSelect(select, select.querySelector('.select-trigger')?.getAttribute('aria-expanded') === 'true'));
+  });
+
+  document.querySelectorAll('[data-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      toggle.setAttribute('aria-checked', String(toggle.getAttribute('aria-checked') !== 'true'));
+    });
+  });
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 

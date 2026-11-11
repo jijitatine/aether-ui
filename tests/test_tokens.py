@@ -14,6 +14,8 @@ class TokensTest(unittest.TestCase):
         subprocess.run([sys.executable, str(ROOT/'scripts/build_css.py')], check=True)
         css=(ROOT/'packages/tokens-css/tokens.css').read_text()
         self.assertIn('--aether-font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;', css)
+        self.assertIn('--aether-select-control-height-medium: 44px;', css)
+        self.assertIn('--aether-toggle-track-width: 50px;', css)
         self.assertIn('--aether-shadow-card: 0px 4px 16px 0px #00000014;', css)
         self.assertIn('--aether-shadow-glass: 0px 18px 48px -12px #0A193326;', css)
         self.assertIn('--aether-glass-blur-medium: 24px;', css)
@@ -40,4 +42,10 @@ class TokensTest(unittest.TestCase):
             with self.subTest(path=path):
                 self.assertTrue(path.is_file())
                 self.assertGreater(path.stat().st_size, 0)
+    def test_custom_controls_are_documented(self):
+        html=(ROOT/'docs/index.html').read_text()
+        self.assertIn('data-select', html)
+        self.assertIn('role="listbox"', html)
+        self.assertIn('role="switch"', html)
+        self.assertTrue((ROOT/'specifications/components/toggle.md').is_file())
 if __name__=='__main__':unittest.main()

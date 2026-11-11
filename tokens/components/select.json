@@ -1,0 +1,28 @@
+{
+  "select": {
+    "control-height": {
+      "medium": {
+        "$type": "dimension",
+        "$value": {
+          "value": 44,
+          "unit": "px"
+        }
+      }
+    },
+    "option-height": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "control-radius": {
+      "$type": "dimension",
+      "$value": "{radius.10}"
+    },
+    "menu-radius": {
+      "$type": "dimension",
+      "$value": "{radius.16}"
+    }
+  }
+}

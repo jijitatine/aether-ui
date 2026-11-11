@@ -46,6 +46,14 @@
   --aether-button-height-medium: 40px;
   --aether-button-height-large: 48px;
   --aether-button-radius: var(--aether-radius-10);
+  --aether-select-control-height-medium: 44px;
+  --aether-select-option-height: 40px;
+  --aether-select-control-radius: var(--aether-radius-10);
+  --aether-select-menu-radius: var(--aether-radius-16);
+  --aether-toggle-track-width: 50px;
+  --aether-toggle-track-height: 30px;
+  --aether-toggle-thumb-size: 26px;
+  --aether-toggle-thumb-inset: 2px;
 }
 [data-theme="light"] {
   --aether-semantic-background: #F5F5F7;
