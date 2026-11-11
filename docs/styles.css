@@ -2171,3 +2171,53 @@ dialog.drawer[open] {
 @media (prefers-reduced-motion: reduce) {
   dialog.drawer[open] { animation: none; }
 }
+
+/* Combobox */
+.combobox { position: relative; display: grid; gap: var(--aether-spacing-4); width: min(100%, 24rem); }
+.combobox label { font-size: var(--aether-fontSize-small); font-weight: 600; }
+.combobox input {
+  width: 100%;
+  min-height: var(--aether-select-control-height-medium);
+  padding-inline: var(--aether-spacing-12);
+  border: 1px solid var(--aether-semantic-border);
+  border-radius: var(--aether-select-control-radius);
+  background: var(--aether-semantic-surface);
+  color: var(--aether-semantic-text-primary);
+}
+.combobox input::placeholder { color: var(--aether-semantic-text-secondary); }
+.combobox-popup {
+  position: absolute;
+  z-index: 5;
+  inset-inline: 0;
+  top: calc(100% + var(--aether-spacing-4));
+  max-height: min(16rem, 45dvh);
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--aether-spacing-4);
+  border: 1px solid var(--aether-semantic-border);
+  border-radius: var(--aether-select-menu-radius);
+  background: var(--aether-semantic-surface);
+  color: var(--aether-semantic-text-primary);
+  box-shadow: var(--aether-shadow-glass);
+}
+.combobox-popup ul { list-style: none; margin: 0; padding: 0; }
+.combobox-popup li {
+  display: grid;
+  align-content: center;
+  min-height: var(--aether-spacing-48);
+  padding: var(--aether-spacing-8) var(--aether-spacing-12);
+  border-radius: var(--aether-radius-10);
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.combobox-popup li:hover,
+.combobox-popup li[aria-selected="true"] { background: var(--aether-semantic-surface-muted); }
+.combobox-popup small,
+.combobox-popup p { color: var(--aether-semantic-text-secondary); }
+.combobox-popup p { margin: 0; padding: var(--aether-spacing-12); }
+.combobox-example { width: min(100%, 24rem); }
+.combobox-example output:not(:empty) { display: block; margin-top: var(--aether-spacing-12); }
+#combobox:focus-within { position: relative; z-index: 6; }
+#combobox .demo-card { overflow: visible; }
+.combobox-stage { border-radius: inherit; isolation: auto; }
+.catalog-main > .combobox { margin-block-end: var(--aether-spacing-16); }

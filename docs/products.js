@@ -1,3 +1,4 @@
+import { setupCombobox } from './combobox.js';
 import { createToast } from './toast.js';
 
 const byId = (id) => document.getElementById(id);
@@ -218,7 +219,7 @@ function closeEditorAndRefresh(message) {
   editor.close();
   render();
   const replacement = triggerId ? rows.querySelector('[data-product="' + triggerId + '"]') : add;
-  const focusTarget = replacement || add;
+  const focusTarget = replacement || (editorTrigger.isConnected ? editorTrigger : add);
   focusTarget.focus();
   showToast(focusTarget, 'success', message);
 }
@@ -277,6 +278,23 @@ confirmation.addEventListener('close', () => {
   }
   products = products.filter((item) => item.id !== editedId);
   closeEditorAndRefresh('Produit supprimé.');
+});
+
+setupCombobox(byId('product-lookup'), {
+  getOptions: (query) => {
+    const term = normalize(query);
+    return products
+      .filter(({ name, id }) => normalize(name + ' ' + reference(id)).includes(term))
+      .map((product) => ({
+        product,
+        label: product.name,
+        detail: reference(product.id) + ' · ' + statuses[product.status].label
+      }));
+  },
+  onSelect: ({ product }, input) => {
+    input.value = '';
+    openEditor(product, input);
+  }
 });
 
 render();

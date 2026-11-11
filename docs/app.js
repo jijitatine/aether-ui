@@ -1,6 +1,20 @@
+import { setupCombobox } from './combobox.js';
 import { createToast } from './toast.js';
 
 (() => {
+  const examples = [
+    { label: 'Lampe Halo', detail: 'PRD-101 · Actif' },
+    { label: 'Fauteuil Rivage', detail: 'PRD-102 · Actif' },
+    { label: 'Vase Dune', detail: 'PRD-103 · Brouillon' }
+  ];
+  setupCombobox(document.querySelector('#demo-combobox'), {
+    getOptions: (query) => examples.filter(({ label, detail }) =>
+      (label + ' ' + detail).toLocaleLowerCase('fr').includes(query.toLocaleLowerCase('fr'))),
+    onSelect: ({ label, detail }) => {
+      document.querySelector('#combobox-result').textContent = label + ' · ' + detail;
+    }
+  });
+
   const root = document.documentElement;
   const body = document.body;
   const themeToggle = document.querySelector('#theme-toggle');

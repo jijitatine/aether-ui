@@ -7,9 +7,9 @@
   <title>Liste de produits · Aether UI</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./tokens.css">
-  <link rel="stylesheet" href="./styles.css?v=drawer-v1">
+  <link rel="stylesheet" href="./styles.css?v=combobox-v1">
   <link rel="stylesheet" href="./products.css?v=drawer-v1">
-  <script type="module" src="./products.js?v=shared-toast-v1"></script>
+  <script type="module" src="./products.js?v=combobox-v1"></script>
 </head>
 <body class="catalog">
   <a class="skip-link" href="#catalog-main">Aller au catalogue</a>
@@ -23,6 +23,16 @@
       <div><h1>Liste de produits</h1><p>Recherchez, filtrez et gérez les articles du catalogue.</p></div>
       <button class="button primary" id="add-product" type="button"><span aria-hidden="true">+</span> Ajouter un produit</button>
     </header>
+
+    <div class="combobox">
+  <label for="product-lookup">Accès rapide à un produit</label>
+  <input id="product-lookup" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="product-lookup-options" autocomplete="off" placeholder="Nom ou référence">
+  <div class="combobox-popup" hidden>
+    <ul id="product-lookup-options" role="listbox" aria-label="Suggestions"></ul>
+    <p hidden>Aucun produit trouvé.</p>
+  </div>
+  <span class="sr-only" role="status"></span>
+</div>
 
     <section class="catalog-panel" aria-label="Catalogue">
       <form id="filters" class="catalog-filters" novalidate>
