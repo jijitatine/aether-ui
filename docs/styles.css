@@ -1867,3 +1867,15 @@ button.chip:hover,
 [data-theme="dark"] .street-map-canvas .maplibregl-ctrl-icon {
   filter: invert(1);
 }
+
+.pattern-actions {
+  display: flex;
+  margin-block-start: var(--aether-spacing-24);
+}
+
+.pattern-actions .button {
+  max-inline-size: 100%;
+  padding-block: var(--aether-spacing-8);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
