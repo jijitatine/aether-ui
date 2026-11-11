@@ -11,7 +11,7 @@ other coding agents. Aether UI is an original system, not an Apple component clo
 - **AI integration:** [`ai/integration-guide.md`](ai/integration-guide.md)
 - **Agent entry points:** [`AGENTS.md`](AGENTS.md) and [`CLAUDE.md`](CLAUDE.md)
 
-The visual documentation includes foundations, all nine component contracts,
+The visual documentation includes foundations, all ten component contracts,
 interactive states, patterns, accessibility guidance, theme switching, and the Claude /
 Codex context protocol.
 
@@ -60,7 +60,7 @@ tests/                  Source and generated-output validation
 
 ## Current component contracts
 
-Button, TextField, Select, Checkbox, Toggle, Card, Tabs, Table, and Dialog.
+Button, TextField, Select, Checkbox, Toggle, Card, Tabs, Table, Dialog, and NavigationBar.
 
 The contracts define API, states, behavior, keyboard interaction, accessibility, themes,
 and adapter expectations. Framework packages are not presented as complete until their

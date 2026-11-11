@@ -333,6 +333,22 @@
     });
   });
 
+  document.querySelectorAll('[data-navigation-bar-demo]').forEach((navigation) => {
+    const links = [...navigation.querySelectorAll('a')];
+    const defaultLink = links.find((link) => link.hasAttribute('aria-current'));
+
+    function updateCurrentLink() {
+      const current = links.find((link) => link.hash === window.location.hash) ?? defaultLink;
+      links.forEach((link) => {
+        if (link === current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+
+    window.addEventListener('hashchange', updateCurrentLink);
+    updateCurrentLink();
+  });
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 
