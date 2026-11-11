@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=map-v1">
+  <link rel="stylesheet" href="./styles.css?v=street-map-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -617,6 +617,20 @@
                 <div class="map-details" role="status" aria-atomic="true" data-map-details hidden>Sélectionnez un lieu pour l’afficher sur la carte.</div>
               </div>
             </div>
+          </article>
+
+          <article class="map-card" id="street-map" aria-labelledby="street-map-title">
+            <header class="map-header">
+              <div>
+                <h3 id="street-map-title">Plan de ville</h3>
+                <p class="street-map-location">Centre-ville d’Aix-en-Provence</p>
+              </div>
+              <a class="button ghost medium" href="https://www.openstreetmap.org/?mlat=43.5297&amp;mlon=5.4474#map=15/43.5297/5.4474">Ouvrir dans OpenStreetMap ↗</a>
+            </header>
+            <iframe class="street-map-frame" title="Plan interactif du centre-ville d’Aix-en-Provence"
+              loading="lazy"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=5.429%2C43.519%2C5.465%2C43.541&amp;layer=mapnik&amp;marker=43.5297%2C5.4474"></iframe>
+            <small class="map-credit">© <a href="https://www.openstreetmap.org/copyright">Les contributeurs d’OpenStreetMap</a></small>
           </article>
         </div>
       </div>

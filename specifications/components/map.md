@@ -32,3 +32,18 @@ For asynchronous sources, display loading and error messages and retain the list
 if place data is available. Show an explicit empty message when there are no
 places. The documentation uses a local, static Natural Earth overview and sample
 locations. It is intended for visualization at country scale.
+
+## Street map
+
+Use a street map when the user needs to explore local streets, parks and points
+of interest. Supply an initial center and zoom or bounds, plus an optional marker
+whose location is named in text outside the map. The provider handles panning and
+zoom in this variant. Choose a provider with keyboard and touch controls, and
+keep its attribution and controls visible.
+
+Give an embedded frame a descriptive accessible title. Keep the place name,
+credits and a direct link to the provider visible outside the frame. The link
+remains available while the map loads and if embedded content is blocked. Use
+Aether's semantic colors for the surrounding card. The provider controls the
+embedded map's palette. The documentation example uses a lazy-loaded
+OpenStreetMap embed and requires a network connection to display the street map.
