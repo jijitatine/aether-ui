@@ -10,7 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=street-map-v1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.css"
+    integrity="sha384-Nq6PQ+9vJPvw7U/VfDELyrWoGQMsy0gi6QShhaSrGzkpF5KkM40csg2leky+YMTd" crossorigin="anonymous">
+  <link rel="stylesheet" href="./styles.css?v=street-map-v2">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -627,10 +629,11 @@
               </div>
               <a class="button ghost medium" href="https://www.openstreetmap.org/?mlat=43.5297&amp;mlon=5.4474#map=15/43.5297/5.4474">Ouvrir dans OpenStreetMap ↗</a>
             </header>
-            <iframe class="street-map-frame" title="Plan interactif du centre-ville d’Aix-en-Provence"
-              loading="lazy"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=5.429%2C43.519%2C5.465%2C43.541&amp;layer=mapnik&amp;marker=43.5297%2C5.4474"></iframe>
-            <small class="map-credit">© <a href="https://www.openstreetmap.org/copyright">Les contributeurs d’OpenStreetMap</a></small>
+            <div class="street-map-frame">
+              <div class="street-map-canvas" data-street-map role="region" aria-label="Plan interactif du centre-ville d’Aix-en-Provence"></div>
+              <p class="street-map-status" data-street-map-status role="status">Le plan interactif nécessite JavaScript. Le lien OpenStreetMap reste disponible.</p>
+            </div>
+            <small class="map-credit"><a href="https://openfreemap.org/">OpenFreeMap</a> · © <a href="https://openmaptiles.org/">OpenMapTiles</a> · © <a href="https://www.openstreetmap.org/copyright">Les contributeurs d’OpenStreetMap</a></small>
           </article>
         </div>
       </div>
@@ -666,5 +669,8 @@
     </div>
   </dialog>
   <script src="./app.js?v=map-v1"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.js"
+    integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
+  <script defer src="./street-map.js?v=1"></script>
 </body>
 </html>

@@ -1794,15 +1794,76 @@ button.chip:hover,
 }
 
 .street-map-frame {
-  display: block;
-  inline-size: 100%;
+  position: relative;
+  overflow: hidden;
   block-size: clamp(18rem, 45vw, 28rem);
   border: 1px solid var(--aether-semantic-border);
   border-radius: var(--aether-radius-16);
   background: var(--aether-semantic-surface-muted);
 }
 
-.street-map-frame:focus-visible {
+.street-map-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.street-map-canvas canvas:focus-visible {
   outline: 2px solid var(--aether-semantic-accent);
-  outline-offset: 2px;
+  outline-offset: -3px;
+}
+
+.street-map-status {
+  position: absolute;
+  inset-inline: var(--aether-spacing-16);
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: var(--aether-spacing-12);
+  border-radius: var(--aether-radius-10);
+  background: var(--aether-semantic-surface);
+  color: var(--aether-semantic-text-secondary);
+  text-align: center;
+  pointer-events: none;
+}
+
+.street-map-pin {
+  inline-size: var(--aether-spacing-24);
+  block-size: var(--aether-spacing-32);
+  pointer-events: none;
+}
+
+.street-map-pin::before {
+  content: "";
+  display: block;
+  inline-size: var(--aether-spacing-24);
+  block-size: var(--aether-spacing-24);
+  transform: translateY(3px) rotate(-45deg);
+  border: 2px solid var(--aether-semantic-surface);
+  border-radius: 50% 50% 50% 0;
+  background: var(--aether-semantic-accent);
+  box-shadow: var(--aether-shadow-card);
+}
+
+.street-map-canvas .maplibregl-ctrl-group {
+  background: var(--aether-semantic-surface);
+  border: 1px solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-10);
+  box-shadow: var(--aether-shadow-card);
+}
+
+.street-map-canvas .maplibregl-ctrl-group button {
+  inline-size: var(--aether-spacing-48);
+  block-size: var(--aether-spacing-48);
+}
+
+.street-map-canvas .maplibregl-ctrl-group button + button {
+  border-color: var(--aether-semantic-border);
+}
+
+.street-map-canvas .maplibregl-ctrl-group button:hover {
+  background-color: var(--aether-semantic-surface-muted);
+}
+
+[data-theme="dark"] .street-map-canvas .maplibregl-ctrl-icon {
+  filter: invert(1);
 }
