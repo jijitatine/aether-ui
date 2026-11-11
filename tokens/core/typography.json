@@ -1,6 +1,10 @@
 {
   "font": {
     "family": {
+      "primary": {
+        "$type": "fontFamily",
+        "$value": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif"
+      },
       "system": {
         "$type": "fontFamily",
         "$value": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif"

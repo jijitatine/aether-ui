@@ -13,6 +13,7 @@ class TokensTest(unittest.TestCase):
     def test_generated_css_is_valid_shape(self):
         subprocess.run([sys.executable, str(ROOT/'scripts/build_css.py')], check=True)
         css=(ROOT/'packages/tokens-css/tokens.css').read_text()
+        self.assertIn('--aether-font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;', css)
         self.assertIn('--aether-shadow-card: 0px 4px 16px 0px #00000014;', css)
         self.assertIn('--aether-shadow-glass: 0px 18px 48px -12px #0A193326;', css)
         self.assertIn('--aether-glass-blur-medium: 24px;', css)

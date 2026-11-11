@@ -68,6 +68,8 @@ implementations and tests exist.
 
 ## Design decisions
 
+- Inter is the primary interface typeface through `font.family.primary`; consumers must
+  load the font and retain the token's system fallback stack.
 - Semantic, theme-aware roles are used in product UI.
 - Aether Glass uses semantic translucent surfaces, blur, highlight, border, and shadow
   tokens to express navigation, overlays, floating controls, and elevated groups.

@@ -33,6 +33,7 @@
   --aether-spacing-40: 40px;
   --aether-spacing-48: 48px;
   --aether-spacing-64: 64px;
+  --aether-font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --aether-font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --aether-fontSize-caption: 12px;
   --aether-fontSize-small: 14px;

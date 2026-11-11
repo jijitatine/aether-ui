@@ -45,7 +45,8 @@ When sources conflict, use this order and report the conflict:
 
 ## Visual language
 
-- System font stack and strong typographic hierarchy.
+- **Inter** is the primary interface typeface, backed by the system font stack when it
+  is unavailable. Products must load Inter before consuming `font.family.primary`.
 - Neutral content surfaces with one restrained accent role.
 - The **Atlantique** semantic palette uses petrol blue for accent, mineral green for
   success, warm amber for warning, and raspberry red for danger. Light-theme values are
