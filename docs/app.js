@@ -614,6 +614,37 @@
     calendar.addEventListener('close', () => trigger.focus());
   }
 
+  document.querySelectorAll('[data-chip-demo]').forEach((demo) => {
+    const removable = [...demo.querySelectorAll('[data-chip-remove]')];
+    const reset = demo.querySelector('[data-chip-reset]');
+    const status = demo.querySelector('[data-chip-status]');
+
+    demo.querySelectorAll('[data-chip-filter]').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+      });
+    });
+
+    removable.forEach((chip, index) => {
+      chip.addEventListener('click', () => {
+        chip.hidden = true;
+        reset.disabled = false;
+        const next = removable.slice(index + 1).find((item) => !item.hidden)
+          ?? removable.find((item) => !item.hidden)
+          ?? reset;
+        next.focus();
+        status.textContent = `${chip.dataset.chipRemove} retiré de la sélection.`;
+      });
+    });
+
+    reset.addEventListener('click', () => {
+      removable.forEach((chip) => { chip.hidden = false; });
+      removable[0].focus();
+      reset.disabled = true;
+      status.textContent = 'Sélection rétablie.';
+    });
+  });
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 
