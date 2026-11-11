@@ -819,8 +819,15 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 }
 
 .action-menu-icon {
-  font-size: var(--aether-fontSize-heading-sm);
-  line-height: 1;
+  display: grid;
+  flex: none;
+  align-content: space-between;
+  inline-size: var(--aether-spacing-16);
+  block-size: var(--aether-spacing-12);
+}
+
+.action-menu-icon > span {
+  border-block-start: var(--aether-glass-border-width) solid currentColor;
 }
 
 .action-menu-popup {
