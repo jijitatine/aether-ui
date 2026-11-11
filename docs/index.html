@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.css"
     integrity="sha384-Nq6PQ+9vJPvw7U/VfDELyrWoGQMsy0gi6QShhaSrGzkpF5KkM40csg2leky+YMTd" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles.css?v=pattern-actions-v1">
+  <link rel="stylesheet" href="./styles.css?v=feedback-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -29,7 +29,7 @@
     <nav class="side-nav" aria-label="Sections de la documentation">
       <div class="nav-group" data-search-group><p>Commencer</p><a href="#overview" class="active">Vue d’ensemble</a><a href="#quick-start">Installation</a><a href="#principles">Principes</a></div>
       <div class="nav-group" data-search-group><p>Fondations</p><a href="#colors">Couleurs</a><a href="#typography">Typographie</a><a href="#spacing">Espacement & rayons</a><a href="#motion">Mouvement</a></div>
-      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a><a href="#map">Carte géographique</a></div>
+      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#toast">Toast</a><a href="#alert">Alert</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a><a href="#map">Carte géographique</a></div>
       <div class="nav-group" data-search-group><p>Construire</p><a href="#patterns">Patterns</a><a href="./products.html">Liste de produits</a><a href="#accessibility">Accessibilité</a><a href="#ai-guide">Claude & Codex</a><a href="#governance">Contribution</a></div>
     </nav>
     <div class="sidebar-note"><span class="status-dot"></span><div><strong>Stable pour prototypage</strong><small>Adaptateurs en préparation</small></div></div>
@@ -62,7 +62,7 @@
 
     <section class="doc-section foundation-section" id="motion" data-title="Mouvement"><div class="section-heading compact"><div><h2>Mouvement</h2></div><p>Rapide, fonctionnel et désactivable. Aucune animation ne doit bloquer l’utilisateur.</p></div><div class="motion-grid"><article><button class="motion-demo fast" type="button"><i></i></button><strong>Fast · 120 ms</strong><p>Survols et retours immédiats</p></article><article><button class="motion-demo normal" type="button"><i></i></button><strong>Normal · 200 ms</strong><p>Transitions de composants</p></article><article><button class="motion-demo slow" type="button"><i></i></button><strong>Slow · 300 ms</strong><p>Changements de contexte</p></article></div></section>
 
-    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt et un contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>21 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
+    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt-trois contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>23 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
 
     <section class="doc-section component-section" id="button" data-title="Button"><div class="component-heading"><div><span class="component-number">01</span><div><h2>Button</h2><p>Déclenche une action. Pour naviguer, utilisez un lien.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/button.md">Voir le contrat ↗</a></div><div class="demo-card"><div class="demo-toolbar"><span>Variantes</span><span>Interactif</span></div><div class="demo-stage button-stage"><button class="button primary" type="button">Primary</button><button class="button secondary" type="button">Secondary</button><button class="button ghost" type="button">Ghost</button><button class="button destructive" type="button">Destructive</button><button class="button primary" type="button" disabled>Disabled</button><button class="button primary loading" type="button" aria-label="Chargement" disabled><i></i>Chargement</button></div><div class="api-row"><span><code>variant</code> primary · secondary · ghost · destructive</span><span><code>size</code> small · medium · large</span></div></div></section>
 
@@ -451,6 +451,52 @@
       </div>
     </section>
 
+    <section class="doc-section component-section" id="toast" data-title="Toast">
+      <div class="component-heading">
+        <div><div><h2>Toast</h2><p>Confirme une action ou signale son résultat dans une notification flottante.</p></div></div>
+        <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/toast.md">Voir le contrat ↗</a>
+      </div>
+      <div class="demo-card">
+        <div class="demo-stage button-stage" role="group" aria-label="Afficher un toast">
+            <button class="button secondary" type="button" data-toast-tone="info" data-toast-title="Synchronisation en cours" data-toast-message="Vos modifications seront disponibles sur vos autres appareils.">Information</button>
+            <button class="button secondary" type="button" data-toast-tone="success" data-toast-title="Modifications enregistrées" data-toast-message="Votre document est à jour.">Succès</button>
+            <button class="button secondary" type="button" data-toast-tone="warning" data-toast-title="Espace presque plein" data-toast-message="Il vous reste 10 % de stockage.">Avertissement</button>
+            <button class="button secondary" type="button" data-toast-tone="danger" data-toast-title="Envoi impossible" data-toast-message="Vérifiez votre connexion et réessayez.">Erreur</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section component-section" id="alert" data-title="Alert">
+      <div class="component-heading">
+        <div><div><h2>Alert</h2><p>Affiche un message dans la section concernée.</p></div></div>
+        <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/alert.md">Voir le contrat ↗</a>
+      </div>
+      <div class="demo-card">
+        <div class="demo-stage">
+          <div class="alert-examples">
+            <div class="feedback feedback-alert" data-tone="info">
+              <span class="feedback-icon" aria-hidden="true">i</span>
+              <div class="feedback-copy"><strong>Maintenance prévue</strong><p>L’espace sera indisponible dimanche de 7 h à 8 h.</p></div>
+            </div>
+            <div class="feedback feedback-alert" data-tone="success">
+              <span class="feedback-icon" aria-hidden="true">✓</span>
+              <div class="feedback-copy"><strong>Import terminé</strong><p>Les 12 produits ont été ajoutés au catalogue.</p></div>
+            </div>
+            <div class="feedback feedback-alert" data-tone="warning" id="dismissible-alert">
+              <span class="feedback-icon" aria-hidden="true">!</span>
+              <div class="feedback-copy"><strong>Stockage presque plein</strong><p>Libérez de l’espace avant votre prochain import.</p></div>
+              <button class="feedback-close" type="button" data-alert-close aria-label="Fermer l’alerte de stockage" hidden>×</button>
+            </div>
+            <div class="feedback feedback-alert" data-tone="danger">
+              <span class="feedback-icon" aria-hidden="true">×</span>
+              <div class="feedback-copy"><strong>Paiement refusé</strong><p>Vérifiez votre moyen de paiement pour finaliser la commande.</p></div>
+            </div>
+            <button class="button secondary small" type="button" data-alert-restore hidden>Réafficher l’alerte de stockage</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="doc-section component-section" id="file-uploader" data-title="FileUploader">
       <div class="component-heading">
         <div><div><h2>FileUploader</h2><p>Sélectionne des fichiers et affiche un aperçu des images.</p></div></div>
@@ -654,7 +700,13 @@
   </main>
 
   <dialog id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><form method="dialog"><div class="dialog-icon" aria-hidden="true">◇</div><h2 id="dialog-title">Publier les modifications ?</h2><p id="dialog-description">Les tokens mis à jour seront disponibles pour tous les projets liés.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Annuler</button><button class="button primary" value="confirm">Publier</button></div></form></dialog>
-  <div class="toast" id="toast" role="status" aria-live="polite">Copié dans le presse-papiers</div>
+  <div class="sr-only" id="toast-status" role="status"></div>
+  <div class="sr-only" id="toast-urgent" role="alert"></div>
+  <div class="feedback feedback-toast" id="live-toast" hidden>
+    <span class="feedback-icon" aria-hidden="true"></span>
+    <div class="feedback-copy"><strong></strong><p></p></div>
+    <button class="feedback-close" type="button" aria-label="Fermer la notification">×</button>
+  </div>
   <dialog class="calendar-dialog" id="calendar-dialog" aria-labelledby="calendar-title" aria-describedby="calendar-hint">
     <h2 id="calendar-title"></h2>
     <p id="calendar-hint" aria-live="polite"></p>
@@ -672,7 +724,7 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </dialog>
-  <script src="./app.js?v=map-v1"></script>
+  <script src="./app.js?v=feedback-v1"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.js"
     integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
   <script defer src="./street-map.js?v=1"></script>

@@ -5,7 +5,6 @@
   const menuToggle = document.querySelector('#menu-toggle');
   const sidebar = document.querySelector('#sidebar');
   const backdrop = document.querySelector('#sidebar-backdrop');
-  const toast = document.querySelector('#toast');
   const search = document.querySelector('#doc-search');
   const navLinks = [...document.querySelectorAll('.side-nav a')];
 
@@ -57,20 +56,79 @@
     });
   });
 
+  const toast = document.querySelector('#live-toast');
+  const toastStatus = document.querySelector('#toast-status');
+  const toastUrgent = document.querySelector('#toast-urgent');
+  const toastIcons = { info: 'i', success: '✓', warning: '!', danger: '×' };
   let toastTimer;
-  const showToast = (message) => {
-    toast.textContent = message;
-    toast.classList.add('show');
+  let toastTrigger;
+
+  const hideToast = () => {
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    const restoreFocus = toast.contains(document.activeElement);
+    toast.hidden = true;
+    if (restoreFocus && toastTrigger?.isConnected) toastTrigger.focus();
   };
+
+  const scheduleToastDismissal = () => {
+    clearTimeout(toastTimer);
+    if (!toast.hidden && ['info', 'success'].includes(toast.dataset.tone)
+        && !toast.matches(':hover, :focus-within')) {
+      toastTimer = setTimeout(hideToast, 6000);
+    }
+  };
+
+  const showToast = (trigger, tone, title, message = '') => {
+    toastTrigger = trigger;
+    toast.dataset.tone = tone;
+    toast.querySelector('.feedback-icon').textContent = toastIcons[tone];
+    toast.querySelector('strong').textContent = title;
+    const detail = toast.querySelector('p');
+    detail.textContent = message;
+    detail.hidden = !message;
+    toast.hidden = false;
+    toastStatus.textContent = '';
+    toastUrgent.textContent = '';
+    const announcement = tone === 'danger' ? toastUrgent : toastStatus;
+    announcement.append(message ? title + '. ' + message : title);
+    scheduleToastDismissal();
+  };
+
+  toast.querySelector('button').addEventListener('click', hideToast);
+  toast.addEventListener('pointerenter', () => clearTimeout(toastTimer));
+  toast.addEventListener('pointerleave', scheduleToastDismissal);
+  toast.addEventListener('focusin', () => clearTimeout(toastTimer));
+  toast.addEventListener('focusout', () => queueMicrotask(scheduleToastDismissal));
+
+  document.querySelectorAll('[data-toast-tone]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const { toastTone, toastTitle, toastMessage } = button.dataset;
+      showToast(button, toastTone, toastTitle, toastMessage);
+    });
+  });
+
+  const dismissibleAlert = document.querySelector('#dismissible-alert');
+  const alertClose = dismissibleAlert.querySelector('[data-alert-close]');
+  const alertRestore = document.querySelector('[data-alert-restore]');
+  alertClose.hidden = false;
+  alertClose.addEventListener('click', () => {
+    dismissibleAlert.hidden = true;
+    alertRestore.hidden = false;
+    alertRestore.focus();
+  });
+  alertRestore.addEventListener('click', () => {
+    dismissibleAlert.hidden = false;
+    alertRestore.hidden = true;
+    alertClose.focus();
+  });
+
   document.querySelectorAll('[data-copy]').forEach((button) => {
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(button.dataset.copy);
-        showToast('Copié dans le presse-papiers');
+        showToast(button, 'success', 'Copié dans le presse-papiers');
       } catch {
-        showToast('Copie indisponible dans ce navigateur');
+        showToast(button, 'danger', 'Copie indisponible dans ce navigateur');
       }
     });
   });
