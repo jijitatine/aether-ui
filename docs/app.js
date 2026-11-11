@@ -676,6 +676,111 @@
     });
   }
 
+  document.querySelectorAll('[data-file-uploader]').forEach((uploader) => {
+    const input = uploader.querySelector('input[type="file"]');
+    const dropzone = uploader.querySelector('.upload-dropzone');
+    const list = uploader.querySelector('.upload-list');
+    const template = uploader.querySelector('template');
+    const status = uploader.querySelector('[data-upload-status]');
+    const errors = uploader.querySelector('[data-upload-errors]');
+    const acceptedTypes = input.accept.split(',');
+    const maxBytes = Number(uploader.dataset.maxBytes);
+    const maxFiles = Number(uploader.dataset.maxFiles);
+    const sizeFormat = new Intl.NumberFormat(root.lang, { maximumFractionDigits: 1 });
+    const files = new Map();
+
+    function describeSize(bytes) {
+      return bytes >= 1_000_000
+        ? `${sizeFormat.format(bytes / 1_000_000)} Mo`
+        : `${sizeFormat.format(bytes / 1_000)} ko`;
+    }
+
+    function validationError(file, key) {
+      if (!acceptedTypes.includes(file.type)) return 'format non accepté';
+      if (file.size > maxBytes) return 'fichier trop volumineux';
+      if (files.has(key)) return 'fichier déjà sélectionné';
+      if (files.size >= maxFiles) return 'nombre maximal de fichiers atteint';
+      return '';
+    }
+
+    function appendFile(file, key) {
+      const row = template.content.firstElementChild.cloneNode(true);
+      row.querySelector('[data-upload-name]').textContent = file.name;
+      row.querySelector('[data-upload-size]').textContent = describeSize(file.size);
+      const preview = row.querySelector('.upload-preview');
+      const type = preview.querySelector('[data-upload-type]');
+      let previewURL;
+      if (file.type.startsWith('image/')) {
+        previewURL = URL.createObjectURL(file);
+        const image = document.createElement('img');
+        image.alt = '';
+        image.addEventListener('error', () => {
+          image.remove();
+          type.hidden = false;
+        }, { once: true });
+        type.hidden = true;
+        image.src = previewURL;
+        preview.append(image);
+      } else {
+        type.textContent = 'PDF';
+      }
+
+      const remove = row.querySelector('[data-upload-remove]');
+      remove.setAttribute('aria-label', `Retirer ${file.name}`);
+      remove.addEventListener('click', () => {
+        const neighbor = row.nextElementSibling ?? row.previousElementSibling;
+        files.delete(key);
+        row.remove();
+        if (previewURL) URL.revokeObjectURL(previewURL);
+        list.hidden = files.size === 0;
+        errors.replaceChildren();
+        status.textContent = `${file.name} retiré de la sélection.`;
+        (neighbor?.querySelector('[data-upload-remove]') ?? input).focus();
+      });
+
+      files.set(key, file);
+      list.append(row);
+    }
+
+    function addFiles(selected) {
+      errors.replaceChildren();
+      let added = 0;
+      for (const file of selected) {
+        const key = JSON.stringify([file.name, file.size, file.lastModified]);
+        const error = validationError(file, key);
+        if (error) {
+          const item = document.createElement('li');
+          item.textContent = `${file.name} : ${error}.`;
+          errors.append(item);
+        } else {
+          appendFile(file, key);
+          added++;
+        }
+      }
+      list.hidden = files.size === 0;
+      status.textContent = added === 1 ? '1 fichier ajouté.' : added ? `${added} fichiers ajoutés.` : '';
+    }
+
+    input.addEventListener('change', () => {
+      addFiles(input.files);
+      input.value = '';
+    });
+    dropzone.addEventListener('dragover', (event) => {
+      if (!Array.from(event.dataTransfer.types).includes('Files')) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'copy';
+      dropzone.dataset.dragging = '';
+    });
+    dropzone.addEventListener('dragleave', (event) => {
+      if (!dropzone.contains(event.relatedTarget)) delete dropzone.dataset.dragging;
+    });
+    dropzone.addEventListener('drop', (event) => {
+      event.preventDefault();
+      delete dropzone.dataset.dragging;
+      if (event.dataTransfer.files.length) addFiles(event.dataTransfer.files);
+    });
+  });
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 

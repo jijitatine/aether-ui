@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=progress-components-v1">
+  <link rel="stylesheet" href="./styles.css?v=badge-uploader-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -27,7 +27,7 @@
     <nav class="side-nav" aria-label="Sections de la documentation">
       <div class="nav-group" data-search-group><p>Commencer</p><a href="#overview" class="active">Vue d’ensemble</a><a href="#quick-start">Installation</a><a href="#principles">Principes</a></div>
       <div class="nav-group" data-search-group><p>Fondations</p><a href="#colors">Couleurs</a><a href="#typography">Typographie</a><a href="#spacing">Espacement & rayons</a><a href="#motion">Mouvement</a></div>
-      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a></div>
+      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#file-uploader">FileUploader</a></div>
       <div class="nav-group" data-search-group><p>Construire</p><a href="#patterns">Patterns</a><a href="#accessibility">Accessibilité</a><a href="#ai-guide">Claude & Codex</a><a href="#governance">Contribution</a></div>
     </nav>
     <div class="sidebar-note"><span class="status-dot"></span><div><strong>Stable pour prototypage</strong><small>Adaptateurs en préparation</small></div></div>
@@ -60,7 +60,7 @@
 
     <section class="doc-section foundation-section" id="motion" data-title="Mouvement"><div class="section-heading compact"><div><h2>Mouvement</h2></div><p>Rapide, fonctionnel et désactivable. Aucune animation ne doit bloquer l’utilisateur.</p></div><div class="motion-grid"><article><button class="motion-demo fast" type="button"><i></i></button><strong>Fast · 120 ms</strong><p>Survols et retours immédiats</p></article><article><button class="motion-demo normal" type="button"><i></i></button><strong>Normal · 200 ms</strong><p>Transitions de composants</p></article><article><button class="motion-demo slow" type="button"><i></i></button><strong>Slow · 300 ms</strong><p>Changements de contexte</p></article></div></section>
 
-    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Dix-huit contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>18 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
+    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>20 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
 
     <section class="doc-section component-section" id="button" data-title="Button"><div class="component-heading"><div><span class="component-number">01</span><div><h2>Button</h2><p>Déclenche une action. Pour naviguer, utilisez un lien.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/button.md">Voir le contrat ↗</a></div><div class="demo-card"><div class="demo-toolbar"><span>Variantes</span><span>Interactif</span></div><div class="demo-stage button-stage"><button class="button primary" type="button">Primary</button><button class="button secondary" type="button">Secondary</button><button class="button ghost" type="button">Ghost</button><button class="button destructive" type="button">Destructive</button><button class="button primary" type="button" disabled>Disabled</button><button class="button primary loading" type="button" aria-label="Chargement" disabled><i></i>Chargement</button></div><div class="api-row"><span><code>variant</code> primary · secondary · ghost · destructive</span><span><code>size</code> small · medium · large</span></div></div></section>
 
@@ -425,6 +425,60 @@
       </div>
     </section>
 
+    <section class="doc-section component-section" id="badge" data-title="Badge">
+      <div class="component-heading">
+        <div><div><h2>Badge</h2><p>Affiche un statut ou un compteur.</p></div></div>
+        <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/badge.md">Voir le contrat ↗</a>
+      </div>
+      <div class="demo-card">
+        <div class="demo-stage">
+          <div class="badge-example">
+            <div class="badge-row" aria-label="Statuts" role="group">
+              <span class="badge neutral">Brouillon</span>
+              <span class="badge info">En cours</span>
+              <span class="badge success">Actif</span>
+              <span class="badge warning">En revue</span>
+              <span class="badge danger">Bloqué</span>
+            </div>
+            <div class="badge-row" aria-label="Compteurs" role="group">
+              <span class="badge-counter-example">Messages <span class="badge count">3<span class="sr-only"> non lus</span></span></span>
+              <span class="badge-counter-example">Notifications <span class="badge count"><span aria-hidden="true">99+</span><span class="sr-only">128 non lues</span></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section component-section" id="file-uploader" data-title="FileUploader">
+      <div class="component-heading">
+        <div><div><h2>FileUploader</h2><p>Sélectionne des fichiers et affiche un aperçu des images.</p></div></div>
+        <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/file-uploader.md">Voir le contrat ↗</a>
+      </div>
+      <div class="demo-card">
+        <div class="demo-stage">
+          <div class="upload-example" data-file-uploader data-max-files="5" data-max-bytes="10000000">
+            <label class="upload-dropzone">
+              <span id="upload-label">Choisir des fichiers</span>
+              <span id="upload-help">Ou déposez-les ici. PNG, JPEG, WebP ou PDF. Jusqu’à 5 fichiers de 10 Mo chacun.</span>
+              <input class="sr-only" type="file" name="attachments" multiple accept="image/png,image/jpeg,image/webp,application/pdf" aria-labelledby="upload-label" aria-describedby="upload-help">
+            </label>
+            <ul class="upload-list" aria-label="Fichiers sélectionnés" hidden></ul>
+            <div class="upload-feedback" role="status">
+              <p data-upload-status></p>
+              <ul data-upload-errors></ul>
+            </div>
+            <template>
+              <li class="upload-file">
+                <div class="upload-preview" aria-hidden="true"><span data-upload-type>Fichier</span></div>
+                <div class="upload-file-details"><strong data-upload-name></strong><small data-upload-size></small></div>
+                <button class="button ghost small" type="button" data-upload-remove>Retirer</button>
+              </li>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="doc-section" id="patterns" data-title="Patterns"><div class="section-heading"><div><span class="section-index">05</span><h2>Patterns</h2></div><p>Des compositions de référence, jamais des écrans rigides à recopier.</p></div><div class="pattern-grid"><article><div class="pattern-preview dashboard-pattern"><i></i><div><span></span><span></span><span></span></div></div><h3>Dashboard</h3><p>Résumé lisible, action principale unique, détail progressif.</p><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/patterns/dashboard.md">Lire le pattern ↗</a></article><article><div class="pattern-preview form-pattern"><span></span><i></i><i></i><b></b></div><h3>Formulaire</h3><p>Labels persistants, aide contextuelle et erreurs réparables.</p><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/patterns/forms.md">Lire le pattern ↗</a></article><article><div class="pattern-preview navigation-pattern"><i></i><div><span></span><span></span><span></span></div></div><h3>Navigation</h3><p>Architecture stable, état actif visible et adaptation mobile.</p><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/patterns/navigation.md">Lire le pattern ↗</a></article></div></section>
 
     <section class="doc-section" id="accessibility" data-title="Accessibilité"><div class="section-heading"><div><span class="section-index">06</span><h2>Accessibilité</h2></div><p>Une contrainte de conception prioritaire, pas une vérification de fin de projet.</p></div><div class="access-grid"><article><span>⌨</span><div><h3>Clavier d’abord</h3><p>Ordre logique, focus visible et raccourcis conformes aux patterns ARIA.</p></div></article><article><span>◐</span><div><h3>Contraste vérifié</h3><p>Chaque paire texte/fond doit être auditée dans les deux thèmes.</p></div></article><article><span>◎</span><div><h3>Cibles confortables</h3><p>Les contrôles tactiles conservent une zone d’action suffisante.</p></div></article><article><span>↝</span><div><h3>Mouvement réduit</h3><p>Les préférences système suppriment les animations non essentielles.</p></div></article><article><span>Aa</span><div><h3>Zoom robuste</h3><p>Le contenu reste utilisable à 200 % sans perte d’information.</p></div></article><article><span>◉</span><div><h3>Pas de couleur seule</h3><p>Icône, libellé ou motif complète toujours la signification.</p></div></article></div></section>
@@ -454,6 +508,6 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </dialog>
-  <script src="./app.js?v=progress-components-v1"></script>
+  <script src="./app.js?v=badge-uploader-v1"></script>
 </body>
 </html>
