@@ -711,7 +711,15 @@
 
     function updateProgress() {
       const label = `${progressSlider.value} %`;
+      const minimum = Number(progressSlider.min);
+      const maximum = Number(progressSlider.max);
+      const range = maximum - minimum;
+      const position = range > 0
+        ? ((progressSlider.valueAsNumber - minimum) / range) * 100
+        : 0;
+
       progressSlider.setAttribute('aria-valuetext', label);
+      progressSlider.style.setProperty('--aether-slider-progress', `${position}%`);
       sliderValue.textContent = label;
       progressBar.value = progressSlider.valueAsNumber;
       progressBar.textContent = label;
