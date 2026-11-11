@@ -594,3 +594,85 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   color: var(--aether-semantic-text-secondary);
   font-size: var(--aether-fontSize-small);
 }
+
+/* DatePicker / TimePicker */
+.date-time-demo {
+  display: grid;
+  gap: var(--aether-spacing-16);
+  inline-size: min(100%, 32rem);
+  padding: var(--aether-spacing-16);
+  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-16);
+  background: var(--aether-semantic-surface);
+}
+
+.date-time-demo h3 {
+  margin: 0;
+  font-size: var(--aether-fontSize-heading-sm);
+}
+
+.date-time-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--aether-spacing-16);
+}
+
+.date-time-field {
+  display: grid;
+  align-content: start;
+  gap: var(--aether-spacing-4);
+  min-inline-size: 0;
+}
+
+.date-time-field label {
+  font-size: var(--aether-fontSize-small);
+  font-weight: 600;
+}
+
+.date-time-field input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--aether-spacing-48);
+  padding-inline: var(--aether-spacing-12);
+  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-10);
+  background: var(--aether-semantic-surface);
+  color: var(--aether-semantic-text-primary);
+  font: inherit;
+  font-size: var(--aether-fontSize-body);
+  color-scheme: light;
+}
+
+[data-theme="dark"] .date-time-field input {
+  color-scheme: dark;
+}
+
+.date-time-field input:focus-visible {
+  outline-color: var(--aether-semantic-accent);
+}
+
+.date-time-field input:is(:disabled, [readonly]) {
+  background: var(--aether-semantic-surface-muted);
+}
+
+.date-time-field input[aria-invalid="true"] {
+  border-color: var(--aether-semantic-danger);
+}
+
+.date-time-field small {
+  color: var(--aether-semantic-danger);
+  font-size: var(--aether-fontSize-caption);
+}
+
+.date-time-demo .button {
+  justify-self: start;
+}
+
+.date-time-demo output {
+  color: var(--aether-semantic-text-primary);
+  font-size: var(--aether-fontSize-small);
+}
+
+.date-time-demo output:empty {
+  position: absolute;
+}

@@ -349,6 +349,37 @@
     updateCurrentLink();
   });
 
+  const dateTimeDemo = document.querySelector('[data-date-time-demo]');
+  if (dateTimeDemo) {
+    const date = dateTimeDemo.elements.namedItem('date');
+    const time = dateTimeDemo.elements.namedItem('time');
+    const result = dateTimeDemo.querySelector('output');
+    const formatDate = new Intl.DateTimeFormat(root.lang, { dateStyle: 'long', timeZone: 'UTC' });
+
+    for (const field of [date, time]) {
+      const message = document.getElementById(field.getAttribute('aria-describedby'));
+      field.addEventListener('invalid', () => {
+        field.setAttribute('aria-invalid', 'true');
+        message.textContent = field.validationMessage;
+        message.hidden = false;
+      });
+      field.addEventListener('input', () => {
+        result.textContent = '';
+        if (field.validity.valid) {
+          field.removeAttribute('aria-invalid');
+          message.hidden = true;
+        } else if (!message.hidden) {
+          message.textContent = field.validationMessage;
+        }
+      });
+    }
+
+    dateTimeDemo.addEventListener('submit', (event) => {
+      event.preventDefault();
+      result.textContent = `Créneau choisi le ${formatDate.format(date.valueAsDate)} à ${time.value}.`;
+    });
+  }
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 
