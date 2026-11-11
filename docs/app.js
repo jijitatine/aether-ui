@@ -121,7 +121,27 @@
     const popover = select.querySelector('.select-popover');
     if (!trigger || !popover) return;
     const options = [...popover.querySelectorAll('[role="option"]')];
+    const multiple = select.hasAttribute('data-multiple');
     const enabledOptions = () => options.filter((option) => !option.disabled);
+    const selectedOptions = () => options.filter((option) => option.getAttribute('aria-selected') === 'true');
+    const optionLabel = (option) => option.dataset.label || option.textContent.trim();
+    const updateSelectValue = () => {
+      const selected = selectedOptions();
+      const valueNode = select.querySelector('[data-select-value]');
+      const visual = select.querySelector('[data-select-visual]');
+      const input = select.querySelector('input[type="hidden"]');
+      const summary = select.querySelector('[data-select-summary]');
+      if (valueNode) {
+        valueNode.textContent = selected.length ? selected.map(optionLabel).join(' · ') : valueNode.dataset.placeholderText || 'Sélectionner';
+        valueNode.toggleAttribute('data-placeholder', !selected.length);
+      }
+      if (visual) {
+        visual.textContent = selected.map((option) => option.dataset.icon || '').filter(Boolean).join(' ');
+        visual.hidden = !visual.textContent;
+      }
+      if (input) input.value = selected.map((option) => option.dataset.value || '').filter(Boolean).join(',');
+      if (summary) summary.textContent = selected.length ? `${selected.length} pays sélectionné${selected.length > 1 ? 's' : ''}.` : 'Aucun pays sélectionné.';
+    };
     const openSelect = (edge = 'selected') => {
       closeOtherSelects(select);
       popover.hidden = false;
@@ -132,12 +152,9 @@
       target?.focus();
     };
     const chooseOption = (option) => {
-      options.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
-      const valueNode = select.querySelector('[data-select-value]');
-      const input = select.querySelector('input[type="hidden"]');
-      valueNode.textContent = option.childNodes[0].textContent.trim();
-      valueNode.removeAttribute('data-placeholder');
-      if (input) input.value = option.dataset.value || '';
+      if (multiple) option.setAttribute('aria-selected', String(option.getAttribute('aria-selected') !== 'true'));
+      else options.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+      updateSelectValue();
       if (select.classList.contains('error')) {
         select.classList.remove('error');
         trigger.removeAttribute('aria-invalid');
@@ -145,7 +162,7 @@
         const errorMessage = select.querySelector('small[id]');
         if (errorMessage) errorMessage.hidden = true;
       }
-      closeSelect(select, true);
+      if (!multiple) closeSelect(select, true);
     };
     trigger.addEventListener('click', () => {
       if (trigger.getAttribute('aria-expanded') === 'true') closeSelect(select);
@@ -180,6 +197,7 @@
         available[nextIndex]?.focus();
       });
     });
+    updateSelectValue();
   });
   document.addEventListener('pointerdown', (event) => {
     customSelects.forEach((select) => {

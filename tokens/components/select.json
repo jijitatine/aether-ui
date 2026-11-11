@@ -16,6 +16,13 @@
         "unit": "px"
       }
     },
+    "leading-visual-size": {
+      "$type": "dimension",
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      }
+    },
     "control-radius": {
       "$type": "dimension",
       "$value": "{radius.10}"

@@ -242,8 +242,8 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 
 /* Select: custom popup with native button and listbox semantics. */
 .select-demo-card{overflow:visible}
-.select-stage{min-height:300px;align-items:flex-start;overflow:visible}
-.select-field{position:relative;z-index:1}
+.select-stage{min-height:420px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;justify-items:stretch;gap:var(--aether-spacing-24);overflow:visible}
+.select-field{position:relative;z-index:1;width:100%}
 .select-field:has(.select-trigger[aria-expanded=true]){z-index:4}
 .select-trigger{
   width:100%;min-height:var(--aether-select-control-height-medium);display:flex;align-items:center;justify-content:space-between;gap:var(--aether-spacing-12);
@@ -253,6 +253,10 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   box-shadow:inset 0 1px 0 var(--aether-semantic-glass-highlight);
   -webkit-backdrop-filter:blur(var(--aether-glass-blur-small));backdrop-filter:blur(var(--aether-glass-blur-small));
 }
+.select-trigger-content{min-width:0;display:flex;align-items:center;gap:var(--aether-spacing-8);overflow:hidden}
+.select-trigger [data-select-value]{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.select-trigger-visual,.select-option-visual{width:var(--aether-select-leading-visual-size);height:var(--aether-select-leading-visual-size);display:inline-grid;place-items:center;flex:0 0 var(--aether-select-leading-visual-size);font-size:16px;line-height:1}
+.select-trigger-visual{width:auto;min-width:var(--aether-select-leading-visual-size);letter-spacing:1px}
 .select-trigger:hover:not(:disabled){border-color:color-mix(in srgb,var(--aether-semantic-accent) 38%,var(--aether-semantic-border))}
 .select-trigger[aria-expanded=true]{border-color:var(--aether-semantic-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--aether-semantic-accent) 15%,transparent)}
 .select-trigger:disabled{cursor:not-allowed;color:var(--aether-semantic-text-secondary);background:var(--aether-semantic-surface-muted);opacity:.62}
@@ -269,10 +273,11 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   width:100%;min-height:var(--aether-select-option-height);display:flex;align-items:center;justify-content:space-between;gap:var(--aether-spacing-12);
   padding:0 var(--aether-spacing-12);border:0;border-radius:var(--aether-radius-10);background:transparent;color:var(--aether-semantic-text-primary);text-align:left;cursor:pointer;
 }
+.select-option-copy{min-width:0;display:flex;align-items:center;gap:var(--aether-spacing-8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .select-option:hover,.select-option:focus-visible{outline:0;background:color-mix(in srgb,var(--aether-semantic-accent) 12%,var(--aether-semantic-glass-surface));color:var(--aether-semantic-accent)}
 .select-option:focus-visible{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--aether-semantic-accent) 32%,transparent)}
 .select-option[aria-selected=true]{font-weight:650;background:color-mix(in srgb,var(--aether-semantic-accent) 17%,var(--aether-semantic-glass-surface))}
-.select-option span{visibility:hidden}.select-option[aria-selected=true] span{visibility:visible}
+.select-option-check{visibility:hidden}.select-option[aria-selected=true] .select-option-check{visibility:visible}
 .field.error .select-trigger{border-color:var(--aether-semantic-danger)}
 .field.error .select-trigger[aria-expanded=true]{box-shadow:0 0 0 3px color-mix(in srgb,var(--aether-semantic-danger) 15%,transparent)}
 
@@ -303,5 +308,5 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   .select-trigger,.select-popover,.toggle-row{background:var(--aether-semantic-surface);background-image:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 @media(max-width:620px){
-  .select-stage{min-height:560px}.toggle-stage{padding-left:var(--aether-spacing-16);padding-right:var(--aether-spacing-16)}
+  .select-stage{min-height:720px;grid-template-columns:1fr}.toggle-stage{padding-left:var(--aether-spacing-16);padding-right:var(--aether-spacing-16)}
 }

@@ -48,6 +48,7 @@
   --aether-button-radius: var(--aether-radius-10);
   --aether-select-control-height-medium: 44px;
   --aether-select-option-height: 40px;
+  --aether-select-leading-visual-size: 20px;
   --aether-select-control-radius: var(--aether-radius-10);
   --aether-select-menu-radius: var(--aether-radius-16);
   --aether-toggle-track-width: 50px;
