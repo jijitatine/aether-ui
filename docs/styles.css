@@ -407,21 +407,21 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 .table-sort-icon {
   position: relative;
   flex: none;
-  block-size: .9em;
+  block-size: .8em;
   inline-size: 0;
   margin-inline: .3em;
-  border-left: 2px solid currentColor;
+  border-left: 1px solid currentColor;
 }
 
 .table-sort-icon::before,
 .table-sort-icon::after {
   content: "";
   position: absolute;
-  left: -1px;
-  inline-size: .42em;
-  block-size: .42em;
-  border-top: 2px solid currentColor;
-  border-left: 2px solid currentColor;
+  left: -.5px;
+  inline-size: .36em;
+  block-size: .36em;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
 }
 
 .table-sort-icon::before {
