@@ -21,6 +21,28 @@
           "unit": "px"
         }
       }
+    },
+    "glass": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#0A193326",
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 18,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 48,
+          "unit": "px"
+        },
+        "spread": {
+          "value": -12,
+          "unit": "px"
+        }
+      }
     }
   }
 }

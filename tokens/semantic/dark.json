@@ -2,27 +2,43 @@
   "semantic": {
     "background": {
       "$type": "color",
-      "$value": "#111113"
+      "$value": "#080B13"
     },
     "surface": {
       "$type": "color",
-      "$value": "#1C1C1E"
+      "$value": "#171A23"
     },
     "surface-muted": {
       "$type": "color",
-      "$value": "#2C2C2E"
+      "$value": "#222632"
+    },
+    "glass-surface": {
+      "$type": "color",
+      "$value": "#141824B8"
+    },
+    "glass-surface-strong": {
+      "$type": "color",
+      "$value": "#1F2432E0"
+    },
+    "glass-border": {
+      "$type": "color",
+      "$value": "#FFFFFF26"
+    },
+    "glass-highlight": {
+      "$type": "color",
+      "$value": "#FFFFFF38"
     },
     "text-primary": {
       "$type": "color",
-      "$value": "#F5F5F7"
+      "$value": "#F5F7FF"
     },
     "text-secondary": {
       "$type": "color",
-      "$value": "#AEAEB2"
+      "$value": "#B5BAC9"
     },
     "border": {
       "$type": "color",
-      "$value": "#48484A"
+      "$value": "#4B5261"
     },
     "accent": {
       "$type": "color",

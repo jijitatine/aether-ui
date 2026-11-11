@@ -6,6 +6,11 @@
   --aether-color-red: #D70015;
   --aether-color-white: #FFFFFF;
   --aether-color-black: #000000;
+  --aether-glass-blur-small: 12px;
+  --aether-glass-blur-medium: 24px;
+  --aether-glass-blur-large: 40px;
+  --aether-glass-saturation: 180%;
+  --aether-glass-border-width: 1px;
   --aether-duration-fast: 120ms;
   --aether-duration-normal: 200ms;
   --aether-duration-slow: 300ms;
@@ -16,6 +21,7 @@
   --aether-radius-24: 24px;
   --aether-radius-999: 999px;
   --aether-shadow-card: 0px 4px 16px 0px #00000014;
+  --aether-shadow-glass: 0px 18px 48px -12px #0A193326;
   --aether-spacing-0: 0px;
   --aether-spacing-4: 4px;
   --aether-spacing-8: 8px;
@@ -43,22 +49,30 @@
 [data-theme="light"] {
   --aether-semantic-background: #F5F5F7;
   --aether-semantic-surface: #FFFFFF;
-  --aether-semantic-surface-muted: #F0F0F2;
+  --aether-semantic-surface-muted: #EDF2F8;
+  --aether-semantic-glass-surface: #FFFFFFA6;
+  --aether-semantic-glass-surface-strong: #FFFFFFD9;
+  --aether-semantic-glass-border: #FFFFFFB8;
+  --aether-semantic-glass-highlight: #FFFFFFE6;
   --aether-semantic-text-primary: #1D1D1F;
   --aether-semantic-text-secondary: #6E6E73;
-  --aether-semantic-border: #D2D2D7;
+  --aether-semantic-border: #C7D0DE;
   --aether-semantic-accent: #007AFF;
   --aether-semantic-success: #248A3D;
   --aether-semantic-warning: #B86E00;
   --aether-semantic-danger: #D70015;
 }
 [data-theme="dark"] {
-  --aether-semantic-background: #111113;
-  --aether-semantic-surface: #1C1C1E;
-  --aether-semantic-surface-muted: #2C2C2E;
-  --aether-semantic-text-primary: #F5F5F7;
-  --aether-semantic-text-secondary: #AEAEB2;
-  --aether-semantic-border: #48484A;
+  --aether-semantic-background: #080B13;
+  --aether-semantic-surface: #171A23;
+  --aether-semantic-surface-muted: #222632;
+  --aether-semantic-glass-surface: #141824B8;
+  --aether-semantic-glass-surface-strong: #1F2432E0;
+  --aether-semantic-glass-border: #FFFFFF26;
+  --aether-semantic-glass-highlight: #FFFFFF38;
+  --aether-semantic-text-primary: #F5F7FF;
+  --aether-semantic-text-secondary: #B5BAC9;
+  --aether-semantic-border: #4B5261;
   --aether-semantic-accent: #0A84FF;
   --aether-semantic-success: #30D158;
   --aether-semantic-warning: #FF9F0A;
@@ -66,12 +80,16 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --aether-semantic-background: #111113;
-    --aether-semantic-surface: #1C1C1E;
-    --aether-semantic-surface-muted: #2C2C2E;
-    --aether-semantic-text-primary: #F5F5F7;
-    --aether-semantic-text-secondary: #AEAEB2;
-    --aether-semantic-border: #48484A;
+    --aether-semantic-background: #080B13;
+    --aether-semantic-surface: #171A23;
+    --aether-semantic-surface-muted: #222632;
+    --aether-semantic-glass-surface: #141824B8;
+    --aether-semantic-glass-surface-strong: #1F2432E0;
+    --aether-semantic-glass-border: #FFFFFF26;
+    --aether-semantic-glass-highlight: #FFFFFF38;
+    --aether-semantic-text-primary: #F5F7FF;
+    --aether-semantic-text-secondary: #B5BAC9;
+    --aether-semantic-border: #4B5261;
     --aether-semantic-accent: #0A84FF;
     --aether-semantic-success: #30D158;
     --aether-semantic-warning: #FF9F0A;

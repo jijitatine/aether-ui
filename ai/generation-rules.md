@@ -20,6 +20,10 @@
 6. Build responsive behavior from content needs. Do not assume desktop input or width.
 7. Respect theme changes, zoom, high contrast, and reduced motion.
 8. Keep business logic, data access, and visual presentation separated.
+9. Use glass only for a meaningful layer such as navigation, an overlay, a floating
+   control, or an elevated group. Prefer opaque surfaces for dense content.
+10. Build glass from the documented semantic surface, border, highlight, blur, and
+    shadow tokens. Include an opaque fallback and honor reduced-transparency preferences.
 
 ## Prohibited shortcuts
 
@@ -28,6 +32,8 @@
 - Color-only status, placeholder-only labels, hidden focus, or disabled controls without
   an explanation when one is needed.
 - New component variants introduced only to match one screenshot.
+- Arbitrary opacity or blur values, glass on every nested surface, or translucent text
+  containers whose contrast depends on uncontrolled background content.
 - Claims that an adapter is implemented when its package contains guidance only.
 
 ## Completion response

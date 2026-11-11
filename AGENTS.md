@@ -26,6 +26,8 @@ For an end-to-end explanation and example prompts, read `ai/integration-guide.md
 - Prefer native platform elements and semantics before recreating behavior.
 - Support light and dark themes, keyboard and touch, responsive layouts, zoom, and
   `prefers-reduced-motion`.
+- Build translucent layers only from the documented glass tokens. Glass must express
+  hierarchy, preserve contrast, honor reduced transparency, and have an opaque fallback.
 - Never silently invent a component, variant, size, or interaction. Report the gap and
   propose a documented extension first.
 - Keep framework adapters thin. Business rules never belong in visual components.

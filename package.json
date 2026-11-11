@@ -1,8 +1,8 @@
 {
   "name": "aether-ui",
   "private": true,
-  "version": "0.1.0",
-  "description": "Framework-neutral design system starter",
+  "version": "0.3.0",
+  "description": "Framework-neutral design system with an accessible iOS-inspired glass material",
   "scripts": {
     "build:tokens": "python3 scripts/build_css.py",
     "test": "python3 -m unittest discover -s tests"

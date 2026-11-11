@@ -1,6 +1,6 @@
 # Aether UI
 
-A framework-independent, Apple-inspired design system with shared tokens, explicit
+A framework-independent, iOS-glass-inspired design system with shared tokens, explicit
 component contracts, interactive documentation, and instructions for Claude, Codex, and
 other coding agents. Aether UI is an original system, not an Apple component clone.
 
@@ -69,6 +69,10 @@ implementations and tests exist.
 ## Design decisions
 
 - Semantic, theme-aware roles are used in product UI.
+- Aether Glass uses semantic translucent surfaces, blur, highlight, border, and shadow
+  tokens to express navigation, overlays, floating controls, and elevated groups.
+- Dense content keeps an opaque or strong surface, with fallbacks for reduced transparency
+  and browsers without backdrop filtering.
 - Accessibility overrides visual convenience when requirements conflict.
 - Native semantics and platform idioms are preferred.
 - Comfortable density is the default; compact density retains accessible targets.
@@ -83,5 +87,5 @@ documentation copy, so they cannot drift.
 
 ## Status
 
-Version **0.2** is ready for token consumption, UI prototyping, visual reference, and
+Version **0.3** is ready for token consumption, glass-styled UI prototyping, visual reference, and
 agent-assisted implementation. Angular, React, and SwiftUI adapters remain planned work.

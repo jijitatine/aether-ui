@@ -27,7 +27,8 @@ A useful request gives the agent:
 5. the expected verification.
 
 The design system already supplies visual direction, component behavior, accessibility,
-themes, and decision priority. Repeating those rules in a prompt is unnecessary.
+themes, glass-material rules, and decision priority. Repeating those rules in a prompt
+is unnecessary.
 
 ## Recommended agent workflow
 
@@ -65,9 +66,11 @@ An agent should finish with a compact report such as:
 
 ```text
 Contracts: TextField, Select, Checkbox, Button, Card
-Tokens: semantic colors, spacing 8/16/24, radius 10/16, normal motion
+Tokens: semantic colors, glass surface/strong/border/highlight, glass blur medium,
+spacing 8/16/24, radius 10/16, normal motion
 States: default, focus, validation error, disabled, loading, API error, success
-Verification: unit tests, keyboard path, light/dark, 375/768/1440 px, reduced motion
+Verification: unit tests, keyboard path, light/dark, 375/768/1440 px, reduced motion,
+reduced transparency, backdrop-filter fallback, contrast over background extremes
 Gaps: no missing design-system behavior
 ```
 

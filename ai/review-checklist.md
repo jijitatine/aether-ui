@@ -7,6 +7,7 @@
 - [ ] Semantic tokens are used throughout product UI.
 - [ ] No undocumented token, variant, or interaction was introduced silently.
 - [ ] Generated token outputs were rebuilt rather than edited directly.
+- [ ] Glass surfaces use the documented semantic roles and core material tokens.
 
 ## Interaction and states
 
@@ -23,6 +24,7 @@
 - [ ] Keyboard navigation and visible focus are complete.
 - [ ] Meaning never relies on color alone.
 - [ ] Contrast is audited for every text/background and state pairing.
+- [ ] Translucent content remains legible over the lightest and darkest supported backgrounds.
 - [ ] Touch targets and spacing remain usable.
 - [ ] Content remains usable at 200% zoom and with larger text.
 
@@ -31,6 +33,8 @@
 - [ ] Light and dark themes were checked.
 - [ ] Mobile, intermediate, and wide layouts were checked.
 - [ ] Reduced-motion preferences are respected.
+- [ ] Reduced-transparency and no-`backdrop-filter` fallbacks remain fully usable.
+- [ ] Glass expresses layer hierarchy and is not stacked decoratively across dense content.
 - [ ] Content works with long labels and realistic data.
 - [ ] Business logic remains separate from visual components.
 - [ ] Relevant automated tests and build commands pass.

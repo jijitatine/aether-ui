@@ -14,8 +14,21 @@ class TokensTest(unittest.TestCase):
         subprocess.run([sys.executable, str(ROOT/'scripts/build_css.py')], check=True)
         css=(ROOT/'packages/tokens-css/tokens.css').read_text()
         self.assertIn('--aether-shadow-card: 0px 4px 16px 0px #00000014;', css)
+        self.assertIn('--aether-shadow-glass: 0px 18px 48px -12px #0A193326;', css)
+        self.assertIn('--aether-glass-blur-medium: 24px;', css)
+        self.assertIn('--aether-semantic-glass-surface:', css)
+        self.assertIn('--aether-semantic-glass-surface-strong:', css)
+        self.assertIn('--aether-semantic-glass-border:', css)
+        self.assertIn('--aether-semantic-glass-highlight:', css)
         self.assertNotIn("{'color':", css)
         self.assertEqual(css, (ROOT/'docs/tokens.css').read_text())
+    def test_glass_theme_contract(self):
+        required = {'glass-surface', 'glass-surface-strong', 'glass-border', 'glass-highlight'}
+        for mode in ('light', 'dark'):
+            semantic=json.loads((ROOT/f'tokens/semantic/{mode}.json').read_text())['semantic']
+            self.assertTrue(required <= set(semantic))
+        glass=json.loads((ROOT/'tokens/core/glass.json').read_text())['glass']
+        self.assertEqual({'small', 'medium', 'large'}, set(glass['blur']))
     def test_agent_entry_points_and_docs_exist(self):
         required = (
             ROOT/'AGENTS.md', ROOT/'CLAUDE.md', ROOT/'ai/integration-guide.md',

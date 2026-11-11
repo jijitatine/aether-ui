@@ -1,0 +1,41 @@
+{
+  "glass": {
+    "blur": {
+      "small": {
+        "$type": "dimension",
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        }
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        }
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": {
+          "value": 40,
+          "unit": "px"
+        }
+      }
+    },
+    "saturation": {
+      "$type": "dimension",
+      "$value": {
+        "value": 180,
+        "unit": "%"
+      }
+    },
+    "border-width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      }
+    }
+  }
+}

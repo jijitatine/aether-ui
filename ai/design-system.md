@@ -3,8 +3,9 @@
 ## Product intent
 
 Aether UI is an original, framework-independent design system inspired by the clarity,
-restraint, hierarchy, and platform sensitivity associated with high-quality native
-interfaces. It does not copy Apple components, assets, or proprietary patterns.
+hierarchy, layered depth, and platform sensitivity associated with high-quality native
+interfaces. Its glass language takes cues from iOS without copying Apple components,
+assets, or proprietary patterns.
 
 The system exists to make interface decisions predictable for designers, developers,
 Claude, Codex, and other agents. A generated screen should feel calm and familiar while
@@ -45,11 +46,28 @@ When sources conflict, use this order and report the conflict:
 ## Visual language
 
 - System font stack and strong typographic hierarchy.
-- Neutral surfaces with one restrained accent role.
-- Subtle borders and elevation; no gratuitous glass, gradients, or shadows in product UI.
+- Neutral content surfaces with one restrained accent role.
+- Translucent glass communicates hierarchy: navigation, floating controls, overlays, and
+  elevated groups. It is not the default background for dense reading content.
+- Glass always combines a semantic glass color, blur token, highlight border, and a
+  tested fallback. Do not recreate the effect with arbitrary opacity values.
+- Background color and restrained gradients may show through glass to make depth legible.
+  They must never reduce content contrast or become the sole carrier of meaning.
 - Comfortable density by default. Compact density must preserve accessible targets.
 - Motion durations from the token scale and no essential information conveyed by motion.
 - Light and dark themes are equal deliverables.
+
+## Glass material rules
+
+Use `semantic.glass-surface` for regular translucent layers and
+`semantic.glass-surface-strong` when content needs more separation. Pair them with
+`semantic.glass-border`, `semantic.glass-highlight`, `shadow.glass`, and the appropriate
+`glass.blur.*` token.
+
+Keep forms, tables, long text, and critical status content on an opaque or strong surface
+unless contrast is proven over every possible background. Provide an opaque fallback for
+browsers without backdrop filtering and for reduced-transparency preferences. Nested glass
+should be rare: increase surface strength rather than stacking multiple blur layers.
 
 ## Definition of Aether UI compliance
 
