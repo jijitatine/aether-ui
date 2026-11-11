@@ -152,3 +152,57 @@ dialog::backdrop{background:color-mix(in srgb,var(--aether-semantic-background) 
 @media(prefers-reduced-transparency:reduce){
   .topbar,.sidebar,.sidebar-note,.search-wrap,.icon-button,.menu-button,.version,.step-card,.principle-grid article,.token-panel,.type-specimen,.motion-grid article,.component-summary span,.demo-card,.sample-card,.pattern-grid article,.access-grid article,.final-cta,.preview-window,dialog{background-color:var(--aether-semantic-surface);background-image:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 }
+
+/* Components: visible glass above a chromatic canvas, with solid reading surfaces. */
+.demo-card{
+  background:var(--aether-semantic-glass-surface-strong);
+  box-shadow:inset 0 1px 0 var(--aether-semantic-glass-highlight),0 20px 48px color-mix(in srgb,var(--aether-semantic-accent) 10%,transparent);
+}
+.demo-toolbar,.api-row{background:var(--aether-semantic-surface);border-color:var(--aether-semantic-border)}
+.demo-stage{
+  position:relative;
+  isolation:isolate;
+  background-color:var(--aether-semantic-surface-muted);
+  background-size:auto;
+  background-repeat:no-repeat;
+  background-image:
+    radial-gradient(circle at 16% 80%,color-mix(in srgb,var(--aether-semantic-accent) 35%,transparent) 0,transparent 43%),
+    radial-gradient(circle at 88% 12%,color-mix(in srgb,var(--aether-semantic-success) 27%,transparent) 0,transparent 39%),
+    linear-gradient(130deg,color-mix(in srgb,var(--aether-semantic-accent) 9%,var(--aether-semantic-surface-muted)),var(--aether-semantic-surface-muted));
+}
+.demo-stage::before{
+  content:"";position:absolute;z-index:-1;left:38%;top:12%;width:22%;height:76%;border-radius:999px;
+  background:color-mix(in srgb,var(--aether-semantic-accent) 21%,transparent);
+  filter:blur(var(--aether-glass-blur-large));pointer-events:none;
+}
+.sample-card{
+  border:1px solid var(--aether-semantic-glass-border);
+  background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),transparent 48%),var(--aether-semantic-glass-surface);
+  box-shadow:inset 0 1px 0 var(--aether-semantic-glass-highlight),0 15px 35px color-mix(in srgb,var(--aether-semantic-accent) 13%,transparent);
+  -webkit-backdrop-filter:blur(var(--aether-glass-blur-medium)) saturate(var(--aether-glass-saturation));
+  backdrop-filter:blur(var(--aether-glass-blur-medium)) saturate(var(--aether-glass-saturation));
+}
+.sample-card.elevated{background-color:var(--aether-semantic-glass-surface-strong);box-shadow:inset 0 1px 0 var(--aether-semantic-glass-highlight),0 22px 50px color-mix(in srgb,var(--aether-semantic-accent) 18%,transparent)}
+.button.secondary,.button.ghost{
+  background:linear-gradient(155deg,var(--aether-semantic-glass-highlight),transparent 52%),var(--aether-semantic-glass-surface);
+  border-color:var(--aether-semantic-glass-border);
+  box-shadow:inset 0 1px 0 var(--aether-semantic-glass-highlight),0 7px 18px color-mix(in srgb,var(--aether-semantic-accent) 10%,transparent);
+}
+.button.ghost{color:var(--aether-semantic-accent)}
+.button:disabled{opacity:.62;filter:saturate(.48)}
+.field input,.field select,.check input{
+  background:var(--aether-semantic-glass-surface-strong);
+  border-color:var(--aether-semantic-border);
+  box-shadow:inset 0 1px 2px color-mix(in srgb,var(--aether-semantic-text-primary) 6%,transparent);
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+}
+.check input:checked,.check input:indeterminate{background:var(--aether-semantic-accent);border-color:var(--aether-semantic-accent)}
+.table-wrap,.tab-panel{background:var(--aether-semantic-surface)}
+.tabs-stage{background-image:radial-gradient(circle at 83% 5%,color-mix(in srgb,var(--aether-semantic-accent) 24%,transparent),transparent 50%),linear-gradient(130deg,var(--aether-semantic-surface-muted),var(--aether-semantic-glass-surface-strong))}
+dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),transparent 46%),var(--aether-semantic-glass-surface-strong)}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .demo-card,.sample-card,.button.secondary,.button.ghost,dialog{background:var(--aether-semantic-surface)}
+}
+@media(prefers-reduced-transparency:reduce){
+  .demo-card,.sample-card,.button.secondary,.button.ghost,dialog{background:var(--aether-semantic-surface);-webkit-backdrop-filter:none;backdrop-filter:none}
+}

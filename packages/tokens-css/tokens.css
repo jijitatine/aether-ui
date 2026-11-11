@@ -50,8 +50,8 @@
   --aether-semantic-background: #F5F5F7;
   --aether-semantic-surface: #FFFFFF;
   --aether-semantic-surface-muted: #EDF2F8;
-  --aether-semantic-glass-surface: #FFFFFFA6;
-  --aether-semantic-glass-surface-strong: #FFFFFFD9;
+  --aether-semantic-glass-surface: #FFFFFF99;
+  --aether-semantic-glass-surface-strong: #FFFFFFE6;
   --aether-semantic-glass-border: #FFFFFFB8;
   --aether-semantic-glass-highlight: #FFFFFFE6;
   --aether-semantic-text-primary: #1D1D1F;
@@ -66,8 +66,8 @@
   --aether-semantic-background: #080B13;
   --aether-semantic-surface: #171A23;
   --aether-semantic-surface-muted: #222632;
-  --aether-semantic-glass-surface: #141824B8;
-  --aether-semantic-glass-surface-strong: #1F2432E0;
+  --aether-semantic-glass-surface: #20283AB3;
+  --aether-semantic-glass-surface-strong: #1F2738EB;
   --aether-semantic-glass-border: #FFFFFF26;
   --aether-semantic-glass-highlight: #FFFFFF38;
   --aether-semantic-text-primary: #F5F7FF;
@@ -83,8 +83,8 @@
     --aether-semantic-background: #080B13;
     --aether-semantic-surface: #171A23;
     --aether-semantic-surface-muted: #222632;
-    --aether-semantic-glass-surface: #141824B8;
-    --aether-semantic-glass-surface-strong: #1F2432E0;
+    --aether-semantic-glass-surface: #20283AB3;
+    --aether-semantic-glass-surface-strong: #1F2738EB;
     --aether-semantic-glass-border: #FFFFFF26;
     --aether-semantic-glass-highlight: #FFFFFF38;
     --aether-semantic-text-primary: #F5F7FF;

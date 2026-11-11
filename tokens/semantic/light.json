@@ -14,11 +14,11 @@
     },
     "glass-surface": {
       "$type": "color",
-      "$value": "#FFFFFFA6"
+      "$value": "#FFFFFF99"
     },
     "glass-surface-strong": {
       "$type": "color",
-      "$value": "#FFFFFFD9"
+      "$value": "#FFFFFFE6"
     },
     "glass-border": {
       "$type": "color",
