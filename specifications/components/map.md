@@ -41,9 +41,12 @@ whose location is named in text outside the map. The provider handles panning an
 zoom in this variant. Choose a provider with keyboard and touch controls, and
 keep its attribution and controls visible.
 
-Give an embedded frame a descriptive accessible title. Keep the place name,
+Give the interactive map a descriptive accessible name. Keep the place name,
 credits and a direct link to the provider visible outside the frame. The link
 remains available while the map loads and if embedded content is blocked. Use
-Aether's semantic colors for the surrounding card. The provider controls the
-embedded map's palette. The documentation example uses a lazy-loaded
-OpenStreetMap embed and requires a network connection to display the street map.
+Aether's semantic colors for the surrounding card and the marker. The
+documentation uses MapLibre GL JS with OpenFreeMap's minimal Positron style in
+light mode and its Dark style in dark mode. Preserve the view when the theme
+changes. Load the map when it nears the viewport, announce loading or an
+unavailable map, and keep the direct OpenStreetMap link available without
+JavaScript, WebGL, or network access to the basemap.
