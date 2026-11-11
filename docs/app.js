@@ -349,36 +349,62 @@
     updateCurrentLink();
   });
 
-  const dateTimeDemo = document.querySelector('[data-date-time-demo]');
-  if (dateTimeDemo) {
-    const date = dateTimeDemo.elements.namedItem('date');
-    const time = dateTimeDemo.elements.namedItem('time');
-    const result = dateTimeDemo.querySelector('output');
+  document.querySelectorAll('[data-date-time-demo]').forEach((form) => {
+    const isRange = form.dataset.dateTimeDemo === 'range';
+    const start = form.elements.namedItem(isRange ? 'start' : 'date');
+    const end = form.elements.namedItem(isRange ? 'end' : 'time');
+    const result = form.querySelector('output');
     const formatDate = new Intl.DateTimeFormat(root.lang, { dateStyle: 'long', timeZone: 'UTC' });
+    const fields = [start, end].map((input) => ({
+      input,
+      message: document.getElementById(input.getAttribute('aria-describedby')),
+    }));
 
-    for (const field of [date, time]) {
-      const message = document.getElementById(field.getAttribute('aria-describedby'));
-      field.addEventListener('invalid', () => {
-        field.setAttribute('aria-invalid', 'true');
-        message.textContent = field.validationMessage;
-        message.hidden = false;
-      });
-      field.addEventListener('input', () => {
-        result.textContent = '';
-        if (field.validity.valid) {
-          field.removeAttribute('aria-invalid');
-          message.hidden = true;
-        } else if (!message.hidden) {
-          message.textContent = field.validationMessage;
-        }
-      });
+    function updateRange() {
+      end.min = start.value;
+      end.setCustomValidity(end.validity.rangeUnderflow
+        ? 'La date de fin doit être égale ou postérieure à la date de début.'
+        : '');
     }
 
-    dateTimeDemo.addEventListener('submit', (event) => {
+    function showError(input, message) {
+      input.setAttribute('aria-invalid', 'true');
+      message.textContent = input.validationMessage;
+      message.hidden = false;
+    }
+
+    function updateFields() {
+      if (isRange) updateRange();
+      result.textContent = '';
+      for (const { input, message } of fields) {
+        if (input.validity.valid) {
+          input.removeAttribute('aria-invalid');
+          message.hidden = true;
+        } else if (!message.hidden || (isRange && input === end && input.validity.rangeUnderflow)) {
+          showError(input, message);
+        }
+      }
+    }
+
+    for (const { input, message } of fields) {
+      input.addEventListener('invalid', () => showError(input, message));
+    }
+    form.addEventListener('input', updateFields);
+    form.addEventListener('change', updateFields);
+    if (isRange) updateRange();
+
+    form.addEventListener('submit', (event) => {
       event.preventDefault();
-      result.textContent = `Créneau choisi le ${formatDate.format(date.valueAsDate)} à ${time.value}.`;
+      if (isRange) {
+        updateRange();
+        if (!form.reportValidity()) return;
+      }
+      const startLabel = formatDate.format(start.valueAsDate);
+      result.textContent = isRange
+        ? `Période choisie du ${startLabel} au ${formatDate.format(end.valueAsDate)}.`
+        : `Créneau choisi le ${startLabel} à ${end.value}.`;
     });
-  }
+  });
 
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;

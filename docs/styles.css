@@ -635,6 +635,7 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  align-items: center;
   box-sizing: border-box;
   min-inline-size: 0;
   min-block-size: var(--aether-spacing-48);
@@ -652,7 +653,7 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   min-inline-size: 0;
   max-inline-size: 100%;
   margin: 0;
-  padding: 0;
+  padding: var(--aether-spacing-12) 0;
   border: 0;
   border-radius: 0;
   -webkit-appearance: none;
@@ -661,11 +662,13 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   color: var(--aether-semantic-text-primary);
   font: inherit;
   font-size: var(--aether-fontSize-body);
+  line-height: 1.25;
   text-align: start;
   color-scheme: light;
 }
 
 .date-time-field input::-webkit-date-and-time-value {
+  min-height: 0;
   margin: 0;
   text-align: start;
 }
