@@ -546,6 +546,42 @@
     let today;
     let start;
     let end;
+    const hasNativePopover = typeof calendar.showPopover === 'function';
+    const viewport = window.visualViewport;
+    const topbar = document.querySelector('.topbar');
+    if (hasNativePopover) calendar.popover = 'manual';
+
+    function positionCalendar() {
+      if (calendar.hidden) return;
+
+      const styles = getComputedStyle(calendar);
+      const edge = Number.parseFloat(styles.getPropertyValue('--aether-spacing-8'));
+      const { left, top, bottom } = trigger.getBoundingClientRect();
+      const viewportLeft = (viewport?.offsetLeft ?? 0) + edge;
+      const viewportTop = (viewport?.offsetTop ?? 0) + edge;
+      const viewportRight = viewportLeft + (viewport?.width ?? root.clientWidth) - 2 * edge;
+      const viewportBottom = viewportTop + (viewport?.height ?? root.clientHeight) - 2 * edge;
+      const visibleTop = Math.max(viewportTop, (topbar?.getBoundingClientRect().bottom ?? 0) + edge);
+
+      calendar.style.maxWidth = `${Math.max(0, viewportRight - viewportLeft)}px`;
+      const below = Math.max(0, viewportBottom - Math.max(bottom + edge, visibleTop));
+      const above = Math.max(0, Math.min(top - edge, viewportBottom) - visibleTop);
+      const naturalHeight = calendar.scrollHeight + calendar.offsetHeight - calendar.clientHeight;
+      const openAbove = below < naturalHeight && above > below;
+      calendar.style.maxHeight = `${openAbove ? above : below}px`;
+      calendar.style.left = `${Math.max(viewportLeft, Math.min(left, viewportRight - calendar.offsetWidth))}px`;
+      calendar.style.top = `${openAbove
+        ? Math.min(top - edge, viewportBottom) - calendar.offsetHeight
+        : Math.max(bottom + edge, visibleTop)}px`;
+    }
+
+    function closeCalendar(restoreFocus = false) {
+      if (calendar.hidden) return;
+      trigger.setAttribute('aria-expanded', 'false');
+      if (hasNativePopover) calendar.hidePopover();
+      calendar.hidden = true;
+      if (restoreFocus) trigger.focus({ preventScroll: true });
+    }
 
     function calendarDate(year, monthIndex, day) {
       const value = new Date(0);
@@ -616,11 +652,17 @@
             : dateFormat.format(start)
         : range ? 'Choisissez la date de début.' : 'Choisissez un jour.';
       if (hint.textContent !== message) hint.textContent = message;
+      positionCalendar();
       if (focusDay) weeks.querySelector('[tabindex="0"]').focus();
     }
 
     document.querySelectorAll('[data-calendar]').forEach((button) => {
       button.addEventListener('click', () => {
+        if (!calendar.hidden && trigger === button) {
+          closeCalendar();
+          return;
+        }
+        closeCalendar();
         trigger = button;
         range = button.dataset.calendar === 'range';
         const now = new Date();
@@ -630,7 +672,12 @@
         title.textContent = range ? 'Choisir une période' : 'Choisir une date';
         grid.setAttribute('aria-multiselectable', String(range));
         renderCalendar();
-        calendar.showModal();
+        button.after(calendar);
+        calendar.hidden = false;
+        button.setAttribute('aria-expanded', 'true');
+        if (hasNativePopover) calendar.showPopover();
+        positionCalendar();
+        calendar.scrollTop = 0;
         weeks.querySelector('[tabindex="0"]').focus();
       });
     });
@@ -666,10 +713,30 @@
         ? `${fieldDateFormat.format(start)} – ${fieldDateFormat.format(end)}`
         : fieldDateFormat.format(start);
       value.removeAttribute('data-empty');
-      calendar.close();
+      closeCalendar(true);
     });
-    calendar.querySelector('#calendar-cancel').addEventListener('click', () => calendar.close());
-    calendar.addEventListener('close', () => trigger.focus());
+    calendar.querySelector('#calendar-cancel').addEventListener('click', () => closeCalendar(true));
+
+    document.addEventListener('pointerdown', (event) => {
+      if (!calendar.hidden && !calendar.contains(event.target) && !trigger.contains(event.target)) {
+        closeCalendar();
+      }
+    });
+    document.addEventListener('focusin', (event) => {
+      if (!calendar.hidden && !calendar.contains(event.target) && event.target !== trigger) {
+        closeCalendar();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !calendar.hidden) {
+        event.preventDefault();
+        closeCalendar(true);
+      }
+    });
+    window.addEventListener('scroll', positionCalendar, { passive: true });
+    window.addEventListener('resize', positionCalendar);
+    viewport?.addEventListener('scroll', positionCalendar);
+    viewport?.addEventListener('resize', positionCalendar);
   }
 
   document.querySelectorAll('[data-chip-demo]').forEach((demo) => {

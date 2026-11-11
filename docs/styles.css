@@ -895,19 +895,28 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   color: var(--aether-semantic-text-secondary);
 }
 
-.calendar-dialog {
-  inline-size: min(calc(100% - var(--aether-spacing-24)), 26rem);
-  max-inline-size: none;
-  padding: var(--aether-spacing-16);
+.calendar-popover {
+  position: fixed;
+  z-index: 110;
+  inset: auto;
+  margin: 0;
+  inline-size: 22rem;
+  padding: var(--aether-spacing-12);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-16);
+  background: var(--aether-semantic-surface);
   color: var(--aether-semantic-text-primary);
+  box-shadow: var(--aether-shadow-glass);
 }
 
-.calendar-dialog h2 {
+.calendar-popover h2 {
   margin: 0;
   font-size: var(--aether-fontSize-heading-md);
 }
 
-.calendar-dialog p {
+.calendar-popover p {
   min-block-size: var(--aether-spacing-40);
   margin: var(--aether-spacing-8) 0;
 }
@@ -966,7 +975,7 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 
 .calendar-grid button {
   inline-size: 100%;
-  min-block-size: var(--aether-spacing-48);
+  min-block-size: var(--aether-spacing-40);
   padding: 0;
   border: 1px solid transparent;
   border-radius: var(--aether-radius-10);
