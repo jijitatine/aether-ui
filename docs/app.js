@@ -880,6 +880,9 @@ import { createToast } from './toast.js';
   const dialog = document.querySelector('#demo-dialog');
   const openDialog = document.querySelector('#open-dialog');
   openDialog.addEventListener('click', () => dialog.showModal());
+
+  const drawer = document.querySelector('#demo-drawer');
+  document.querySelector('#open-drawer').addEventListener('click', () => drawer.showModal());
   dialog.addEventListener('click', (event) => {
     const bounds = dialog.getBoundingClientRect();
     const outside = event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;

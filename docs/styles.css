@@ -2084,3 +2084,90 @@ button.chip:hover,
     backdrop-filter: none;
   }
 }
+
+/* Drawer */
+dialog.drawer {
+  inset: 0 0 0 auto;
+  margin: 0;
+  width: min(100%, 30rem);
+  height: 100%;
+  height: 100dvh;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-color: var(--aether-semantic-border);
+  border-radius: var(--aether-radius-24) 0 0 var(--aether-radius-24);
+  background: var(--aether-semantic-surface);
+  box-shadow: var(--aether-shadow-glass);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+dialog.drawer[open] {
+  animation: drawer-slide-in var(--aether-duration-normal) ease-out;
+}
+
+.drawer > form {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--aether-spacing-24);
+  padding: var(--aether-spacing-24);
+}
+
+.drawer-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--aether-spacing-16);
+}
+
+.drawer-heading h2 { margin: 0; }
+.drawer-heading p { margin: var(--aether-spacing-4) 0 0; }
+.drawer-close {
+  flex: 0 0 var(--aether-spacing-48);
+  min-height: var(--aether-spacing-48);
+  padding: 0;
+  font-size: var(--aether-fontSize-heading-md);
+}
+
+.drawer-demo-details { margin: 0; }
+.drawer-demo-details div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--aether-spacing-8);
+  padding-block: var(--aether-spacing-12);
+  border-block-end: 1px solid var(--aether-semantic-border);
+}
+.drawer-demo-details dd { margin: 0; font-weight: 600; }
+
+@keyframes drawer-slide-in {
+  from { transform: translateX(100%); }
+}
+
+@media (max-width: 38rem) {
+  dialog.drawer {
+    inset: auto 0 0;
+    width: 100%;
+    height: auto;
+    max-height: calc(100% - var(--aether-spacing-24));
+    max-height: calc(100dvh - var(--aether-spacing-24));
+    border-radius: var(--aether-radius-24) var(--aether-radius-24) 0 0;
+  }
+
+  .drawer > form {
+    padding-block-end: max(var(--aether-spacing-24), env(safe-area-inset-bottom));
+  }
+
+  dialog.drawer[open] { animation-name: drawer-sheet-in; }
+}
+
+@keyframes drawer-sheet-in {
+  from { transform: translateY(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.drawer[open] { animation: none; }
+}

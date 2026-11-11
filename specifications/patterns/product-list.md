@@ -1,6 +1,6 @@
 # Liste de produits
 
-Cet exemple compose Table, Badge, Button, TextField, DateRangePicker et Dialog pour
+Cet exemple compose Table, Badge, Button, TextField, DateRangePicker, Drawer, Dialog et Toast pour
 gérer un catalogue. Les données de démonstration restent en mémoire pendant la visite.
 
 - Rechercher par nom, référence ou catégorie. La période porte sur la date d’ajout et
@@ -8,12 +8,9 @@ gérer un catalogue. Les données de démonstration restent en mémoire pendant 
   laisse la recherche textuelle active.
 - Trier les noms selon la langue de l’interface et les prix et dates selon leur valeur.
   Conserver les en-têtes pendant le chargement, les états vides et les erreurs.
-- Ouvrir la fiche avec un bouton portant le nom du produit. Utiliser un dialogue modal
-  placé sur le bord de l’écran, avec une surface verre forte et un fond opaque de
-  secours. À la fermeture, rendre le focus au produit ou à l’action d’ajout.
+- Ouvrir la fiche avec un bouton portant le nom du produit. Utiliser un Drawer modal à droite sur écran large et en bas sur écran étroit. À la fermeture, rendre le focus au produit ou à l’action d’ajout.
 - Confirmer la suppression dans un dialogue destructif. Placer le focus initial sur
   Annuler et conserver la fiche si la confirmation est annulée.
-- Confirmer les mutations avec un message bref dans une région de statut. Le toast
-  reste hors du parcours de tabulation et ne déplace pas le focus.
+- Confirmer les mutations avec un message bref dans une région de statut. Le toast ne déplace pas le focus à son ouverture et possède un bouton de fermeture accessible au clavier.
 - Garder le tableau sur une surface opaque. Sur écran étroit, laisser le tableau
   défiler dans sa région nommée et conserver les filtres dans le flux de la page.
