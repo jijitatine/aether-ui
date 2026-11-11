@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Une liste de produits interactive construite avec Aether UI.">
+  <title>Liste de produits · Aether UI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <link rel="stylesheet" href="./styles.css?v=chart-v2">
+  <link rel="stylesheet" href="./products.css">
+  <script src="./products.js" defer></script>
+</head>
+<body class="catalog">
+  <a class="skip-link" href="#catalog-main">Aller au catalogue</a>
+  <header class="catalog-nav">
+    <a class="brand" href="./index.html#patterns"><span class="brand-mark" aria-hidden="true"><span></span></span>Aether UI</a>
+    <button id="catalog-theme" class="button ghost" type="button">Thème sombre</button>
+  </header>
+  <main class="catalog-main" id="catalog-main" tabindex="-1">
+    <a class="catalog-back" href="./index.html#patterns">← Patterns</a>
+    <header class="catalog-heading">
+      <div><h1>Liste de produits</h1><p>Recherchez, filtrez et gérez les articles du catalogue.</p></div>
+      <button class="button primary" id="add-product" type="button"><span aria-hidden="true">+</span> Ajouter un produit</button>
+    </header>
+
+    <section class="catalog-panel" aria-label="Catalogue">
+      <form id="filters" class="catalog-filters" novalidate>
+        <div class="catalog-field catalog-search"><label for="product-search">Rechercher</label><input type="search" id="product-search" placeholder="Nom, référence ou catégorie" autocomplete="off"></div>
+        <fieldset>
+          <legend>Période d’ajout</legend>
+          <div class="catalog-dates">
+            <div class="catalog-field"><label for="date-from">Du</label><input type="date" id="date-from" aria-describedby="date-error"></div>
+            <div class="catalog-field"><label for="date-to">Au</label><input type="date" id="date-to" aria-describedby="date-error"></div>
+          </div>
+          <p id="date-error" class="catalog-error" role="status" hidden></p>
+        </fieldset>
+        <button type="reset" class="button ghost">Réinitialiser</button>
+      </form>
+      <p id="catalog-count" role="status" class="catalog-count"></p>
+      <div class="table-wrap" role="region" aria-label="Tableau des produits" tabindex="0">
+        <table class="data-table catalog-table" id="catalog-table">
+          <caption class="sr-only">Produits du catalogue</caption>
+          <thead><tr>
+            <th scope="col"><button type="button" data-sort="name">Produit <span class="table-sort-icon" aria-hidden="true"></span></button></th>
+            <th scope="col">Catégorie</th><th scope="col">Statut</th>
+            <th scope="col" class="table-number"><button type="button" data-sort="price">Prix <span class="table-sort-icon" aria-hidden="true"></span></button></th>
+            <th scope="col"><button type="button" data-sort="date">Ajouté le <span class="table-sort-icon" aria-hidden="true"></span></button></th>
+          </tr></thead>
+          <tbody id="product-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <details class="catalog-demo">
+      <summary>Tester les états de l’exemple</summary>
+      <p>Catalogue fictif. Les modifications durent le temps de la visite.</p>
+      <div class="catalog-actions">
+        <button class="button secondary" type="button" data-preview="loading">Chargement</button>
+        <button class="button secondary" type="button" data-preview="empty">Catalogue vide</button>
+        <button class="button secondary" type="button" data-preview="error">Erreur de chargement</button>
+        <button class="button ghost" type="button" data-preview="ready">Revenir au catalogue</button>
+      </div>
+    </details>
+  </main>
+
+  <dialog id="product-editor" class="catalog-drawer" aria-labelledby="editor-title">
+    <form id="product-form">
+      <header class="catalog-dialog-heading">
+        <div><h2 id="editor-title"></h2><p id="editor-reference"></p></div>
+        <button class="button ghost catalog-close" type="button" id="close-editor" aria-label="Fermer la fiche">×</button>
+      </header>
+      <div class="catalog-editor-fields">
+        <div class="catalog-field"><label for="product-name">Nom du produit</label><input id="product-name" name="name" required maxlength="100" autofocus aria-describedby="product-name-error"><small class="catalog-error" id="product-name-error" hidden></small></div>
+        <div class="catalog-field"><label for="product-category">Catégorie</label><input id="product-category" name="category" required maxlength="60" aria-describedby="product-category-error"><small class="catalog-error" id="product-category-error" hidden></small></div>
+        <div class="catalog-field"><label for="product-price">Prix (€)</label><input id="product-price" name="price" type="number" min="0" max="999999.99" step="0.01" required aria-describedby="product-price-error"><small class="catalog-error" id="product-price-error" hidden></small></div>
+        <fieldset class="catalog-status-options"><legend>Statut</legend>
+          <label><input type="radio" name="status" value="active" required> Actif</label>
+          <label><input type="radio" name="status" value="draft"> Brouillon</label>
+          <label><input type="radio" name="status" value="archived"> Archivé</label>
+        </fieldset>
+      </div>
+      <footer class="catalog-actions catalog-editor-actions">
+        <button type="button" class="button ghost catalog-remove" id="delete-product">Supprimer</button>
+        <button type="button" class="button secondary" id="cancel-editor">Annuler</button>
+        <button class="button primary" type="submit">Enregistrer</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog id="delete-confirm" aria-labelledby="delete-title" aria-describedby="delete-description">
+    <form method="dialog">
+      <h2 id="delete-title">Supprimer ce produit ?</h2>
+      <p id="delete-description"></p>
+      <div class="dialog-actions">
+        <button class="button secondary" value="cancel" autofocus>Annuler</button>
+        <button class="button destructive" value="confirm">Supprimer</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="catalog-toast" role="status"></div>
+</body>
+</html>
