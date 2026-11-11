@@ -404,6 +404,41 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   color: var(--aether-semantic-accent);
 }
 
+.table-sort-icon {
+  position: relative;
+  flex: none;
+  block-size: .9em;
+  inline-size: 0;
+  margin-inline: .3em;
+  border-left: 2px solid currentColor;
+}
+
+.table-sort-icon::before,
+.table-sort-icon::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  inline-size: .42em;
+  block-size: .42em;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+.table-sort-icon::before {
+  top: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.table-sort-icon::after {
+  bottom: 0;
+  transform: translateX(-50%) rotate(225deg);
+}
+
+[aria-sort="ascending"] .table-sort-icon::after,
+[aria-sort="descending"] .table-sort-icon::before {
+  content: none;
+}
+
 .data-table th[scope="row"] {
   color: inherit;
   white-space: normal;

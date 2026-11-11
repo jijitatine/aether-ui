@@ -301,12 +301,8 @@
       button.addEventListener('click', () => {
         const header = button.parentElement;
         const ascending = header.getAttribute('aria-sort') !== 'ascending';
-        sortButtons.forEach((other) => {
-          other.parentElement.removeAttribute('aria-sort');
-          other.querySelector('span').textContent = '↕';
-        });
+        sortButtons.forEach((other) => other.parentElement.removeAttribute('aria-sort'));
         header.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
-        button.querySelector('span').textContent = ascending ? '↑' : '↓';
         const rows = [...body.rows].sort((left, right) =>
           (ascending ? 1 : -1) * collator.compare(sortValue(left, index), sortValue(right, index))
         );

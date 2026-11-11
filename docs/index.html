@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=table-v1">
+  <link rel="stylesheet" href="./styles.css?v=table-v2">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -121,10 +121,10 @@
             <caption class="sr-only">Liste des projets récents</caption>
             <thead>
               <tr>
-                <th scope="col"><button type="button" data-table-sort>Projet <span aria-hidden="true">↕</span></button></th>
-                <th scope="col"><button type="button" data-table-sort>Statut <span aria-hidden="true">↕</span></button></th>
-                <th scope="col" class="table-number"><button type="button" data-table-sort>Progression <span aria-hidden="true">↕</span></button></th>
-                <th scope="col"><button type="button" data-table-sort>Mis à jour <span aria-hidden="true">↕</span></button></th>
+                <th scope="col"><button type="button" data-table-sort>Projet <span class="table-sort-icon" aria-hidden="true"></span></button></th>
+                <th scope="col"><button type="button" data-table-sort>Statut <span class="table-sort-icon" aria-hidden="true"></span></button></th>
+                <th scope="col" class="table-number"><button type="button" data-table-sort>Progression <span class="table-sort-icon" aria-hidden="true"></span></button></th>
+                <th scope="col"><button type="button" data-table-sort>Mis à jour <span class="table-sort-icon" aria-hidden="true"></span></button></th>
               </tr>
             </thead>
             <tbody data-table-rows>
@@ -173,6 +173,6 @@
 
   <dialog id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><form method="dialog"><div class="dialog-icon" aria-hidden="true">◇</div><h2 id="dialog-title">Publier les modifications ?</h2><p id="dialog-description">Les tokens mis à jour seront disponibles pour tous les projets liés.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Annuler</button><button class="button primary" value="confirm">Publier</button></div></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite">Copié dans le presse-papiers</div>
-  <script src="./app.js?v=table-v1"></script>
+  <script src="./app.js?v=table-v2"></script>
 </body>
 </html>
