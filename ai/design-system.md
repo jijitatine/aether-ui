@@ -47,6 +47,9 @@ When sources conflict, use this order and report the conflict:
 
 - System font stack and strong typographic hierarchy.
 - Neutral content surfaces with one restrained accent role.
+- The **Atlantique** semantic palette uses petrol blue for accent, mineral green for
+  success, warm amber for warning, and raspberry red for danger. Light-theme values are
+  contrast-tuned; dark-theme values stay brighter for legibility on deep surfaces.
 - Translucent glass communicates hierarchy: navigation, floating controls, overlays, and
   elevated groups. It is not the default background for dense reading content.
 - Glass always combines a semantic glass color, blur token, highlight border, and a

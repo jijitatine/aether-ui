@@ -42,19 +42,19 @@
     },
     "accent": {
       "$type": "color",
-      "$value": "#007AFF"
+      "$value": "#087580"
     },
     "success": {
       "$type": "color",
-      "$value": "#248A3D"
+      "$value": "#28765D"
     },
     "warning": {
       "$type": "color",
-      "$value": "#B86E00"
+      "$value": "#9A5A00"
     },
     "danger": {
       "$type": "color",
-      "$value": "#D70015"
+      "$value": "#BC4052"
     }
   }
 }

@@ -211,6 +211,9 @@ dialog::backdrop{background:color-mix(in srgb,var(--aether-semantic-background) 
   -webkit-backdrop-filter:blur(var(--aether-glass-blur-small));backdrop-filter:blur(var(--aether-glass-blur-small));
 }
 [data-theme=dark] .button.ghost{color:color-mix(in srgb,var(--aether-semantic-accent) 64%,white)}
+[data-theme=dark] .button.primary{background:color-mix(in srgb,var(--aether-semantic-accent) 68%,black)}
+[data-theme=dark] .button.destructive{background:color-mix(in srgb,var(--aether-semantic-danger) 78%,black)}
+[data-theme=dark] .skip-link,[data-theme=dark] .preview-heading button,[data-theme=dark] .callout.info>span{background:color-mix(in srgb,var(--aether-semantic-accent) 68%,black)}
 .button:disabled,.button.loading:disabled{
   background:var(--aether-semantic-glass-surface-strong);
   border-color:var(--aether-semantic-glass-border);

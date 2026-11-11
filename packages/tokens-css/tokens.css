@@ -57,10 +57,10 @@
   --aether-semantic-text-primary: #1D1D1F;
   --aether-semantic-text-secondary: #6E6E73;
   --aether-semantic-border: #C7D0DE;
-  --aether-semantic-accent: #007AFF;
-  --aether-semantic-success: #248A3D;
-  --aether-semantic-warning: #B86E00;
-  --aether-semantic-danger: #D70015;
+  --aether-semantic-accent: #087580;
+  --aether-semantic-success: #28765D;
+  --aether-semantic-warning: #9A5A00;
+  --aether-semantic-danger: #BC4052;
 }
 [data-theme="dark"] {
   --aether-semantic-background: #080B13;
@@ -73,10 +73,10 @@
   --aether-semantic-text-primary: #F5F7FF;
   --aether-semantic-text-secondary: #B5BAC9;
   --aether-semantic-border: #4B5261;
-  --aether-semantic-accent: #0A84FF;
-  --aether-semantic-success: #30D158;
-  --aether-semantic-warning: #FF9F0A;
-  --aether-semantic-danger: #FF453A;
+  --aether-semantic-accent: #3EAEB8;
+  --aether-semantic-success: #54B58E;
+  --aether-semantic-warning: #E5AA43;
+  --aether-semantic-danger: #E36572;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
@@ -90,9 +90,9 @@
     --aether-semantic-text-primary: #F5F7FF;
     --aether-semantic-text-secondary: #B5BAC9;
     --aether-semantic-border: #4B5261;
-    --aether-semantic-accent: #0A84FF;
-    --aether-semantic-success: #30D158;
-    --aether-semantic-warning: #FF9F0A;
-    --aether-semantic-danger: #FF453A;
+    --aether-semantic-accent: #3EAEB8;
+    --aether-semantic-success: #54B58E;
+    --aether-semantic-warning: #E5AA43;
+    --aether-semantic-danger: #E36572;
   }
 }
