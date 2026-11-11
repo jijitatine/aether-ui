@@ -1179,7 +1179,6 @@ button.chip:hover,
   --badge-ink: var(--aether-semantic-text-primary);
   display: inline-flex;
   align-items: center;
-  gap: var(--aether-spacing-4);
   padding: var(--aether-spacing-4) var(--aether-spacing-8);
   border-radius: var(--aether-radius-999);
   background: var(--aether-semantic-surface-muted);
@@ -1197,14 +1196,6 @@ button.chip:hover,
 .badge:not(.neutral, .count) {
   background: var(--aether-semantic-surface);
   background: color-mix(in srgb, var(--badge-ink) 6%, var(--aether-semantic-surface));
-}
-
-.badge:not(.count)::before {
-  content: "";
-  inline-size: var(--aether-spacing-4);
-  block-size: var(--aether-spacing-4);
-  border-radius: 50%;
-  background: currentColor;
 }
 
 .badge.count {
