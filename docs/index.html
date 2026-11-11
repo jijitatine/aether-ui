@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=select-search-v3">
+  <link rel="stylesheet" href="./styles.css?v=table-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -103,7 +103,61 @@
 
     <section class="doc-section component-section" id="tabs" data-title="Tabs"><div class="component-heading"><div><span class="component-number">07</span><div><h2>Tabs</h2><p>Organise plusieurs vues d’un même contexte sans changer de page.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/tabs.md">Voir le contrat ↗</a></div><div class="demo-card"><div class="demo-stage tabs-stage"><div class="tabs" role="tablist" aria-label="Données du projet"><button id="tab-overview" role="tab" aria-selected="true" aria-controls="panel-overview" tabindex="0">Vue d’ensemble</button><button id="tab-activity" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1">Activité</button><button id="tab-settings" role="tab" aria-selected="false" aria-controls="panel-settings" tabindex="-1">Réglages</button></div><div class="tab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview"><strong>Tout est à jour.</strong><p>Le projet respecte les derniers tokens Aether UI.</p></div><div class="tab-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" hidden><strong>12 modifications cette semaine.</strong><p>Les tokens de couleur ont été mis à jour hier.</p></div><div class="tab-panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" hidden><strong>Configuration du projet.</strong><p>Thème automatique et densité confortable.</p></div></div><div class="api-row"><span><code>variant</code> underline · segmented</span><span>Flèches ← → pour changer d’onglet</span></div></div></section>
 
-    <section class="doc-section component-section" id="table" data-title="Table"><div class="component-heading"><div><span class="component-number">08</span><div><h2>Table</h2><p>Compare des données structurées avec des en-têtes explicites.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/table.md">Voir le contrat ↗</a></div><div class="demo-card table-demo"><div class="demo-toolbar"><span>Projets récents</span><button class="button ghost small" type="button">Voir tout</button></div><div class="table-wrap"><table><caption class="sr-only">Liste des projets récents</caption><thead><tr><th scope="col">Projet</th><th scope="col">Statut</th><th scope="col">Progression</th><th scope="col">Mis à jour</th></tr></thead><tbody><tr><td><strong>Nova Commerce</strong><small>Web app</small></td><td><span class="badge success">Actif</span></td><td><span class="progress"><i style="width:82%"></i></span><small>82 %</small></td><td>Il y a 2 h</td></tr><tr><td><strong>Atlas Mobile</strong><small>iOS</small></td><td><span class="badge warning">En revue</span></td><td><span class="progress"><i style="width:64%"></i></span><small>64 %</small></td><td>Hier</td></tr><tr><td><strong>Pulse Admin</strong><small>Dashboard</small></td><td><span class="badge neutral">Brouillon</span></td><td><span class="progress"><i style="width:32%"></i></span><small>32 %</small></td><td>3 nov.</td></tr></tbody></table></div><div class="api-row"><span><code>state</code> loading · empty · error · sorted</span><span><code>density</code> comfortable · compact</span></div></div></section>
+    <section class="doc-section component-section" id="table" data-title="Table">
+      <div class="component-heading">
+        <div><span class="component-number">08</span><div><h2>Table</h2><p>Compare des données structurées et trie les lignes par colonne.</p></div></div>
+        <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/table.md">Voir le contrat ↗</a>
+      </div>
+      <div class="demo-card table-demo" data-table-demo>
+        <div class="demo-toolbar table-toolbar">
+          <strong id="projects-heading">Projets récents</strong>
+          <div class="table-controls">
+            <button class="button ghost small" type="button" data-table-density aria-pressed="false">Compact</button>
+            <button class="button ghost small" type="button" data-table-striped aria-pressed="false">Lignes alternées</button>
+          </div>
+        </div>
+        <div class="table-wrap" role="region" aria-labelledby="projects-heading" tabindex="0">
+          <table class="data-table">
+            <caption class="sr-only">Liste des projets récents</caption>
+            <thead>
+              <tr>
+                <th scope="col"><button type="button" data-table-sort>Projet <span aria-hidden="true">↕</span></button></th>
+                <th scope="col"><button type="button" data-table-sort>Statut <span aria-hidden="true">↕</span></button></th>
+                <th scope="col" class="table-number"><button type="button" data-table-sort>Progression <span aria-hidden="true">↕</span></button></th>
+                <th scope="col"><button type="button" data-table-sort>Mis à jour <span aria-hidden="true">↕</span></button></th>
+              </tr>
+            </thead>
+            <tbody data-table-rows>
+              <tr>
+                <th scope="row" data-sort-value="Nova Commerce">Nova Commerce<small>Web app</small></th>
+                <td><span class="badge success">Actif</span></td>
+                <td class="table-number" data-sort-value="82"><progress max="100" value="82" aria-hidden="true"></progress>82 %</td>
+                <td><time datetime="2026-11-11">11 nov. 2026</time></td>
+              </tr>
+              <tr>
+                <th scope="row" data-sort-value="Atlas Mobile">Atlas Mobile<small>iOS</small></th>
+                <td><span class="badge warning">En revue</span></td>
+                <td class="table-number" data-sort-value="64"><progress max="100" value="64" aria-hidden="true"></progress>64 %</td>
+                <td><time datetime="2026-11-10">10 nov. 2026</time></td>
+              </tr>
+              <tr>
+                <th scope="row" data-sort-value="Pulse Admin">Pulse Admin<small>Dashboard</small></th>
+                <td><span class="badge neutral">Brouillon</span></td>
+                <td class="table-number" data-sort-value="32"><progress max="100" value="32" aria-hidden="true"></progress>32 %</td>
+                <td><time datetime="2026-11-03">3 nov. 2026</time></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="table-status" role="status" data-table-status></div>
+        </div>
+        <div class="api-row table-controls" role="group" aria-label="État de la démonstration">
+          <button class="button ghost small" type="button" data-table-state="ready" aria-pressed="true">Données</button>
+          <button class="button ghost small" type="button" data-table-state="loading" aria-pressed="false">Chargement</button>
+          <button class="button ghost small" type="button" data-table-state="empty" aria-pressed="false">Vide</button>
+          <button class="button ghost small" type="button" data-table-state="error" aria-pressed="false">Erreur</button>
+        </div>
+      </div>
+    </section>
 
     <section class="doc-section component-section" id="dialog" data-title="Dialog"><div class="component-heading"><div><span class="component-number">09</span><div><h2>Dialog</h2><p>Interrompt uniquement pour une décision courte et nécessaire.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/dialog.md">Voir le contrat ↗</a></div><div class="demo-card"><div class="demo-stage dialog-stage"><div><span class="dialog-illustration">◇</span><h3>Une décision explicite</h3><p>Le focus est contenu dans la fenêtre et revient au déclencheur à la fermeture.</p><button class="button primary" id="open-dialog" type="button">Ouvrir la démonstration</button></div></div><div class="api-row"><span><code>variant</code> informational · confirm · destructive</span><span>Échap ferme · focus piégé</span></div></div></section>
 
@@ -119,6 +173,6 @@
 
   <dialog id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><form method="dialog"><div class="dialog-icon" aria-hidden="true">◇</div><h2 id="dialog-title">Publier les modifications ?</h2><p id="dialog-description">Les tokens mis à jour seront disponibles pour tous les projets liés.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Annuler</button><button class="button primary" value="confirm">Publier</button></div></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite">Copié dans le presse-papiers</div>
-  <script src="./app.js?v=select-search-v3"></script>
+  <script src="./app.js?v=table-v1"></script>
 </body>
 </html>

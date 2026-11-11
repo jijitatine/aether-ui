@@ -278,6 +278,65 @@
     });
   });
 
+  document.querySelectorAll('[data-table-demo]').forEach((demo) => {
+    const table = demo.querySelector('table');
+    const body = demo.querySelector('[data-table-rows]');
+    const status = demo.querySelector('[data-table-status]');
+    const sortButtons = [...demo.querySelectorAll('[data-table-sort]')];
+    const stateButtons = [...demo.querySelectorAll('[data-table-state]')];
+    const collator = new Intl.Collator(document.documentElement.lang, { numeric: true });
+    const messages = {
+      ready: '',
+      loading: 'Chargement des projets…',
+      empty: 'Aucun projet à afficher.',
+      error: 'Impossible de charger les projets.',
+    };
+
+    function sortValue(row, index) {
+      const cell = row.cells[index];
+      return cell.dataset.sortValue ?? cell.querySelector('time')?.dateTime ?? cell.textContent.trim();
+    }
+
+    sortButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        const header = button.parentElement;
+        const ascending = header.getAttribute('aria-sort') !== 'ascending';
+        sortButtons.forEach((other) => {
+          other.parentElement.removeAttribute('aria-sort');
+          other.querySelector('span').textContent = '↕';
+        });
+        header.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+        button.querySelector('span').textContent = ascending ? '↑' : '↓';
+        const rows = [...body.rows].sort((left, right) =>
+          (ascending ? 1 : -1) * collator.compare(sortValue(left, index), sortValue(right, index))
+        );
+        body.append(...rows);
+      });
+    });
+
+    for (const [selector, className] of [
+      ['[data-table-density]', 'compact'],
+      ['[data-table-striped]', 'striped'],
+    ]) {
+      const button = demo.querySelector(selector);
+      button.addEventListener('click', () => {
+        button.setAttribute('aria-pressed', String(table.classList.toggle(className)));
+      });
+    }
+
+    stateButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const state = button.dataset.tableState;
+        const ready = state === 'ready';
+        table.setAttribute('aria-busy', String(state === 'loading'));
+        body.hidden = !ready;
+        sortButtons.forEach((sortButton) => { sortButton.disabled = !ready; });
+        stateButtons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+        status.textContent = messages[state];
+      });
+    });
+  });
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 
