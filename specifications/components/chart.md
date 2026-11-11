@@ -14,6 +14,12 @@ alternative available to keyboard, touch and assistive technology without
 requiring a tooltip. If the accessible caption and data alternative convey the
 graphic's information, hide duplicate drawing primitives from assistive technology.
 
+Show the label and formatted value when a user hovers, touches or focuses a
+point, bar or segment. Let users explore nearby values by moving the pointer or
+sliding a finger while preserving vertical page scrolling and pinch zoom. Keep
+the readout near its chart without covering the plotted data or changing its
+position. Clear it when a mouse leaves the chart, on Escape or on an outside tap.
+
 Use an opaque semantic surface, text and border tokens for labels and guides,
 and the semantic accent for a single series. For parts of a whole, pair each
 series color with a visible label and value. Keep labels legible at narrow

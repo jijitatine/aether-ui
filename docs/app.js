@@ -793,6 +793,93 @@
     if (outside) dialog.close('cancel');
   });
 
+  document.querySelectorAll('[data-chart]').forEach((chart) => {
+    const kind = chart.dataset.chart;
+    const rows = [...chart.querySelectorAll({
+      line: '.chart-data tbody tr',
+      bar: '.chart-bars > div',
+      donut: '.chart-legend > div',
+    }[kind])];
+    const marks = [...chart.querySelectorAll({
+      line: '.chart-points circle',
+      bar: '.chart-bars > div',
+      donut: '.chart-donut path',
+    }[kind])];
+
+    const readout = document.createElement('div');
+    readout.className = 'chart-readout';
+    readout.setAttribute('aria-hidden', 'true');
+    const value = document.createElement('span');
+    value.className = 'chart-value';
+    value.hidden = true;
+    readout.append(value);
+    chart.querySelector('figcaption').after(readout);
+
+    const labels = rows.map((row) => {
+      const [label, amount] = [...row.children].map((cell) => cell.textContent.trim());
+      return kind === 'donut' ? `${label} · ${amount}` : `${label} · ${amount} commandes`;
+    });
+
+    // Reserve room for wrapped labels so the plot stays under the pointer.
+    labels.forEach((label) => {
+      const placeholder = document.createElement('span');
+      placeholder.className = 'chart-value chart-readout-placeholder';
+      placeholder.textContent = label;
+      readout.append(placeholder);
+    });
+
+    const pointTargets = chart.querySelector('[data-chart-points]');
+    const focusTargets = rows.map((row, index) => {
+      if (kind === 'line') {
+        const target = document.createElement('button');
+        target.type = 'button';
+        target.setAttribute('aria-label', labels[index]);
+        pointTargets.append(target);
+        return target;
+      }
+      row.tabIndex = 0;
+      return row;
+    });
+
+    const targets = new Map(focusTargets.map((target, index) => [target, index]));
+    if (kind === 'donut') marks.forEach((mark, index) => targets.set(mark, index));
+    targets.forEach((_, target) => target.setAttribute('data-chart-point', ''));
+
+    let activeIndex;
+    const show = (index) => {
+      if (index === activeIndex) return;
+      marks[activeIndex]?.removeAttribute('data-active');
+      if (kind === 'donut') focusTargets[activeIndex]?.removeAttribute('data-active');
+      activeIndex = index;
+      value.hidden = index === undefined;
+      if (index === undefined) return;
+      value.textContent = labels[index];
+      marks[index].setAttribute('data-active', '');
+      if (kind === 'donut') focusTargets[index].setAttribute('data-active', '');
+    };
+
+    const findIndex = (node) => targets.get(node?.closest?.('[data-chart-point]'));
+    const focusedIndex = () => chart.contains(document.activeElement) &&
+      document.activeElement.matches(':focus-visible') ? findIndex(document.activeElement) : undefined;
+
+    chart.addEventListener('pointermove', (event) => {
+      const target = event.pointerType === 'touch'
+        ? document.elementFromPoint(event.clientX, event.clientY)
+        : event.target;
+      show(findIndex(target) ?? focusedIndex());
+    });
+    chart.addEventListener('pointerleave', (event) => {
+      if (event.pointerType !== 'touch') show(focusedIndex());
+    });
+    chart.addEventListener('pointercancel', () => show(focusedIndex()));
+    chart.addEventListener('focusin', (event) => show(findIndex(event.target)));
+    chart.addEventListener('focusout', (event) => show(findIndex(event.relatedTarget)));
+    document.addEventListener('pointerdown', (event) => show(findIndex(event.target)));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') show(undefined);
+    });
+  });
+
   if ('IntersectionObserver' in window) {
     const sections = [...document.querySelectorAll('.doc-section[id]')];
     const observer = new IntersectionObserver((entries) => {

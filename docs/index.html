@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=chart-v1">
+  <link rel="stylesheet" href="./styles.css?v=chart-v2">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -487,24 +487,27 @@
       <div class="demo-card">
         <div class="demo-stage chart-stage">
           <div class="chart-grid">
-            <figure class="chart-card chart-card-wide">
+            <figure class="chart-card chart-card-wide" data-chart="line">
               <figcaption><strong>Commandes mensuelles</strong><small>Courbe · janvier à juin</small></figcaption>
-              <svg class="chart-plot" viewBox="0 0 360 152" aria-hidden="true" focusable="false">
-                <path class="chart-guides" d="M38 18H342 M38 50H342 M38 82H342 M38 114H342"/>
-                <g class="chart-axis" text-anchor="end">
-                  <text x="30" y="22">180</text><text x="30" y="54">120</text><text x="30" y="86">60</text><text x="30" y="118">0</text>
-                </g>
-                <path class="chart-area" d="M48 82L105 66L162 74L219 50L276 42L333 26V114H48Z"/>
-                <polyline class="chart-line" points="48,82 105,66 162,74 219,50 276,42 333,26"/>
-                <g class="chart-points">
-                  <circle cx="48" cy="82" r="3.5"/><circle cx="105" cy="66" r="3.5"/><circle cx="162" cy="74" r="3.5"/>
-                  <circle cx="219" cy="50" r="3.5"/><circle cx="276" cy="42" r="3.5"/><circle cx="333" cy="26" r="3.5"/>
-                </g>
-                <g class="chart-axis" text-anchor="middle">
-                  <text x="48" y="138">Jan.</text><text x="105" y="138">Fév.</text><text x="162" y="138">Mars</text>
-                  <text x="219" y="138">Avr.</text><text x="276" y="138">Mai</text><text x="333" y="138">Juin</text>
-                </g>
-              </svg>
+              <div class="chart-plot-wrap">
+                <svg class="chart-plot" viewBox="0 0 360 152" aria-hidden="true" focusable="false">
+                  <path class="chart-guides" d="M38 18H342 M38 50H342 M38 82H342 M38 114H342"/>
+                  <g class="chart-axis" text-anchor="end">
+                    <text x="30" y="22">180</text><text x="30" y="54">120</text><text x="30" y="86">60</text><text x="30" y="118">0</text>
+                  </g>
+                  <path class="chart-area" d="M48 82L105 66L162 74L219 50L276 42L333 26V114H48Z"/>
+                  <polyline class="chart-line" points="48,82 105,66 162,74 219,50 276,42 333,26"/>
+                  <g class="chart-points">
+                    <circle cx="48" cy="82" r="3.5"/><circle cx="105" cy="66" r="3.5"/><circle cx="162" cy="74" r="3.5"/>
+                    <circle cx="219" cy="50" r="3.5"/><circle cx="276" cy="42" r="3.5"/><circle cx="333" cy="26" r="3.5"/>
+                  </g>
+                  <g class="chart-axis" text-anchor="middle">
+                    <text x="48" y="138">Jan.</text><text x="105" y="138">Fév.</text><text x="162" y="138">Mars</text>
+                    <text x="219" y="138">Avr.</text><text x="276" y="138">Mai</text><text x="333" y="138">Juin</text>
+                  </g>
+                </svg>
+                <div class="chart-point-targets" data-chart-points></div>
+              </div>
               <details class="chart-data">
                 <summary>Voir les valeurs <span class="sr-only">des commandes mensuelles</span></summary>
                 <table>
@@ -517,7 +520,7 @@
                 </table>
               </details>
             </figure>
-            <figure class="chart-card">
+            <figure class="chart-card" data-chart="bar">
               <figcaption><strong>Commandes par canal</strong><small>Barres · juin</small></figcaption>
               <dl class="chart-bars">
                 <div><dt>Site web</dt><dd><span class="chart-bar" style="--chart-share: 90%" aria-hidden="true"></span><strong>90</strong></dd></div>
@@ -525,15 +528,13 @@
                 <div><dt>Boutique</dt><dd><span class="chart-bar" style="--chart-share: 25%" aria-hidden="true"></span><strong>25</strong></dd></div>
               </dl>
             </figure>
-            <figure class="chart-card">
+            <figure class="chart-card" data-chart="donut">
               <figcaption><strong>Modes de livraison</strong><small>Anneau · juin</small></figcaption>
               <div class="chart-breakdown">
                 <svg class="chart-donut" viewBox="0 0 128 128" aria-hidden="true" focusable="false">
-                  <g transform="rotate(-90 64 64)">
-                    <circle class="chart-series-accent" cx="64" cy="64" r="50" pathLength="100" stroke-dasharray="55 45"/>
-                    <circle class="chart-series-secondary" cx="64" cy="64" r="50" pathLength="100" stroke-dasharray="30 70" stroke-dashoffset="-55"/>
-                    <circle class="chart-series-neutral" cx="64" cy="64" r="50" pathLength="100" stroke-dasharray="15 85" stroke-dashoffset="-85"/>
-                  </g>
+                  <path class="chart-series-accent" d="M64.000 14.000 A50 50 0 1 1 48.549 111.553"/>
+                  <path class="chart-series-secondary" d="M48.549 111.553 A50 50 0 0 1 23.549 34.611"/>
+                  <path class="chart-series-neutral" d="M23.549 34.611 A50 50 0 0 1 64.000 14.000"/>
                   <text x="64" y="64" dy=".35em" text-anchor="middle">100 %</text>
                 </svg>
                 <dl class="chart-legend">
@@ -577,6 +578,6 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </dialog>
-  <script src="./app.js?v=badge-uploader-v1"></script>
+  <script src="./app.js?v=chart-v2"></script>
 </body>
 </html>
