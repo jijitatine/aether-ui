@@ -880,6 +880,80 @@
     });
   });
 
+  document.querySelectorAll('[data-map]').forEach((map) => {
+    const viewport = map.querySelector('[data-map-viewport]');
+    const canvas = viewport.querySelector('.map-canvas');
+    const controls = map.querySelector('[data-map-controls]');
+    const details = map.querySelector('[data-map-details]');
+    const zoomButtons = [...controls.querySelectorAll('[data-map-zoom]')];
+    const markers = [...map.querySelectorAll('[data-map-marker]')];
+    const rows = [...map.querySelectorAll('[data-map-locations] li')];
+    const zoomLevels = [100, 150, 225];
+    let zoomIndex = 0;
+
+    const centerAt = (x, y) => {
+      viewport.scrollTo({
+        left: x - viewport.clientWidth / 2,
+        top: y - viewport.clientHeight / 2,
+      });
+    };
+
+    const places = markers.map((marker, index) => {
+      const row = rows[index];
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'map-location-button';
+      button.setAttribute('aria-pressed', 'false');
+      button.append(...row.children);
+      row.append(button);
+      marker.hidden = false;
+      return {
+        marker,
+        button,
+        name: button.querySelector('strong').textContent,
+        region: button.querySelector('small').textContent,
+      };
+    });
+
+    const selectPlace = (selected) => {
+      places.forEach((place) => {
+        const pressed = String(place === selected);
+        place.marker.setAttribute('aria-pressed', pressed);
+        place.button.setAttribute('aria-pressed', pressed);
+      });
+      details.textContent = `${selected.name} · ${selected.region}`;
+    };
+
+    places.forEach((place) => {
+      place.marker.addEventListener('click', () => selectPlace(place));
+      place.button.addEventListener('click', () => {
+        selectPlace(place);
+        centerAt(place.marker.offsetLeft, place.marker.offsetTop);
+      });
+    });
+
+    zoomButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (button.getAttribute('aria-disabled') === 'true') return;
+        const step = Number(button.dataset.mapZoom);
+        const x = (viewport.scrollLeft + viewport.clientWidth / 2) / canvas.offsetWidth;
+        const y = (viewport.scrollTop + viewport.clientHeight / 2) / canvas.offsetHeight;
+        zoomIndex = step === 0 ? 0 : zoomIndex + step;
+        canvas.style.setProperty('--map-scale', `${zoomLevels[zoomIndex]}%`);
+        centerAt(x * canvas.offsetWidth, y * canvas.offsetHeight);
+        zoomButtons.forEach((control) => {
+          const direction = Number(control.dataset.mapZoom);
+          const unavailable = direction > 0 ? zoomIndex === zoomLevels.length - 1 : zoomIndex === 0;
+          control.setAttribute('aria-disabled', String(unavailable));
+        });
+      });
+    });
+
+    viewport.tabIndex = 0;
+    controls.hidden = false;
+    details.hidden = false;
+  });
+
   if ('IntersectionObserver' in window) {
     const sections = [...document.querySelectorAll('.doc-section[id]')];
     const observer = new IntersectionObserver((entries) => {
