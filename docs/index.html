@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
-  <link rel="stylesheet" href="./styles.css?v=badge-uploader-v2">
+  <link rel="stylesheet" href="./styles.css?v=chart-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -27,7 +27,7 @@
     <nav class="side-nav" aria-label="Sections de la documentation">
       <div class="nav-group" data-search-group><p>Commencer</p><a href="#overview" class="active">Vue d’ensemble</a><a href="#quick-start">Installation</a><a href="#principles">Principes</a></div>
       <div class="nav-group" data-search-group><p>Fondations</p><a href="#colors">Couleurs</a><a href="#typography">Typographie</a><a href="#spacing">Espacement & rayons</a><a href="#motion">Mouvement</a></div>
-      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#file-uploader">FileUploader</a></div>
+      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#dialog">Dialog</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a></div>
       <div class="nav-group" data-search-group><p>Construire</p><a href="#patterns">Patterns</a><a href="#accessibility">Accessibilité</a><a href="#ai-guide">Claude & Codex</a><a href="#governance">Contribution</a></div>
     </nav>
     <div class="sidebar-note"><span class="status-dot"></span><div><strong>Stable pour prototypage</strong><small>Adaptateurs en préparation</small></div></div>
@@ -60,7 +60,7 @@
 
     <section class="doc-section foundation-section" id="motion" data-title="Mouvement"><div class="section-heading compact"><div><h2>Mouvement</h2></div><p>Rapide, fonctionnel et désactivable. Aucune animation ne doit bloquer l’utilisateur.</p></div><div class="motion-grid"><article><button class="motion-demo fast" type="button"><i></i></button><strong>Fast · 120 ms</strong><p>Survols et retours immédiats</p></article><article><button class="motion-demo normal" type="button"><i></i></button><strong>Normal · 200 ms</strong><p>Transitions de composants</p></article><article><button class="motion-demo slow" type="button"><i></i></button><strong>Slow · 300 ms</strong><p>Changements de contexte</p></article></div></section>
 
-    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>20 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
+    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt et un contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>21 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
 
     <section class="doc-section component-section" id="button" data-title="Button"><div class="component-heading"><div><span class="component-number">01</span><div><h2>Button</h2><p>Déclenche une action. Pour naviguer, utilisez un lien.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/button.md">Voir le contrat ↗</a></div><div class="demo-card"><div class="demo-toolbar"><span>Variantes</span><span>Interactif</span></div><div class="demo-stage button-stage"><button class="button primary" type="button">Primary</button><button class="button secondary" type="button">Secondary</button><button class="button ghost" type="button">Ghost</button><button class="button destructive" type="button">Destructive</button><button class="button primary" type="button" disabled>Disabled</button><button class="button primary loading" type="button" aria-label="Chargement" disabled><i></i>Chargement</button></div><div class="api-row"><span><code>variant</code> primary · secondary · ghost · destructive</span><span><code>size</code> small · medium · large</span></div></div></section>
 
@@ -474,6 +474,75 @@
                 <button class="button ghost small" type="button" data-upload-remove>Retirer</button>
               </li>
             </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section component-section" id="chart" data-title="Chart · Graphiques">
+      <div class="component-heading">
+        <div><div><h2>Chart</h2><p>Visualise une évolution, compare des catégories ou montre une répartition.</p></div></div>
+        <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/chart.md">Voir le contrat ↗</a>
+      </div>
+      <div class="demo-card">
+        <div class="demo-stage chart-stage">
+          <div class="chart-grid">
+            <figure class="chart-card chart-card-wide">
+              <figcaption><strong>Commandes mensuelles</strong><small>Courbe · janvier à juin</small></figcaption>
+              <svg class="chart-plot" viewBox="0 0 360 152" aria-hidden="true" focusable="false">
+                <path class="chart-guides" d="M38 18H342 M38 50H342 M38 82H342 M38 114H342"/>
+                <g class="chart-axis" text-anchor="end">
+                  <text x="30" y="22">180</text><text x="30" y="54">120</text><text x="30" y="86">60</text><text x="30" y="118">0</text>
+                </g>
+                <path class="chart-area" d="M48 82L105 66L162 74L219 50L276 42L333 26V114H48Z"/>
+                <polyline class="chart-line" points="48,82 105,66 162,74 219,50 276,42 333,26"/>
+                <g class="chart-points">
+                  <circle cx="48" cy="82" r="3.5"/><circle cx="105" cy="66" r="3.5"/><circle cx="162" cy="74" r="3.5"/>
+                  <circle cx="219" cy="50" r="3.5"/><circle cx="276" cy="42" r="3.5"/><circle cx="333" cy="26" r="3.5"/>
+                </g>
+                <g class="chart-axis" text-anchor="middle">
+                  <text x="48" y="138">Jan.</text><text x="105" y="138">Fév.</text><text x="162" y="138">Mars</text>
+                  <text x="219" y="138">Avr.</text><text x="276" y="138">Mai</text><text x="333" y="138">Juin</text>
+                </g>
+              </svg>
+              <details class="chart-data">
+                <summary>Voir les valeurs <span class="sr-only">des commandes mensuelles</span></summary>
+                <table>
+                  <thead><tr><th scope="col">Mois</th><th scope="col">Commandes</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Janvier</th><td>60</td></tr><tr><th scope="row">Février</th><td>90</td></tr>
+                    <tr><th scope="row">Mars</th><td>75</td></tr><tr><th scope="row">Avril</th><td>120</td></tr>
+                    <tr><th scope="row">Mai</th><td>135</td></tr><tr><th scope="row">Juin</th><td>165</td></tr>
+                  </tbody>
+                </table>
+              </details>
+            </figure>
+            <figure class="chart-card">
+              <figcaption><strong>Commandes par canal</strong><small>Barres · juin</small></figcaption>
+              <dl class="chart-bars">
+                <div><dt>Site web</dt><dd><span class="chart-bar" style="--chart-share: 90%" aria-hidden="true"></span><strong>90</strong></dd></div>
+                <div><dt>Application</dt><dd><span class="chart-bar" style="--chart-share: 50%" aria-hidden="true"></span><strong>50</strong></dd></div>
+                <div><dt>Boutique</dt><dd><span class="chart-bar" style="--chart-share: 25%" aria-hidden="true"></span><strong>25</strong></dd></div>
+              </dl>
+            </figure>
+            <figure class="chart-card">
+              <figcaption><strong>Modes de livraison</strong><small>Anneau · juin</small></figcaption>
+              <div class="chart-breakdown">
+                <svg class="chart-donut" viewBox="0 0 128 128" aria-hidden="true" focusable="false">
+                  <g transform="rotate(-90 64 64)">
+                    <circle class="chart-series-accent" cx="64" cy="64" r="50" pathLength="100" stroke-dasharray="55 45"/>
+                    <circle class="chart-series-secondary" cx="64" cy="64" r="50" pathLength="100" stroke-dasharray="30 70" stroke-dashoffset="-55"/>
+                    <circle class="chart-series-neutral" cx="64" cy="64" r="50" pathLength="100" stroke-dasharray="15 85" stroke-dashoffset="-85"/>
+                  </g>
+                  <text x="64" y="64" dy=".35em" text-anchor="middle">100 %</text>
+                </svg>
+                <dl class="chart-legend">
+                  <div class="chart-series-accent"><dt>Domicile</dt><dd>55 %</dd></div>
+                  <div class="chart-series-secondary"><dt>Point relais</dt><dd>30 %</dd></div>
+                  <div class="chart-series-neutral"><dt>Retrait</dt><dd>15 %</dd></div>
+                </dl>
+              </div>
+            </figure>
           </div>
         </div>
       </div>
