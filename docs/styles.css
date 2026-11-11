@@ -766,3 +766,105 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 .date-time-demo output:empty {
   position: absolute;
 }
+
+/* MenuButton */
+.action-menu-demo {
+  overflow: visible;
+}
+
+.action-menu-demo:has([aria-expanded="true"]) {
+  position: relative;
+  z-index: 5;
+}
+
+.action-menu-stage {
+  border-radius: inherit;
+}
+
+.action-menu-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--aether-spacing-16);
+  inline-size: 100%;
+}
+
+.action-menu-example {
+  display: grid;
+  justify-items: center;
+  gap: var(--aether-spacing-8);
+  min-inline-size: 0;
+  padding: var(--aether-spacing-8);
+}
+
+.action-menu-example p {
+  margin: 0;
+  color: var(--aether-semantic-text-primary);
+  font-size: var(--aether-fontSize-small);
+  font-weight: 600;
+}
+
+.action-menu {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  inline-size: 100%;
+}
+
+.action-menu:has([aria-expanded="true"]) {
+  z-index: 2;
+}
+
+.action-menu-trigger {
+  min-inline-size: var(--aether-button-height-large);
+}
+
+.action-menu-icon {
+  font-size: var(--aether-fontSize-heading-sm);
+  line-height: 1;
+}
+
+.action-menu-popup {
+  position: absolute;
+  inset-block-start: calc(100% + var(--aether-spacing-4));
+  inset-inline: 0;
+  padding: var(--aether-spacing-4);
+  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-16);
+  background: var(--aether-semantic-surface);
+  box-shadow: var(--aether-shadow-glass);
+}
+
+.action-menu-popup [role="menuitem"] {
+  display: block;
+  inline-size: 100%;
+  min-block-size: var(--aether-button-height-large);
+  padding: var(--aether-spacing-8);
+  border: 0;
+  border-radius: var(--aether-radius-10);
+  background: transparent;
+  color: var(--aether-semantic-text-primary);
+  font: inherit;
+  font-size: var(--aether-fontSize-small);
+  text-align: start;
+  cursor: pointer;
+}
+
+.action-menu-popup [role="menuitem"]:is(:hover, :focus-visible) {
+  background: var(--aether-semantic-surface-muted);
+}
+
+.action-menu-popup [role="menuitem"]:focus-visible {
+  outline-offset: calc(-1 * var(--aether-spacing-4));
+}
+
+.action-menu-feedback {
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
+  font-size: var(--aether-fontSize-small);
+}
+
+.action-menu-feedback:empty {
+  position: absolute;
+  padding: 0;
+  border: 0;
+}

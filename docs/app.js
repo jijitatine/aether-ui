@@ -406,6 +406,69 @@
     });
   });
 
+  document.querySelectorAll('[data-action-menu]').forEach((control) => {
+    const trigger = control.querySelector('[aria-haspopup="menu"]');
+    const menu = control.querySelector('[role="menu"]');
+    const items = [...menu.querySelectorAll('[role="menuitem"]')];
+    const status = control.closest('.action-menu-demo').querySelector('[data-action-menu-status]');
+
+    function open(item = items[0]) {
+      menu.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      item.focus();
+    }
+
+    function close(restoreFocus = false) {
+      if (menu.hidden) return;
+      trigger.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) trigger.focus();
+      menu.hidden = true;
+    }
+
+    trigger.addEventListener('click', () => {
+      if (menu.hidden) open();
+      else close(true);
+    });
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      event.preventDefault();
+      open(event.key === 'ArrowUp' ? items.at(-1) : items[0]);
+    });
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close(true);
+        return;
+      }
+      if (event.key === 'Tab') {
+        setTimeout(() => close(), 0);
+        return;
+      }
+      const index = items.indexOf(document.activeElement);
+      const next = {
+        ArrowDown: (index + 1) % items.length,
+        ArrowUp: (index - 1 + items.length) % items.length,
+        Home: 0,
+        End: items.length - 1,
+      }[event.key];
+      if (next === undefined) return;
+      event.preventDefault();
+      items[next].focus();
+    });
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        close(true);
+        status.textContent = `Action sélectionnée : ${item.textContent.trim()}.`;
+      });
+    });
+    control.addEventListener('focusout', (event) => {
+      if (event.relatedTarget && !control.contains(event.relatedTarget)) close();
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (!control.contains(event.target)) close();
+    });
+  });
+
   const indeterminate = document.querySelector('#indeterminate-check');
   if (indeterminate) indeterminate.indeterminate = true;
 
