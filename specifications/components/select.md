@@ -9,6 +9,8 @@ default option menu when the Aether visual treatment is required.
 - `value`: selected value or null in single mode
 - `values`: selected values in multiple mode
 - `multiple`: boolean (default false)
+- `searchable`: boolean (default false); adds a search input before the option list
+- `searchPlaceholder`: optional localized prompt
 - `placeholder`: visible prompt when no value is selected
 - `variant`: default | error
 - `size`: small | medium | large
@@ -31,12 +33,22 @@ and `aria-invalid` mirrors the error state.
 example a country flag, avatar, provider logo, or icon. The text label must remain
 available; a flag or icon can never be the only way to identify an option.
 
+When selected options have a `leadingVisual`, render each visual together with its own
+label in the trigger (a compact selection chip). Never concatenate all flags before a
+separate list of labels: this makes the visual-to-label relation ambiguous. For a long
+multiple selection, show the first values and a `+n` summary while exposing the complete
+selected-label list to assistive technology.
+
 - Enter, Space, ArrowDown, or ArrowUp opens the list.
 - ArrowDown and ArrowUp move between enabled options; Home and End jump to the bounds.
 - In single mode, Enter or Space selects the focused option, closes the list, and restores
   trigger focus.
 - In multiple mode, Enter, Space, or click toggles the focused option and keeps the list
   open. Escape, outside click, or Tab closes it; the trigger summarizes the selected labels.
+- When `searchable` is true, focus moves to the search input when the popup opens. Typing
+  filters labels without changing selection; ArrowDown moves to the first matching option,
+  ArrowUp to the last, and Escape closes the popup. Show a non-selectable empty state when
+  there are no matches.
 - Escape closes without changing the value and restores trigger focus.
 - Clicking outside closes without changing the value.
 - Disabled triggers and options cannot be activated.
