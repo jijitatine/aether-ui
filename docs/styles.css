@@ -633,7 +633,16 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
 
 .date-time-control {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  box-sizing: border-box;
   min-inline-size: 0;
+  min-block-size: var(--aether-spacing-48);
+  padding-inline: var(--aether-spacing-12) var(--aether-spacing-40);
+  overflow: hidden;
+  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-10);
+  background: var(--aether-semantic-surface);
 }
 
 .date-time-field input {
@@ -642,12 +651,13 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   inline-size: 100%;
   min-inline-size: 0;
   max-inline-size: 100%;
-  min-block-size: var(--aether-spacing-48);
   margin: 0;
-  padding-inline: var(--aether-spacing-12) var(--aether-spacing-40);
-  border: var(--aether-glass-border-width) solid var(--aether-semantic-border);
-  border-radius: var(--aether-radius-10);
-  background: var(--aether-semantic-surface-muted);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
   color: var(--aether-semantic-text-primary);
   font: inherit;
   font-size: var(--aether-fontSize-body);
@@ -719,16 +729,20 @@ dialog{background:linear-gradient(150deg,var(--aether-semantic-glass-highlight),
   color-scheme: dark;
 }
 
-.date-time-field input:focus-visible {
-  background: var(--aether-semantic-surface);
-  outline-color: var(--aether-semantic-accent);
+.date-time-control:focus-within {
+  outline: 2px solid var(--aether-semantic-accent);
+  outline-offset: 2px;
 }
 
-.date-time-field input:is(:disabled, [readonly]) {
+.date-time-control input:focus-visible {
+  outline: none;
+}
+
+.date-time-control:has(input:is(:disabled, [readonly])) {
   background: var(--aether-semantic-surface-muted);
 }
 
-.date-time-field input[aria-invalid="true"] {
+.date-time-control:has(input[aria-invalid="true"]) {
   border-color: var(--aether-semantic-danger);
 }
 
