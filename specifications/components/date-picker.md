@@ -25,7 +25,10 @@ See [TimePicker](time-picker.md) for local time selection.
 
 ## Aether calendar variant
 
-The web documentation also provides a modal calendar with an explicit confirmation.
+The web documentation also provides a non-modal calendar popover with explicit confirmation.
+Anchor it to the field, opening above when more space is available there. Constrain
+the panel to the viewport and allow internal scrolling on short screens.
 Start focus on the selected day or today. Arrow keys move by day or week, Home and End
 move within the week, Page Up and Down switch months, and Shift with Page Up or Down
-switches years. Escape or Cancel discards draft changes and restores trigger focus.
+switches years. Escape and Cancel discard draft changes and restore trigger focus. Clicking or
+tabbing away also dismisses the draft and leaves focus at its destination.

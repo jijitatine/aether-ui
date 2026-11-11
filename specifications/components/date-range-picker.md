@@ -19,8 +19,8 @@ value is a calendar date (`YYYY-MM-DD`) without a time zone.
 
 ## Aether calendar variant
 
-Choose both endpoints in one calendar, including across months. The first selection
+Choose both endpoints in one anchored calendar popover, including across months. The first selection
 starts a draft and the second completes it. Reverse selections are normalized in
 chronological order. Highlight the endpoints and days between them. Confirm only a
-complete draft. Cancel or Escape preserves the previously confirmed selection.
+complete draft. Dismissal preserves the previously confirmed selection.
 Keyboard navigation follows the DatePicker calendar.
