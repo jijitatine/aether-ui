@@ -1,3 +1,5 @@
+import { createToast } from './toast.js';
+
 const byId = (id) => document.getElementById(id);
 const filters = byId('filters');
 const search = byId('product-search');
@@ -12,7 +14,7 @@ const editor = byId('product-editor');
 const form = byId('product-form');
 const remove = byId('delete-product');
 const confirmation = byId('delete-confirm');
-const toast = byId('catalog-toast');
+const showToast = createToast();
 const theme = byId('catalog-theme');
 
 const statuses = {
@@ -33,7 +35,6 @@ let state = 'ready';
 let sort = { key: 'date', direction: 'descending' };
 let editedId = null;
 let editorTrigger = add;
-let toastTimer;
 let previewTimer;
 
 const currency = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
@@ -212,20 +213,14 @@ function openEditor(product, trigger) {
   editor.showModal();
 }
 
-function showToast(message) {
-  clearTimeout(toastTimer);
-  toast.textContent = message;
-  toast.classList.add('show');
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
-}
-
 function closeEditorAndRefresh(message) {
   const triggerId = editorTrigger.dataset.product;
   editor.close();
   render();
   const replacement = triggerId ? rows.querySelector('[data-product="' + triggerId + '"]') : add;
-  (replacement || add).focus();
-  showToast(message);
+  const focusTarget = replacement || add;
+  focusTarget.focus();
+  showToast(focusTarget, 'success', message);
 }
 
 add.addEventListener('click', () => openEditor(null, add));
@@ -262,10 +257,10 @@ form.addEventListener('submit', (event) => {
     const date = [today.getFullYear(), today.getMonth() + 1, today.getDate()]
       .map((value) => String(value).padStart(2, '0')).join('-');
     products.push({ ...product, id: nextId++, date });
-    closeEditorAndRefresh('Produit ajouté.');
+    closeEditorAndRefresh('Produit créé.');
   } else {
     products = products.map((item) => item.id === editedId ? { ...item, ...product } : item);
-    closeEditorAndRefresh('Produit enregistré.');
+    closeEditorAndRefresh('Produit modifié.');
   }
 });
 

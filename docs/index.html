@@ -700,13 +700,6 @@
   </main>
 
   <dialog id="demo-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><form method="dialog"><div class="dialog-icon" aria-hidden="true">◇</div><h2 id="dialog-title">Publier les modifications ?</h2><p id="dialog-description">Les tokens mis à jour seront disponibles pour tous les projets liés.</p><div class="dialog-actions"><button class="button secondary" value="cancel">Annuler</button><button class="button primary" value="confirm">Publier</button></div></form></dialog>
-  <div class="sr-only" id="toast-status" role="status"></div>
-  <div class="sr-only" id="toast-urgent" role="alert"></div>
-  <div class="feedback feedback-toast" id="live-toast" hidden>
-    <span class="feedback-icon" aria-hidden="true"></span>
-    <div class="feedback-copy"><strong></strong><p></p></div>
-    <button class="feedback-close" type="button" aria-label="Fermer la notification">×</button>
-  </div>
   <div class="calendar-popover" id="calendar-dialog" role="dialog" hidden aria-labelledby="calendar-title" aria-describedby="calendar-hint">
     <h2 id="calendar-title"></h2>
     <p id="calendar-hint" aria-live="polite"></p>
@@ -724,7 +717,7 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </div>
-  <script src="./app.js?v=calendar-popover-v1"></script>
+  <script type="module" src="./app.js?v=shared-toast-v1"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.js"
     integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
   <script defer src="./street-map.js?v=1"></script>
