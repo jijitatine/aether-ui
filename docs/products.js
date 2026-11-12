@@ -1,5 +1,5 @@
 import { setupSelects } from './select.js';
-import { setupPagination } from './pagination.js';
+import { setupPagination } from './pagination.js?v=2';
 import { setupBulkActions } from './bulk-actions.js';
 import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
