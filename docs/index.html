@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.css"
     integrity="sha384-Nq6PQ+9vJPvw7U/VfDELyrWoGQMsy0gi6QShhaSrGzkpF5KkM40csg2leky+YMTd" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles.css?v=table-pagination-v2">
+  <link rel="stylesheet" href="./styles.css?v=table-pagination-v3">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -236,9 +236,16 @@
           </table>
           <div class="table-status" role="status" data-table-status></div>
         </div>
-        <div class="table-pagination">
-          <div class="table-pagination-heading"><h3 id="table-pagination-label">Pagination</h3><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/pagination.md">Voir le contrat ↗</a></div>
-          <nav class="pagination" id="pagination" aria-describedby="table-pagination-label" aria-label="Pagination" hidden>
+        <div class="api-row table-controls" role="group" aria-label="État de la démonstration">
+          <button class="button ghost small" type="button" data-table-state="ready" aria-pressed="true">Données</button>
+          <button class="button ghost small" type="button" data-table-state="loading" aria-pressed="false">Chargement</button>
+          <button class="button ghost small" type="button" data-table-state="empty" aria-pressed="false">Vide</button>
+          <button class="button ghost small" type="button" data-table-state="error" aria-pressed="false">Erreur</button>
+        </div>
+      </div>
+      <div class="table-pagination">
+        <div class="table-pagination-heading"><h3 id="table-pagination-label">Pagination</h3><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/pagination.md">Voir le contrat ↗</a></div>
+        <nav class="pagination" id="pagination" aria-describedby="table-pagination-label" aria-label="Pagination" hidden>
   <span class="pagination-range" role="status"></span>
   <div class="pagination-controls">
     <button class="button secondary" type="button" data-page-prev aria-label="Page précédente" title="Précédent"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -260,13 +267,6 @@
     <input type="hidden" data-page-size value="2">
   </div>
 </nav>
-        </div>
-        <div class="api-row table-controls" role="group" aria-label="État de la démonstration">
-          <button class="button ghost small" type="button" data-table-state="ready" aria-pressed="true">Données</button>
-          <button class="button ghost small" type="button" data-table-state="loading" aria-pressed="false">Chargement</button>
-          <button class="button ghost small" type="button" data-table-state="empty" aria-pressed="false">Vide</button>
-          <button class="button ghost small" type="button" data-table-state="error" aria-pressed="false">Erreur</button>
-        </div>
       </div>
     </section>
 
@@ -852,7 +852,7 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </div>
-  <script type="module" src="./app.js?v=table-pagination-v3"></script>
+  <script type="module" src="./app.js?v=table-pagination-v4"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.js"
     integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
   <script defer src="./street-map.js?v=1"></script>

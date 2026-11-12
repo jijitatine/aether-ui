@@ -203,7 +203,7 @@ import { createToast } from './toast.js';
     const sortButtons = [...demo.querySelectorAll('[data-table-sort]')];
     const stateButtons = [...demo.querySelectorAll('[data-table-state]')];
     const rows = [...body.rows];
-    const pagination = setupPagination(demo.querySelector('.pagination'), { onChange: renderPage, unit: 'projets' });
+    const pagination = setupPagination(demo.closest('.doc-section').querySelector('.pagination'), { onChange: renderPage, unit: 'projets' });
 
     function renderPage() {
       body.replaceChildren(...pagination.slice(body.hidden ? [] : rows));
