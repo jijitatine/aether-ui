@@ -7,9 +7,9 @@
   <title>Liste de produits · Aether UI</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./tokens.css">
-  <link rel="stylesheet" href="./styles.css?v=stepper-v1">
+  <link rel="stylesheet" href="./styles.css?v=bulk-actions-v1">
   <link rel="stylesheet" href="./products.css?v=drawer-v1">
-  <script type="module" src="./products.js?v=stepper-v1"></script>
+  <script type="module" src="./products.js?v=bulk-actions-v1"></script>
 </head>
 <body class="catalog">
   <a class="skip-link" href="#catalog-main">Aller au catalogue</a>
@@ -64,6 +64,7 @@
         <table class="data-table catalog-table" id="catalog-table">
           <caption class="sr-only">Produits du catalogue</caption>
           <thead><tr>
+            <th scope="col"><input class="bulk-checkbox" type="checkbox" data-bulk-all aria-label="Sélectionner tous les produits visibles à archiver"></th>
             <th scope="col"><button type="button" data-sort="name">Produit <span class="table-sort-icon" aria-hidden="true"></span></button></th>
             <th scope="col">Catégorie</th><th scope="col">Statut</th>
             <th scope="col" class="table-number"><button type="button" data-sort="price">Prix <span class="table-sort-icon" aria-hidden="true"></span></button></th>
@@ -72,6 +73,24 @@
           <tbody id="product-rows"></tbody>
         </table>
       </div>
+      <div class="bulk-bar bulk-bar-mobile" data-bulk-bar hidden>
+  <strong data-bulk-count></strong>
+  <div class="bulk-buttons">
+    <button class="button ghost" type="button" data-bulk-clear>Annuler la sélection</button>
+    <button class="button primary" type="button" data-bulk-action>Archiver</button>
+  </div>
+</div>
+<span class="sr-only" role="status" data-bulk-status></span>
+<dialog data-bulk-dialog aria-labelledby="product-bulk-title" aria-describedby="product-bulk-description">
+  <form method="dialog">
+    <h2 id="product-bulk-title">Confirmer l’archivage</h2>
+    <p id="product-bulk-description" data-bulk-description></p>
+    <div class="dialog-actions">
+      <button class="button secondary" value="cancel" autofocus>Annuler</button>
+      <button class="button primary" value="archive">Archiver</button>
+    </div>
+  </form>
+</dialog>
     </section>
 
     <details class="catalog-demo">

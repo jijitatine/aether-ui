@@ -1,3 +1,4 @@
+import { setupBulkActions } from './bulk-actions.js';
 import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
 import { createToast } from './toast.js';
@@ -95,6 +96,35 @@ import { createToast } from './toast.js';
   });
 
   const showToast = createToast();
+  const bulkDemo = document.querySelector('#demo-bulk-actions');
+  const resetBulkDemo = bulkDemo.querySelector('[data-bulk-reset]');
+  const demoBoxes = [...bulkDemo.querySelectorAll('[data-bulk-row]')];
+  const bulkActions = setupBulkActions(bulkDemo, {
+    archive(ids) {
+      for (const checkbox of demoBoxes.filter(box => ids.includes(box.value))) {
+        checkbox.disabled = true;
+        checkbox.checked = false;
+        const badge = checkbox.closest('tr').querySelector('.badge');
+        badge.className = 'badge neutral';
+        badge.textContent = 'Archivé';
+      }
+    },
+    showToast,
+    fallbackFocus: resetBulkDemo
+  });
+  resetBulkDemo.addEventListener('click', () => {
+    for (const checkbox of demoBoxes) {
+      if (checkbox.checked) {
+        checkbox.checked = false;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      checkbox.disabled = false;
+      const badge = checkbox.closest('tr').querySelector('.badge');
+      badge.className = 'badge success';
+      badge.textContent = 'Actif';
+    }
+    bulkActions.sync();
+  });
 
   document.querySelectorAll('[data-toast-tone]').forEach((button) => {
     button.addEventListener('click', () => {

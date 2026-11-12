@@ -1,3 +1,4 @@
+import { setupBulkActions } from './bulk-actions.js';
 import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
 import { createToast } from './toast.js';
@@ -97,7 +98,7 @@ function visibleProducts() {
 
 function showTableState(message, action, onAction) {
   const cell = element('td', '', 'catalog-state');
-  cell.colSpan = 5;
+  cell.colSpan = 6;
   cell.append(element('p', message));
   if (action) {
     const button = element('button', action, 'button secondary');
@@ -110,6 +111,13 @@ function showTableState(message, action, onAction) {
 
 function renderProduct(product) {
   const row = rows.insertRow();
+  const checkbox = element('input', '', 'bulk-checkbox');
+  checkbox.type = 'checkbox';
+  checkbox.dataset.bulkRow = '';
+  checkbox.value = String(product.id);
+  checkbox.disabled = product.status === 'archived';
+  checkbox.setAttribute('aria-label', 'Sélectionner ' + product.name);
+  row.insertCell().append(checkbox);
   const heading = element('th', '');
   heading.scope = 'row';
   const button = element('button', product.name, 'button ghost product-link');
@@ -143,7 +151,7 @@ function render() {
     for (let index = 0; index < 3; index += 1) {
       const row = rows.insertRow();
       row.setAttribute('aria-hidden', 'true');
-      for (let column = 0; column < 5; column += 1) row.insertCell().append(element('span', '', 'catalog-skeleton'));
+      for (let column = 0; column < 6; column += 1) row.insertCell().append(element('span', '', 'catalog-skeleton'));
     }
   } else if (state === 'error') {
     count.textContent = 'Erreur de chargement';
@@ -161,6 +169,7 @@ function render() {
       });
     }
   }
+  bulkActions.sync();
 }
 
 function preview(value, focusTarget) {
@@ -318,6 +327,17 @@ setupCombobox(byId('product-lookup'), {
     input.value = '';
     openEditor(product, input);
   }
+});
+
+const bulkActions = setupBulkActions(table.closest('.catalog-panel'), {
+  archive(ids) {
+    const selected = new Set(ids);
+    products = products.map(product => selected.has(String(product.id))
+      ? { ...product, status: 'archived' } : product);
+    render();
+  },
+  showToast,
+  fallbackFocus: search
 });
 
 render();
