@@ -2234,3 +2234,33 @@ dialog.drawer[open] {
 .stepper-review dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; min-width: 0; }
 @media (min-width: 39rem) { .stepper-position { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } }
 @media (max-width: 38.99rem) { .stepper ol { display: none; } }
+
+.bulk-example { width: min(100%, 38rem); min-width: 0; }
+.bulk-example table { width: 100%; min-width: 0; }
+.bulk-example > button { margin-block-start: var(--aether-spacing-12); }
+.bulk-checkbox { width: 1.125rem; height: 1.125rem; margin: 0; accent-color: var(--aether-semantic-accent); vertical-align: middle; }
+.bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--aether-spacing-8);
+  margin-block-start: var(--aether-spacing-12);
+  padding: var(--aether-spacing-12);
+  border: 1px solid var(--aether-semantic-border);
+  border-radius: var(--aether-radius-16);
+  background: var(--aether-semantic-surface);
+  color: var(--aether-semantic-text-primary);
+  box-shadow: var(--aether-shadow-glass);
+}
+.bulk-bar[hidden] { display: none; }
+.bulk-buttons { display: flex; flex-wrap: wrap; gap: var(--aether-spacing-8); }
+@media (max-width: 38rem) {
+  .bulk-bar-mobile {
+    position: fixed;
+    z-index: 10;
+    inset-inline: var(--aether-spacing-12);
+    bottom: max(var(--aether-spacing-12), env(safe-area-inset-bottom));
+  }
+  .catalog-main:has(.bulk-bar-mobile:not([hidden])) { padding-block-end: calc(10rem + env(safe-area-inset-bottom)); }
+}
