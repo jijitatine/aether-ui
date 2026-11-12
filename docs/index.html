@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.css"
     integrity="sha384-Nq6PQ+9vJPvw7U/VfDELyrWoGQMsy0gi6QShhaSrGzkpF5KkM40csg2leky+YMTd" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles.css?v=bulk-actions-v1">
+  <link rel="stylesheet" href="./styles.css?v=pagination-v1">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -29,7 +29,7 @@
     <nav class="side-nav" aria-label="Sections de la documentation">
       <div class="nav-group" data-search-group><p>Commencer</p><a href="#overview" class="active">Vue d’ensemble</a><a href="#quick-start">Installation</a><a href="#principles">Principes</a></div>
       <div class="nav-group" data-search-group><p>Fondations</p><a href="#colors">Couleurs</a><a href="#typography">Typographie</a><a href="#spacing">Espacement & rayons</a><a href="#motion">Mouvement</a></div>
-      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#combobox">Combobox</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#bulk-actions">Actions groupées</a><a href="#dialog">Dialog</a><a href="#drawer">Drawer</a><a href="#stepper">Stepper</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#toast">Toast</a><a href="#alert">Alert</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a><a href="#map">Carte géographique</a></div>
+      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#combobox">Combobox</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#pagination">Pagination</a><a href="#bulk-actions">Actions groupées</a><a href="#dialog">Dialog</a><a href="#drawer">Drawer</a><a href="#stepper">Stepper</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#toast">Toast</a><a href="#alert">Alert</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a><a href="#map">Carte géographique</a></div>
       <div class="nav-group" data-search-group><p>Construire</p><a href="#patterns">Patterns</a><a href="./products.html">Liste de produits</a><a href="#accessibility">Accessibilité</a><a href="#ai-guide">Claude & Codex</a><a href="#governance">Contribution</a></div>
     </nav>
     <div class="sidebar-note"><span class="status-dot"></span><div><strong>Stable pour prototypage</strong><small>Adaptateurs en préparation</small></div></div>
@@ -62,7 +62,7 @@
 
     <section class="doc-section foundation-section" id="motion" data-title="Mouvement"><div class="section-heading compact"><div><h2>Mouvement</h2></div><p>Rapide, fonctionnel et désactivable. Aucune animation ne doit bloquer l’utilisateur.</p></div><div class="motion-grid"><article><button class="motion-demo fast" type="button"><i></i></button><strong>Fast · 120 ms</strong><p>Survols et retours immédiats</p></article><article><button class="motion-demo normal" type="button"><i></i></button><strong>Normal · 200 ms</strong><p>Transitions de composants</p></article><article><button class="motion-demo slow" type="button"><i></i></button><strong>Slow · 300 ms</strong><p>Changements de contexte</p></article></div></section>
 
-    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt-sept contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>27 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
+    <section class="doc-section" id="components-intro" data-title="Composants"><div class="section-heading"><div><span class="section-index">04</span><h2>Composants</h2></div><p>Vingt-huit contrats de base, présentés ici avec leurs variantes, états et comportements essentiels.</p></div><div class="component-summary"><span>28 composants</span><span>2 thèmes</span><span>Clavier & tactile</span><span>Framework-agnostic</span></div></section>
 
     <section class="doc-section component-section" id="button" data-title="Button"><div class="component-heading"><div><span class="component-number">01</span><div><h2>Button</h2><p>Déclenche une action. Pour naviguer, utilisez un lien.</p></div></div><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/button.md">Voir le contrat ↗</a></div><div class="demo-card"><div class="demo-toolbar"><span>Variantes</span><span>Interactif</span></div><div class="demo-stage button-stage"><button class="button primary" type="button">Primary</button><button class="button secondary" type="button">Secondary</button><button class="button ghost" type="button">Ghost</button><button class="button destructive" type="button">Destructive</button><button class="button primary" type="button" disabled>Disabled</button><button class="button primary loading" type="button" aria-label="Chargement" disabled><i></i>Chargement</button></div><div class="api-row"><span><code>variant</code> primary · secondary · ghost · destructive</span><span><code>size</code> small · medium · large</span></div></div></section>
 
@@ -95,6 +95,26 @@
         </div>
         <div class="api-row"><span><code>leadingVisual</code> icône · drapeau · avatar</span><span><code>searchable</code> false · true</span><span><code>multiple</code> false · true</span></div>
       </div>
+    </section>
+
+    <section class="doc-section component-section" id="pagination" data-title="Pagination">
+      <div class="component-heading"><div><div><h2>Pagination</h2><p>Parcourt une liste et ajuste le nombre de résultats par page.</p></div></div>
+      <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/pagination.md">Voir le contrat ↗</a></div>
+      <div class="demo-card"><div class="demo-stage"><div class="pagination-example">
+        <ul id="pagination-demo-items" aria-label="Commandes de démonstration"></ul>
+        <nav class="pagination" id="demo-pagination" aria-label="Pagination" hidden>
+  <span class="pagination-range" role="status"></span>
+  <div class="pagination-controls">
+    <button class="button secondary" type="button" data-page-prev>Précédent</button>
+    <span class="pagination-position"></span>
+    <span class="pagination-pages"></span>
+    <button class="button secondary" type="button" data-page-next>Suivant</button>
+  </div>
+  <label class="pagination-size">Par page
+    <select><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select>
+  </label>
+</nav>
+      </div></div></div>
     </section>
 
     <section class="doc-section component-section" id="bulk-actions" data-title="Actions groupées">
@@ -827,7 +847,7 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </div>
-  <script type="module" src="./app.js?v=bulk-actions-v1"></script>
+  <script type="module" src="./app.js?v=pagination-v1"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.js"
     integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
   <script defer src="./street-map.js?v=1"></script>

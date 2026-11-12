@@ -7,9 +7,9 @@
   <title>Liste de produits · Aether UI</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./tokens.css">
-  <link rel="stylesheet" href="./styles.css?v=bulk-actions-v1">
+  <link rel="stylesheet" href="./styles.css?v=pagination-v1">
   <link rel="stylesheet" href="./products.css?v=drawer-v1">
-  <script type="module" src="./products.js?v=bulk-actions-v1"></script>
+  <script type="module" src="./products.js?v=pagination-v1"></script>
 </head>
 <body class="catalog">
   <a class="skip-link" href="#catalog-main">Aller au catalogue</a>
@@ -73,6 +73,18 @@
           <tbody id="product-rows"></tbody>
         </table>
       </div>
+      <nav class="pagination" id="product-pagination" aria-label="Pagination" hidden>
+  <span class="pagination-range" role="status"></span>
+  <div class="pagination-controls">
+    <button class="button secondary" type="button" data-page-prev>Précédent</button>
+    <span class="pagination-position"></span>
+    <span class="pagination-pages"></span>
+    <button class="button secondary" type="button" data-page-next>Suivant</button>
+  </div>
+  <label class="pagination-size">Par page
+    <select><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select>
+  </label>
+</nav>
       <div class="bulk-bar bulk-bar-mobile" data-bulk-bar hidden>
   <strong data-bulk-count></strong>
   <div class="bulk-buttons">

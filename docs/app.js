@@ -1,3 +1,4 @@
+import { setupPagination } from './pagination.js';
 import { setupBulkActions } from './bulk-actions.js';
 import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
@@ -37,6 +38,19 @@ import { createToast } from './toast.js';
     document.querySelector('#demo-stepper-result').textContent = 'Démonstration terminée.';
   });
   stepper.reset();
+
+  const demoPageItems = document.querySelector('#pagination-demo-items');
+  const orders = Array.from({ length: 26 }, (_, index) => 'Commande CMD-' + (1040 + index));
+  const demoPagination = setupPagination(document.querySelector('#demo-pagination'), { onChange: renderDemoPage, unit: 'commandes' });
+  function renderDemoPage() {
+    const items = demoPagination.slice(orders).map(label => {
+      const item = document.createElement('li');
+      item.textContent = label;
+      return item;
+    });
+    demoPageItems.replaceChildren(...items);
+  }
+  renderDemoPage();
 
   const root = document.documentElement;
   const body = document.body;
