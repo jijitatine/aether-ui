@@ -46,8 +46,6 @@
 .catalog-demo .catalog-actions { margin-top: var(--aether-spacing-12); }
 .catalog dialog::backdrop { background: color-mix(in srgb, var(--aether-color-black) 40%, transparent); backdrop-filter: none; }
 .catalog-editor-fields { display: grid; gap: var(--aether-spacing-16); }
-.catalog-status-options label { display: inline-flex; align-items: center; gap: var(--aether-spacing-4); min-height: var(--aether-button-height-medium); margin-inline-end: var(--aether-spacing-8); }
-.catalog-status-options input { accent-color: var(--aether-semantic-accent); }
 .catalog-editor-actions { max-width: none; margin: auto 0 0; padding: 0; font: inherit; justify-content: flex-end; }
 .catalog-remove { margin-inline-end: auto; color: var(--aether-semantic-danger); }
 .catalog .toast {
