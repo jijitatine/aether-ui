@@ -2293,8 +2293,7 @@ dialog.drawer[open] {
 .pagination-size .select-popover { top: auto; bottom: calc(100% + var(--aether-spacing-4)); }
 .pagination [data-page-prev], .pagination [data-page-next] { min-width: var(--aether-button-height-medium); padding-inline: 0; }
 .pagination-controls svg { width: var(--aether-spacing-20); height: var(--aether-spacing-20); fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-.table-demo:has(.pagination) { overflow: visible; }
-.table-pagination { padding: var(--aether-spacing-16); }
+.table-pagination { margin-block-start: var(--aether-spacing-16); padding: var(--aether-spacing-16); }
 .table-pagination-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--aether-spacing-8); }
 .table-pagination-heading h3 { margin: 0; }
 .table-pagination-heading a { color: var(--aether-semantic-accent); }
