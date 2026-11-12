@@ -1,3 +1,4 @@
+import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
 import { createToast } from './toast.js';
 
@@ -14,6 +15,27 @@ import { createToast } from './toast.js';
       document.querySelector('#combobox-result').textContent = label + ' · ' + detail;
     }
   });
+
+  const stepperForm = document.querySelector('#demo-stepper');
+  const stepper = setupStepper(stepperForm, {
+    review() {
+      const { name, category, price, status } = stepperForm.elements;
+      updateStepperSummary(stepperForm, {
+        name: name.value, category: category.value,
+        price: new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(price.valueAsNumber),
+        status: status.value ? status.value : 'Brouillon'
+      });
+    }
+  });
+  stepperForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!stepper.readyToSubmit()) return;
+    stepperForm.reset();
+    stepper.reset();
+    document.querySelector('#demo-step-name').focus();
+    document.querySelector('#demo-stepper-result').textContent = 'Démonstration terminée.';
+  });
+  stepper.reset();
 
   const root = document.documentElement;
   const body = document.body;

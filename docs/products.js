@@ -1,3 +1,4 @@
+import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
 import { createToast } from './toast.js';
 
@@ -211,6 +212,7 @@ function openEditor(product, trigger) {
   byId('editor-title').textContent = product ? 'Modifier le produit' : 'Ajouter un produit';
   byId('editor-reference').textContent = product ? reference(product.id) : '';
   remove.hidden = !product;
+  stepper.reset(!product);
   editor.showModal();
 }
 
@@ -233,6 +235,26 @@ const fieldMessages = {
   category: 'Saisissez la catégorie.',
   price: 'Saisissez un prix entre 0 et 999 999,99 €, avec deux décimales au maximum.',
 };
+const stepper = setupStepper(form, {
+  validate(panel) {
+    for (const input of panel.querySelectorAll('input')) {
+      if (!input.reportValidity()) return false;
+      if (['name', 'category'].includes(input.name) && !input.value.trim()) {
+        fieldError(input, fieldMessages[input.name]);
+        input.focus();
+        return false;
+      }
+    }
+    return true;
+  },
+  review() {
+    const { name, category, price, status } = form.elements;
+    updateStepperSummary(form, {
+      name: name.value.trim(), category: category.value.trim(),
+      price: currency.format(price.valueAsNumber), status: statuses[status.value].label
+    });
+  }
+});
 form.addEventListener('invalid', (event) => {
   const input = event.target;
   if (fieldMessages[input.name]) fieldError(input, fieldMessages[input.name]);
@@ -242,6 +264,7 @@ form.addEventListener('input', (event) => {
 });
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  if (!stepper.readyToSubmit() || (editedId !== null && !form.reportValidity())) return;
   const fields = form.elements;
   const missing = [fields.name, fields.category].filter((input) => !input.value.trim());
   if (missing.length) {
