@@ -15,3 +15,5 @@ gérer un catalogue. Les données de démonstration restent en mémoire pendant 
 - Confirmer les mutations avec un message bref dans une région de statut. Le toast ne déplace pas le focus à son ouverture et possède un bouton de fermeture accessible au clavier.
 - Garder le tableau sur une surface opaque. Sur écran étroit, laisser le tableau
   défiler dans sa région nommée et conserver les filtres dans le flux de la page.
+
+- Paginer après filtrage et tri. Revenir à la première page quand les filtres ou la taille de page changent. La sélection groupée se limite à la page affichée.

@@ -1,3 +1,4 @@
+import { setupPagination } from './pagination.js';
 import { setupBulkActions } from './bulk-actions.js';
 import { setupStepper, updateStepperSummary } from './stepper.js';
 import { setupCombobox } from './combobox.js';
@@ -33,7 +34,23 @@ let products = [
   { id: 105, name: 'Miroir Horizon', category: 'Décoration', status: 'archived', price: 125, date: '2026-10-26' },
   { id: 106, name: 'Applique Écume', category: 'Éclairage', status: 'draft', price: 74.9, date: '2026-10-22' },
 ];
-let nextId = 107;
+const collections = [
+  ['Éclairage', ['Lampe', 'Applique', 'Suspension', 'Lampadaire']],
+  ['Mobilier', ['Fauteuil', 'Console', 'Tabouret', 'Étagère']],
+  ['Décoration', ['Vase', 'Miroir', 'Cadre', 'Bougeoir']]
+];
+const finishes = ['Sable', 'Lin', 'Ardoise'];
+for (const [category, names] of collections) {
+  for (const name of names) {
+    for (const finish of finishes) {
+      const id = 101 + products.length;
+      const date = new Date(Date.UTC(2026, 9, 20 - (id - 107))).toISOString().slice(0, 10);
+      products.push({ id, name: name + ' ' + finish, category,
+        status: id % 4 === 0 ? 'draft' : 'active', price: 19 + (id % 23) * 6, date });
+    }
+  }
+}
+let nextId = 101 + products.length;
 let state = 'ready';
 let sort = { key: 'date', direction: 'descending' };
 let editedId = null;
@@ -136,6 +153,7 @@ function renderProduct(product) {
 
 function render() {
   const result = state === 'ready' ? visibleProducts() : [];
+  const pageRows = pagination.slice(result);
   rows.replaceChildren();
   table.setAttribute('aria-busy', String(state === 'loading'));
   add.disabled = state !== 'ready';
@@ -158,7 +176,7 @@ function render() {
     showTableState('Impossible de charger le catalogue.', 'Réessayer', () => preview('loading', add));
   } else {
     count.textContent = result.length + (result.length > 1 ? ' produits' : ' produit');
-    if (result.length) result.forEach(renderProduct);
+    if (pageRows.length) pageRows.forEach(renderProduct);
     else if (state === 'empty' || !products.length) {
       showTableState('Le catalogue est vide.', state === 'empty' ? 'Revenir au catalogue' : 'Ajouter un produit',
         () => state === 'empty' ? preview('ready', add) : openEditor(null, add));
@@ -187,9 +205,9 @@ function preview(value, focusTarget) {
   }
 }
 
-filters.addEventListener('input', () => { validatePeriod(); render(); });
+filters.addEventListener('input', () => { validatePeriod(); pagination.reset(); render(); });
 filters.addEventListener('submit', (event) => event.preventDefault());
-filters.addEventListener('reset', () => queueMicrotask(() => { validatePeriod(); render(); }));
+filters.addEventListener('reset', () => queueMicrotask(() => { validatePeriod(); pagination.reset(); render(); }));
 for (const button of table.querySelectorAll('[data-sort]')) {
   button.addEventListener('click', () => {
     const key = button.dataset.sort;
@@ -290,6 +308,7 @@ form.addEventListener('submit', (event) => {
     const date = [today.getFullYear(), today.getMonth() + 1, today.getDate()]
       .map((value) => String(value).padStart(2, '0')).join('-');
     products.push({ ...product, id: nextId++, date });
+    pagination.reset();
     closeEditorAndRefresh('Produit créé.');
   } else {
     products = products.map((item) => item.id === editedId ? { ...item, ...product } : item);
@@ -328,6 +347,8 @@ setupCombobox(byId('product-lookup'), {
     openEditor(product, input);
   }
 });
+
+const pagination = setupPagination(byId('product-pagination'), { onChange: render, unit: 'produits' });
 
 const bulkActions = setupBulkActions(table.closest('.catalog-panel'), {
   archive(ids) {
