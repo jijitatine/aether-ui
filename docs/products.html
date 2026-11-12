@@ -7,8 +7,8 @@
   <title>Liste de produits · Aether UI</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./tokens.css">
-  <link rel="stylesheet" href="./styles.css?v=table-pagination-v2">
-  <link rel="stylesheet" href="./products.css?v=pagination-spacing-v1">
+  <link rel="stylesheet" href="./styles.css?v=radio-v1">
+  <link rel="stylesheet" href="./products.css?v=radio-v1">
   <script type="module" src="./products.js?v=table-pagination-v3"></script>
 </head>
 <body class="catalog">
@@ -144,10 +144,10 @@
       </div>
       <div class="catalog-editor-fields" data-stepper-panel>
         <div class="catalog-field"><label for="product-price">Prix (€)</label><input id="product-price" name="price" type="number" min="0" max="999999.99" step="0.01" required aria-describedby="product-price-error"><small class="catalog-error" id="product-price-error" hidden></small></div>
-        <fieldset class="catalog-status-options"><legend>Statut</legend>
-          <label><input type="radio" name="status" value="active" required> Actif</label>
-          <label><input type="radio" name="status" value="draft"> Brouillon</label>
-          <label><input type="radio" name="status" value="archived"> Archivé</label>
+        <fieldset class="radio-group radio-group-inline"><legend>Statut</legend>
+          <label class="radio-option"><input type="radio" name="status" value="active" required> Actif</label>
+          <label class="radio-option"><input type="radio" name="status" value="draft"> Brouillon</label>
+          <label class="radio-option"><input type="radio" name="status" value="archived"> Archivé</label>
         </fieldset>
       </div>
       <div data-stepper-panel hidden>
