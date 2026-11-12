@@ -7,9 +7,9 @@
   <title>Liste de produits · Aether UI</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./tokens.css">
-  <link rel="stylesheet" href="./styles.css?v=combobox-v1">
+  <link rel="stylesheet" href="./styles.css?v=stepper-v1">
   <link rel="stylesheet" href="./products.css?v=drawer-v1">
-  <script type="module" src="./products.js?v=combobox-v1"></script>
+  <script type="module" src="./products.js?v=stepper-v1"></script>
 </head>
 <body class="catalog">
   <a class="skip-link" href="#catalog-main">Aller au catalogue</a>
@@ -87,14 +87,21 @@
   </main>
 
   <dialog id="product-editor" class="drawer" aria-labelledby="editor-title">
-    <form id="product-form">
+    <form id="product-form" novalidate>
       <header class="drawer-heading">
         <div><h2 id="editor-title"></h2><p id="editor-reference"></p></div>
         <button class="button ghost drawer-close" type="button" id="close-editor" autofocus aria-label="Fermer la fiche">×</button>
       </header>
-      <div class="catalog-editor-fields">
+      <nav class="stepper" aria-label="Étapes de création" data-stepper-nav>
+  <ol><li><button class="button secondary" type="button" data-stepper-jump disabled><span aria-hidden="true">1</span> Informations</button></li><li><button class="button secondary" type="button" data-stepper-jump disabled><span aria-hidden="true">2</span> Prix et statut</button></li><li><button class="button secondary" type="button" data-stepper-jump disabled><span aria-hidden="true">3</span> Récapitulatif</button></li></ol>
+  <p data-stepper-position class="stepper-position"></p>
+</nav>
+      <div class="catalog-editor-fields" data-stepper-panel>
         <div class="catalog-field"><label for="product-name">Nom du produit</label><input id="product-name" name="name" required maxlength="100" aria-describedby="product-name-error"><small class="catalog-error" id="product-name-error" hidden></small></div>
         <div class="catalog-field"><label for="product-category">Catégorie</label><input id="product-category" name="category" required maxlength="60" aria-describedby="product-category-error"><small class="catalog-error" id="product-category-error" hidden></small></div>
+
+      </div>
+      <div class="catalog-editor-fields" data-stepper-panel>
         <div class="catalog-field"><label for="product-price">Prix (€)</label><input id="product-price" name="price" type="number" min="0" max="999999.99" step="0.01" required aria-describedby="product-price-error"><small class="catalog-error" id="product-price-error" hidden></small></div>
         <fieldset class="catalog-status-options"><legend>Statut</legend>
           <label><input type="radio" name="status" value="active" required> Actif</label>
@@ -102,9 +109,13 @@
           <label><input type="radio" name="status" value="archived"> Archivé</label>
         </fieldset>
       </div>
+      <div data-stepper-panel hidden>
+        <dl class="stepper-review"><div><dt>Nom</dt><dd data-stepper-summary="name"></dd></div><div><dt>Catégorie</dt><dd data-stepper-summary="category"></dd></div><div><dt>Prix</dt><dd data-stepper-summary="price"></dd></div><div><dt>Statut</dt><dd data-stepper-summary="status"></dd></div></dl>
+      </div>
       <footer class="catalog-actions catalog-editor-actions">
         <button type="button" class="button ghost catalog-remove" id="delete-product">Supprimer</button>
         <button type="button" class="button secondary" id="cancel-editor">Annuler</button>
+        <button class="button secondary" type="button" data-stepper-back hidden>Précédent</button>
         <button class="button primary" type="submit">Enregistrer</button>
       </footer>
     </form>
