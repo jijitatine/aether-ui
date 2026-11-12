@@ -4,7 +4,7 @@ export function setupPagination(root, { onChange, unit = 'résultats' }) {
   const pages = root.querySelector('.pagination-pages');
   const previous = root.querySelector('[data-page-prev]');
   const next = root.querySelector('[data-page-next]');
-  const size = root.querySelector('select');
+  const size = root.querySelector('[data-page-size]');
   let page = 1;
   let pageCount = 1;
 

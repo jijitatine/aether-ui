@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="./tokens.css?v=select-search-v3">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.css"
     integrity="sha384-Nq6PQ+9vJPvw7U/VfDELyrWoGQMsy0gi6QShhaSrGzkpF5KkM40csg2leky+YMTd" crossorigin="anonymous">
-  <link rel="stylesheet" href="./styles.css?v=pagination-v1">
+  <link rel="stylesheet" href="./styles.css?v=table-pagination-v2">
 </head>
 <body>
   <a class="skip-link" href="#content">Aller au contenu</a>
@@ -29,7 +29,7 @@
     <nav class="side-nav" aria-label="Sections de la documentation">
       <div class="nav-group" data-search-group><p>Commencer</p><a href="#overview" class="active">Vue d’ensemble</a><a href="#quick-start">Installation</a><a href="#principles">Principes</a></div>
       <div class="nav-group" data-search-group><p>Fondations</p><a href="#colors">Couleurs</a><a href="#typography">Typographie</a><a href="#spacing">Espacement & rayons</a><a href="#motion">Mouvement</a></div>
-      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#combobox">Combobox</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#pagination">Pagination</a><a href="#bulk-actions">Actions groupées</a><a href="#dialog">Dialog</a><a href="#drawer">Drawer</a><a href="#stepper">Stepper</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#toast">Toast</a><a href="#alert">Alert</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a><a href="#map">Carte géographique</a></div>
+      <div class="nav-group" data-search-group><p>Composants</p><a href="#button">Button</a><a href="#text-field">TextField</a><a href="#select">Select</a><a href="#combobox">Combobox</a><a href="#checkbox">Checkbox</a><a href="#toggle">Toggle</a><a href="#card">Card</a><a href="#tabs">Tabs</a><a href="#table">Table</a><a href="#bulk-actions">Actions groupées</a><a href="#dialog">Dialog</a><a href="#drawer">Drawer</a><a href="#stepper">Stepper</a><a href="#navigation-bar">NavigationBar</a><a href="#date-time-picker">DatePicker / TimePicker</a><a href="#date-range-picker">DateRangePicker</a><a href="#calendar-picker">Calendrier Aether</a><a href="#menu-button">MenuButton</a><a href="#chip">Chip</a><a href="#slider">Slider</a><a href="#progress-bar">ProgressBar</a><a href="#progress-spinner">ProgressSpinner</a><a href="#badge">Badge</a><a href="#toast">Toast</a><a href="#alert">Alert</a><a href="#file-uploader">FileUploader</a><a href="#chart">Graphiques</a><a href="#map">Carte géographique</a></div>
       <div class="nav-group" data-search-group><p>Construire</p><a href="#patterns">Patterns</a><a href="./products.html">Liste de produits</a><a href="#accessibility">Accessibilité</a><a href="#ai-guide">Claude & Codex</a><a href="#governance">Contribution</a></div>
     </nav>
     <div class="sidebar-note"><span class="status-dot"></span><div><strong>Stable pour prototypage</strong><small>Adaptateurs en préparation</small></div></div>
@@ -95,26 +95,6 @@
         </div>
         <div class="api-row"><span><code>leadingVisual</code> icône · drapeau · avatar</span><span><code>searchable</code> false · true</span><span><code>multiple</code> false · true</span></div>
       </div>
-    </section>
-
-    <section class="doc-section component-section" id="pagination" data-title="Pagination">
-      <div class="component-heading"><div><div><h2>Pagination</h2><p>Parcourt une liste et ajuste le nombre de résultats par page.</p></div></div>
-      <a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/pagination.md">Voir le contrat ↗</a></div>
-      <div class="demo-card"><div class="demo-stage"><div class="pagination-example">
-        <ul id="pagination-demo-items" aria-label="Commandes de démonstration"></ul>
-        <nav class="pagination" id="demo-pagination" aria-label="Pagination" hidden>
-  <span class="pagination-range" role="status"></span>
-  <div class="pagination-controls">
-    <button class="button secondary" type="button" data-page-prev>Précédent</button>
-    <span class="pagination-position"></span>
-    <span class="pagination-pages"></span>
-    <button class="button secondary" type="button" data-page-next>Suivant</button>
-  </div>
-  <label class="pagination-size">Par page
-    <select><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select>
-  </label>
-</nav>
-      </div></div></div>
     </section>
 
     <section class="doc-section component-section" id="bulk-actions" data-title="Actions groupées">
@@ -255,6 +235,31 @@
             </tbody>
           </table>
           <div class="table-status" role="status" data-table-status></div>
+        </div>
+        <div class="table-pagination">
+          <div class="table-pagination-heading"><h3 id="table-pagination-label">Pagination</h3><a href="https://github.com/jijitatine/aether-ui/blob/main/specifications/components/pagination.md">Voir le contrat ↗</a></div>
+          <nav class="pagination" id="pagination" aria-describedby="table-pagination-label" aria-label="Pagination" hidden>
+  <span class="pagination-range" role="status"></span>
+  <div class="pagination-controls">
+    <button class="button secondary" type="button" data-page-prev aria-label="Page précédente" title="Précédent"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <span class="pagination-position"></span>
+    <span class="pagination-pages"></span>
+    <button class="button secondary" type="button" data-page-next aria-label="Page suivante" title="Suivant"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+  <div class="field select-field pagination-size" data-select>
+    <label id="demo-pagination-size-label" for="demo-pagination-size">Par page</label>
+    <button class="select-trigger" id="demo-pagination-size" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="demo-pagination-size-options" aria-labelledby="demo-pagination-size-label demo-pagination-size-value">
+      <span class="select-trigger-content"><span id="demo-pagination-size-value" data-select-value>2</span></span>
+      <span class="select-chevron" aria-hidden="true"></span>
+    </button>
+    <div class="select-popover" hidden><div class="select-options" id="demo-pagination-size-options" role="listbox" aria-labelledby="demo-pagination-size-label">
+      <button class="select-option" type="button" role="option" tabindex="-1" aria-selected="true" data-value="2">2</button>
+      <button class="select-option" type="button" role="option" tabindex="-1" aria-selected="false" data-value="5">5</button>
+      <button class="select-option" type="button" role="option" tabindex="-1" aria-selected="false" data-value="10">10</button>
+    </div></div>
+    <input type="hidden" data-page-size value="2">
+  </div>
+</nav>
         </div>
         <div class="api-row table-controls" role="group" aria-label="État de la démonstration">
           <button class="button ghost small" type="button" data-table-state="ready" aria-pressed="true">Données</button>
@@ -847,7 +852,7 @@
       <button class="button primary" id="calendar-apply" type="button">Valider</button>
     </div>
   </div>
-  <script type="module" src="./app.js?v=pagination-v1"></script>
+  <script type="module" src="./app.js?v=table-pagination-v2"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.1/dist/maplibre-gl.js"
     integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
   <script defer src="./street-map.js?v=1"></script>

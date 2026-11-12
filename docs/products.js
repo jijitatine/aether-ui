@@ -1,3 +1,4 @@
+import { setupSelects } from './select.js';
 import { setupPagination } from './pagination.js';
 import { setupBulkActions } from './bulk-actions.js';
 import { setupStepper, updateStepperSummary } from './stepper.js';
@@ -348,6 +349,7 @@ setupCombobox(byId('product-lookup'), {
   }
 });
 
+setupSelects();
 const pagination = setupPagination(byId('product-pagination'), { onChange: render, unit: 'produits' });
 
 const bulkActions = setupBulkActions(table.closest('.catalog-panel'), {
